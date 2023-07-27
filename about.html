@@ -1,0 +1,131 @@
+---
+
+---
+
+<!DOCTYPE html>
+<html>
+
+<style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.no_padding {
+  padding:0px !important;
+}
+
+.no_margin {
+  margin:0px !important;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+.h1 {
+    font-weight: bold;
+    color:rgb(26, 145, 240);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/common.css">
+    <title>{{ site.title }}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbar"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="chat" href="/about">About</a>
+        </div>
+    </div>
+</nav>
+
+<div id="dhead" class="container">
+    <div class="row">
+        <div id="dpic">
+            <img class="ppic" src="\assets\thu_thao\thu-tha.png">
+        </div>
+        <div id="ddesc">
+            <h1>Phan Thu Thảo</h1>
+            <h2><span style="font-weight:bold;color:black;">Tôi</span> sinh ra vào <span style="font-weight:bold;color:blue;">ngày 29 tháng 7 năm 2016</span></h2>
+            <div id="dico"></div>
+            <div id="demail">{{ site.data.profile.email }}</div>
+        </div>
+    </div>
+</div>
+
+<hr class="hr">
+
+<script src="/js/jquery-3.2.1.slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<div id="loader" hidden></div>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+avatar: "/assets/profile/anhtt.jpg"
+name: "Trần Thế Anh"
+email: "anhttmle@gmail.com"
+experiences:
+  - employer: "Viettel Cyber Security"
+    time: "Aug 2020 - Present"
+    logo: "/assets/profile/vcs.png"
+    roles:
+    - name: "R&D Manager"
+      time: "Jan 2022 - Present"
+      employment_type: "Full-time"
+      location: "Viet Nam"
+      location_type: "Onsite"
+      description:
+        text: "Leading R&D team on research & develop AI technology for optimizing cost and making competitive feature."
+        children:
+      projects:
+        - name: "Internal LLM applications"
+          description:
+            text: "Apply LLM on VCS issues such as:"
+            children:
+                - "Private document search"
+                - "Enhanced Data lookup UX"
+                - "Knowledge generative"
+                - "..."
+        - name:
+      skills:
+        - ML/DL
+        - Tensorflow/Keras/Pytorch
+        - Numpy/Pandas/Matplotlib
+        - SQL/NoSQL
+        - Python
+        - Docker
+        - K8s/Kubeflow
+        - Microservice
+    - name: "Technique Leader"
+      time: "Aug 2020 - Dec 2021"
+      employment_type: "Full-time"
+      location: "Viet Nam"
+      location_type: "Onsite"
+      description:
+        text: "Design & Develop AI Cyber Security product that optimized and scalable."
+        children:
+      projects:
+      skills:
+        - ML/DL
+        - Tensorflow/Keras/Pytorch
+        - Numpy/Pandas/Matplotlib
+        - SQL/NoSQL
+        - Python
+        - Docker
+        - K8s/Kubeflow
+        - Microservice
+  - employer: "Myself"
+    time: "April 2018 - Present"
+    logo: "/assets/profile/anhtt.jpg"
+    roles:
+      - name: "ML/DL Mentor"
+        time: "April 2018 - Present"
+        employment_type: "Part-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Supporting and mentoring other machine learners. Help them know what to study and support them how to learn a specific ML/DL technique such as studying courses, understanding published papers, training/evaluating/predicting several DL models."
+          children:
+        projects:
+  - employer: "Robochat Viet Nam"
+    time: "Aug 2018 - Jul 2020"
+    logo: "/assets/profile/robochat.jpg"
+    roles:
+      - name: "Co-Founder"
+        time: "Aug 2018 - Jul 2020"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Taking care all about problems on developing AI module (from data acquisition to training/evaluating to serving model)"
+          children:
+        projects:
+        skills:
+          - ML/DL
+          - Tensorflow/Keras/Pytorch
+          - Numpy/Pandas/Matplotlib
+          - Python
+          - SQL
+  - employer: "Septeni Co.,Ltd."
+    time: "Dec 2015 - Apr 2018"
+    logo: "/assets/profile/septech.png"
+    roles:
+      - name: "ML/DL Mentor"
+        time: "Jun 2016 - Apr 2018"
+        employment_type: "Part-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Teaching/Mentoring a Machine Learning Class (~10 student)"
+          children:
+        projects:
+        skills:
+          - ML/DL
+          - Tensorflow/Keras/Pytorch
+          - Numpy/Pandas/Matplotlib
+          - Python
+          - Teaching
+      - name: "Software Engineer"
+        time: "Dec 2015 - Apr 2018"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Developing Mobile Game on Cocos2dx Engine."
+          children:
+        projects:
+        skills:
+          - iOS
+          - Cocos2dx
+          - C++
+          - SQL
+          - ML/DL
+  - employer: "Nal Vietnam Jsc"
+    time: "Jun 2014 - Nov 2015"
+    logo: "/assets/profile/nal.png"
+    roles:
+      - name: "iOS Developer"
+        time: "Jun 2014 - Nov 2015"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Developing iOS Application."
+          children:
+        projects:
+        skills:
+          - iOS
+          - SQL
+  - employer: "Goline Corporation"
+    time: "Apr 2013 - Apr 2014"
+    logo: "/assets/profile/goline.png"
+    roles:
+      - name: "Java Developer"
+        time: "Apr 2013 - Apr 2014"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Developing Java Application."
+          children:
+        projects:
+        skills:
+          - iOS
+          - SQL
+  - employer: "EPS Jsc"
+    time: "Dec 2010 - Jul 2012"
+    logo: "/assets/profile/eps.png"
+    roles:
+      - name: "Xpages Developer"
+        time: "Dec 2010 - Jul 2012"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Researching and developing products with an IBM technology - Xpages which is a web framework base on JSF (Java Server Faces)"
+          children:
+        projects:
+        skills:
+        - Java
+        - NoSQL
+        - Lotus Note
+education:
+  - org: "Hanoi University of Education"
+    time: "2008 - 2012"
+    degree: "Bachelor"
+    field: "Computer Science"
+  - org: "High School for Gifted Students, Hanoi University of Education"
+    time: "2005 - 2008"
+    degree: "High School Diploma"
+    field: "Mathematics"
+certs:
+  - name: "Natural Language Processing Specialization"
+    image: "???"
+  - name: "Machine Learning Engineering for Production (MLOps) Specialization"
+    image: "???"
+  - name: "Probabilistic Graphical Models - Representation"
+    image: "???"
+  - name: "Tensorflow Developer Specialization"
+    image: "???"
+  - name: "Deep Learning Specialization"
+    image: "???"
+skills:
+publications:
