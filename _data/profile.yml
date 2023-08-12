@@ -1,56 +1,57 @@
 avatar: "/assets/profile/anhtt.jpg"
-name: "Trần Thế Anh"
+name: "Thế-Anh Trần"
 email: "anhttmle@gmail.com"
+description: "I like diving into nature of intelligence!!!"
 experiences:
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Present"
     logo: "/assets/profile/vcs.png"
     roles:
-    - name: "R&D Manager"
-      time: "Jan 2022 - Present"
-      employment_type: "Full-time"
-      location: "Viet Nam"
-      location_type: "Onsite"
-      description:
-        text: "Leading R&D team on research & develop AI technology for optimizing cost and making competitive feature."
-        children:
-      projects:
-        - name: "Internal LLM applications"
-          description:
-            text: "Apply LLM on VCS issues such as:"
-            children:
+      - name: "R&D Manager"
+        time: "Jan 2022 - Present"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Leading R&D team on research & develop AI technology for optimizing cost and making competitive features."
+          children:
+        projects:
+          - name: "Internal LLM applications"
+            description:
+              text: "Apply LLM on VCS issues such as:"
+              children:
                 - "Private document search"
                 - "Enhanced Data lookup UX"
                 - "Knowledge generative"
                 - "..."
-        - name:
-      skills:
-        - ML/DL
-        - Tensorflow/Keras/Pytorch
-        - Numpy/Pandas/Matplotlib
-        - SQL/NoSQL
-        - Python
-        - Docker
-        - K8s/Kubeflow
-        - Microservice
-    - name: "Technique Leader"
-      time: "Aug 2020 - Dec 2021"
-      employment_type: "Full-time"
-      location: "Viet Nam"
-      location_type: "Onsite"
-      description:
-        text: "Design & Develop AI Cyber Security product that optimized and scalable."
-        children:
-      projects:
-      skills:
-        - ML/DL
-        - Tensorflow/Keras/Pytorch
-        - Numpy/Pandas/Matplotlib
-        - SQL/NoSQL
-        - Python
-        - Docker
-        - K8s/Kubeflow
-        - Microservice
+          - name:
+        skills:
+          - ML/DL
+          - Tensorflow/Keras/Pytorch
+          - Numpy/Pandas/Matplotlib
+          - SQL/NoSQL
+          - Python
+          - Docker
+          - K8s/Kubeflow
+          - Microservice
+      - name: "Technique Leader"
+        time: "Aug 2020 - Dec 2021"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Design & Develop AI Cyber Security products that optimal and scalable."
+          children:
+        projects:
+        skills:
+          - ML/DL
+          - Tensorflow/Keras/Pytorch
+          - Numpy/Pandas/Matplotlib
+          - SQL/NoSQL
+          - Python
+          - Docker
+          - K8s/Kubeflow
+          - Microservice
   - employer: "Myself"
     time: "April 2018 - Present"
     logo: "/assets/profile/anhtt.jpg"
@@ -63,7 +64,6 @@ experiences:
         description:
           text: "Supporting and mentoring other machine learners. Help them know what to study and support them how to learn a specific ML/DL technique such as studying courses, understanding published papers, training/evaluating/predicting several DL models."
           children:
-        projects:
   - employer: "Robochat Viet Nam"
     time: "Aug 2018 - Jul 2020"
     logo: "/assets/profile/robochat.jpg"
@@ -95,7 +95,6 @@ experiences:
         description:
           text: "Teaching/Mentoring a Machine Learning Class (~10 student)"
           children:
-        projects:
         skills:
           - ML/DL
           - Tensorflow/Keras/Pytorch
@@ -110,7 +109,6 @@ experiences:
         description:
           text: "Developing Mobile Game on Cocos2dx Engine."
           children:
-        projects:
         skills:
           - iOS
           - Cocos2dx
@@ -129,7 +127,6 @@ experiences:
         description:
           text: "Developing iOS Application."
           children:
-        projects:
         skills:
           - iOS
           - SQL
@@ -145,7 +142,6 @@ experiences:
         description:
           text: "Developing Java Application."
           children:
-        projects:
         skills:
           - iOS
           - SQL
@@ -161,11 +157,231 @@ experiences:
         description:
           text: "Researching and developing products with an IBM technology - Xpages which is a web framework base on JSF (Java Server Faces)"
           children:
-        projects:
         skills:
-        - Java
-        - NoSQL
-        - Lotus Note
+          - Java
+          - NoSQL
+          - Lotus Note
+projects:
+  - employer: "Viettel Cyber Security"
+    name: "Internal LLM applications"
+    time: "Apr 2023 - Present"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "Apply LLM on VCS issues such as"
+      - "- Private document search"
+      - "- Enhanced Data lookup UX"
+      - "- Knowledge generative"
+      - "..."
+  - employer: "Viettel Cyber Security"
+    name: "Auto Pentest"
+    time: "Feb 2023 - Present"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "- Find out costly phase of Penetration Test for web/mobile applications and networks."
+      - "- Apply weak supervision & RL for automating the costly phase, such as endpoint detection, specific attack type and building knowledge base as well."
+  - employer: "Viettel Cyber Security"
+    name: "Encrypted Traffic Anomaly Detection"
+    time: "Oct 2022 - Present"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "- Monitoring encrypted traffic"
+      - "- Training model periodically that try to reconstruct connection behavior"
+      - "- Capturing abnormal behavior by evaluating the reconstruction loss"
+  - employer: "Viettel Cyber Security"
+    name: "Keystroke Dynamic Authentication"
+    time: "Jan 2022 - Mar 2023"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "Authenticating system users by their typing behavior on entering user name & password"
+      - "Continuous authenticating system users by their typing behavior on working session"
+  - employer: "Viettel Cyber Security"
+    name: "Trusted Identity Detection"
+    time: "Nov 2021 - Jul 2022"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "Detect the most frequent pattern on User behavior"
+  - employer: "Viettel Cyber Security"
+    name: "IML - Interactive Machine Learning system"
+    time: "Apr 2021 - Mar 2022"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "- Design/Develop AI models"
+      - "- Design/Develop Batch/Stream Process for Training/Serving/Monitoring models and data"
+  - employer: "Viettel Cyber Security"
+    name: "Internal MLOps Process"
+    time: "Jun 2021 - Aug 2021"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "- Design & Develop process from Data Processing to Training/Evaluating/Serving and Monitoring"
+  - employer: "Viettel Cyber Security"
+    name: "F2DR - Financial Fraud Detection & Response"
+    time: "Aug 2020 - Apr 2021"
+    logo: "/assets/profile/vcs.png"
+    description:
+      - "- Define requirements"
+      - "- Design system"
+      - "- Developing features"
+  - employer: "Myself"
+    name: "N-linked glycosylation on ion channel with simple Transfer Learning and Multi Input Branches"
+    time: "Mar 2020 - Jul 2020"
+    logo: "/assets/profile/anhtt.jpg"
+    description:
+      - "Glycosylation is a dynamic enzymatic process where glycans are attached selectively to proteins or lipoproteins. Such process in ion channel proteins has been also shown to play a fundamental role in modulating ion channel function. This study approached a computational method to predict N-linked glycosylation sites, which is the most abundant glycosylation type, in ion channel proteins."
+  - employer: "Robochat Viet Nam"
+    name: "Robochat Platform (10bot Platform)"
+    time: "Aug 2018 - Jun 2020"
+    logo: "/assets/profile/robochat.jpg"
+    description:
+      - "- Phase 1: Rely on"
+      - " + User data (Collecting for future model as well)"
+      - " + Data augmentation (Tf-idf replacement, Synonym replacement)"
+      - " + Pretrained tf-idf Vectorizer (on serveral facebook fanpage)"
+      - " + Extra data (which not belong to any Intent - sacrifice uncommon domain)"
+      - "- Phase 2: Rely on"
+      - " + BERT pretrained (use embedding from [CLS] token of few last layer)"
+      - " + Data augmentation: (Similar to phase 1 + Back translation)"
+      - " + Solving simultaneously inference from users (Training on Google Cloud and predicting on our server, batching query, ...)"
+      - "- Phase 3:"
+      - " + Semi-supervise Learning wise, experiment with UDA (Unsupervise Data Augmentation)"
+      - " + Unlabeled Data crawling (Facebook Fanpage log chat from users)"
+  - employer: "Myself"
+    name: "Face Recognition"
+    time: "Jan 2019 - Jun 2019"
+    logo: "/assets/profile/anhtt.jpg"
+    description:
+      - "- Facial Detection with MTCNN"
+      - "- Facial Verification with FaceNet Triple Loss"
+      - "- Clustering Anchor Image by K-Mean"
+      - "- Distance computation by vectorization implementation"
+  - employer: "Septeni Co.,Ltd"
+    name: "Machine Learning Class"
+    time: "Dec 2016 - Mar 2018"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "I myself tried to build a team which is familiar with Machine Learning technique, especially with Deep Learning."
+      - "Class size: 5 - 10"
+      - "Topics:"
+      - " - Maths (Derivative, Integral, Probability distribution, Convolution,...)"
+      - " - Linear Regression"
+      - " - Logistic Regression"
+      - " - Artificial Neural Network"
+      - " - CNN"
+      - " - RNN (RNN, LSTM, GRU, Bi-directional RNN)"
+      - " - Autoencoder"
+      - " - Word embedded (Word2Vec, Glove)"
+      - " - Regularization L2"
+      - " - Drop-out"
+      - " - Feature normalization"
+      - " - Batch normalization"
+      - " - Gradient Descent (batch, mini-batch, stochastict, Momentum, RMProp, Adam)"
+      - " - Back propagation"
+      - " - Hyperparameter Tuning (Grid Search, Random Search)"
+      - " - Tensorflow, Keras, Numpy, Octave.."
+      - " - ..."
+  - employer: "Septeni Co.,Ltd"
+    name: "Brain Training Puzzle Game - STON - Unblock Puzzle"
+    time: "Sep 2016 - Oct 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "Unblock Puzzle is a mobile game which is developed with Cocos2d-x. "
+  - employer: "Septeni Co.,Ltd"
+    name: "Gesture Recognition"
+    time: "Mar 2016 - Sep 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "\"Gesture Recognition\" is a model which can matching between character and user gesture."
+      - "The way the model work is \"Listen to user gesture, such as drawing a number. Automatically take all the points on the gesture, divide them to a grid and treat as image\". The model was developed through Logistic Regression to Softmax Regression and Convolutional Neural Network at the end. Application of this is a mobile game which is ask user to do a calculation and enter result by a gesture."
+  - employer: "Septeni Co.,Ltd"
+    name: "Honey Blocks - Hexa Puzzle"
+    time: "Jul 2016 - Aug 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "\"Hexa Puzzle\" is a mobile game which is developed with Cocos2d-x."
+  - employer: "Septeni Co.,Ltd"
+    name: "Vietnamese Gender Prediction by Name"
+    time: "Jul 2016 - Aug 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "Phase 1: Using 3 separate dictionary which is for First Name, Middle Name and Last Name. So a name will be represented by one vector with fixed size which is total size of the 3 dictionary. The using model could be any type of classification model (Decision Tree, Logistic Regression, SVM, ANN, ...)"
+      - "Phase 2: Using 1 unique dictionary and each word in a name is represented as a vector. The using model could be RNN, LSTM or GRU"
+  - employer: "Septeni Co.,Ltd"
+    name: "Soccer Puzzle for Brain Training - SoccerStrike"
+    time: "Mar 2016 - Jul 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "\"Soccer Strike\" is a mobile game which is developed with Cocos2d-x. Beside, AI in this game is trained by many human's match."
+  - employer: "Septeni Co.,Ltd"
+    name: "Rocket"
+    time: "Jan 2016 - Feb 2016"
+    logo: "/assets/profile/septech.png"
+    description:
+      - "\"Rocket\" is a mobile game which is developed with Cocos2d-x."
+      - "Client: SEPTENI CROSSGATE CO.LTD"
+  - employer: "Nal Vietnam Jsc"
+    name: "Car Matching iOS Application"
+    time: "Sep 2015 - Nov 2015"
+    logo: "/assets/profile/nal.png"
+    description:
+      - "iOS Application which help users find and buy old cars"
+      - "Client: Tokyo Storm Co.,Ltd"
+  - employer: "Nal Vietnam Jsc"
+    name: "Anshin Beacon iOS Application"
+    time: "Jul 2015 - Aug 2015"
+    logo: "/assets/profile/nal.png"
+    description:
+      - "iOS Application which help doctors and nurses find and locate patient using iBeacon & BLE (Bluetooth Low Enegy)"
+      - "Client: Japanese Asylum"
+  - employer: "Nal Vietnam Jsc"
+    name: "Gyoroman iOS Application"
+    time: "May 2015 - Jun 2015"
+    logo: "/assets/profile/nal.png"
+    description:
+      - "iPad Application which help engineers find and report failures of apartments."
+      - "Client: Gyoroman Co.,Ltd"
+  - employer: "Nal Vietnam Jsc"
+    name: "Bang-guru iOS Application"
+    time: "Jan 2015 - May 2015"
+    logo: "/assets/profile/nal.png"
+    description:
+      - "iOS Application which help users find and locate restaurants in Thailand"
+      - "Client: Systena (THAILAND) Co.,Ltd"
+  - employer: "Nal Vietnam Jsc"
+    name: "Bang-guru Android Application"
+    time: "Jul 2014 - Jan 2015"
+    logo: "/assets/profile/nal.png"
+    description:
+      - "iOS Application which help users find and locate restaurants in Thailand"
+      - "Client: Systena (THAILAND) Co.,Ltd"
+  - employer: "Goline Corporation"
+    name: "JZeus Android Application"
+    time: "Dec 2013 - Apr 2014"
+    logo: "/assets/profile/goline.png"
+    description:
+      - "Android Application which help users access info and interact stocks, transactions"
+  - employer: "Goline Corporation"
+    name: "VGAIA Back Office"
+    time: "Apr 2013 - Nov 2013"
+    logo: "/assets/profile/goline.png"
+    description:
+      - "Java Application which allow users interact and manage stocks, transactions"
+  - employer: "EPS Joint-stock company"
+    name: "Archi Land Transactions Management System"
+    time: "May 2012 - Jul 2012"
+    logo: "/assets/profile/eps.png"
+    description:
+      - "Web System which manage transactions for Archi Land Việt Nam"
+  - employer: "EPS Joint-stock company"
+    name: "iCenter"
+    time: "Dec 2011 - May 2012"
+    logo: "/assets/profile/eps.png"
+    description:
+      - "Web System which manage internal Information of EPS Joint-stock company"
+  - employer: "EPS Joint-stock company"
+    name: "Information Management System"
+    time: "May 2011 - Nov 2011"
+    logo: "/assets/profile/eps.png"
+    description:
+      - "Web System which manage internal information of \"Viet Nam General Confederation Of Labour\""
 education:
   - org: "Hanoi University of Education"
     time: "2008 - 2012"
@@ -177,14 +393,32 @@ education:
     field: "Mathematics"
 certs:
   - name: "Natural Language Processing Specialization"
-    image: "???"
+    time: "Jan 2021"
+    url: "https://www.coursera.org/account/accomplishments/specialization/certificate/L5YNSN9TA7U5"
+    image: "/assets/profile/coursera.jpg"
   - name: "Machine Learning Engineering for Production (MLOps) Specialization"
-    image: "???"
+    time: "Dec 2021"
+    url: "https://www.coursera.org/account/accomplishments/specialization/certificate/J2PUT3GQEEWD"
+    image: "/assets/profile/coursera.jpg"
   - name: "Probabilistic Graphical Models - Representation"
-    image: "???"
+    time: "Jul 2020"
+    url: "https://www.coursera.org/account/accomplishments/certificate/WKZS97T865KW"
+    image: "/assets/profile/coursera.jpg"
   - name: "Tensorflow Developer Specialization"
-    image: "???"
+    time: "Jul 2019"
+    url: "https://www.coursera.org/account/accomplishments/specialization/SUZXFA7YEHKN"
+    image: "/assets/profile/coursera.jpg"
   - name: "Deep Learning Specialization"
-    image: "???"
+    time: "Feb 2018"
+    url: "https://www.coursera.org/account/accomplishments/specialization/PMP9SWJ68PK4"
+    image: "/assets/profile/coursera.jpg"
 skills:
 publications:
+  - name: "An extensive examination of discovering 5-Methylcytosine Sites in Genome-Wide DNA Promoters using machine learning based approaches"
+    time: "Feb 1, 2022"
+    journal: "IEEE"
+    abstract: "It is well-known that the major reason for the rapid proliferation of cancer cells are the hypomethylation of the whole cancer genome and the hypermethylation of the promoter of particular tumor suppressor genes. Locating 5-methylcytosine (5mC) sites in promoters is therefore a crucial step in further understanding of the relationship be-tween promoter methylation and the regulation of mRNA gene expression. High throughput identification of DNA 5mC in wet lab is still time-consuming and labor-extensive. Thus, finding the 5mC site of genome-wide DNA pro-moters is still an important task. We compared the effectiveness of the most popular and strong machine learning techniques namely XGBoost, Random Forest, Deep Forest, and Deep Feedforward Neural Network in predicting the 5mC sites of genome-wide DNA promoters. A feature extraction method based on k-mers embeddings learned from a language model were also applied. Overall, the performance of all the surveyed models surpassed deep learning models of the latest studies on the same dataset employing other encoding scheme. Furthermore, the best model achieved AUC scores of 0.962 on both cross-validation and independent test data. We concluded that our approach was efficient for identifying 5mC sites of promoters with high performance."
+  - name: "Incorporating a transfer learning technique with amino acid embeddings to efficiently predict N-linked glycosylation sites in ion channels"
+    time: "Jan 7, 2021"
+    journal: "Computers in Biology and Medicine"
+    abstract: "Glycosylation is a dynamic enzymatic process that attaches glycan to proteins or other organic molecules such as lipoproteins. Research has shown that such a process in ion channel proteins plays a fundamental role in modulating ion channel functions. This study used a computational method to predict N-linked glycosylation sites, the most common type, in ion channel proteins. From segments of ion channel proteins centered around N-linked glycosylation sites, the amino acid embedding vectors of each residue were concatenated to create features for prediction. We experimented with two different models for converting amino acids to their corresponding embeddings: one was fed with ion channel sequences and the other with a large dataset composed of more than one million protein sequences. The latter model stemmed from the idea of transfer learning technique and emerged as a more efficient feature extractor. Our best model was obtained from this transfer learning approach and a hyperparameter tuning process with a random search on 5-fold cross-validation data. It achieved an accuracy, specificity, sensitivity, and Matthews correlation coefficient of 93.4%, 92.8%, 98.6%, and 0.726, respectively. Corresponding scores on an independent test were 92.9%, 92.2%, 99%, and 0.717. These results outperform the position-specific scoring matrix features that are predominantly employed in post-translational modification site predictions. Furthermore, compared to N-GlyDE, GlycoEP, SPRINT-Gly, the most recent N-linked glycosylation site predictors, our model yields higher scores on the above 4 metrics, thus further demonstrating the efficiency of our approach."

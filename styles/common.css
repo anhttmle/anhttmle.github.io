@@ -14,6 +14,9 @@ body {
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
+    border-radius: 10px;
+    background: white;
+    padding: 20px;
 }
 @media (min-width: 992px) {
     .container {
@@ -106,12 +109,29 @@ h2 {
     border-left: 2px solid #cfcfcf;
     position: relative;
 }
+
 .ico img {
     border-radius: 5px;
     width: 100%;
     max-width: 80px;
     margin-left: 10px;
 }
+
+.ico2 {
+    grid-column: span 1;
+    vertical-align: top;
+    border-left: 0px solid #cfcfcf;
+    position: relative;
+}
+
+.ico2 img {
+    border-radius: 5px;
+    width: 50%;
+    max-width: 80px;
+    margin-left: 30px;
+}
+
+
 .desc {
     grid-column: span 10;
     vertical-align: top;
@@ -119,6 +139,14 @@ h2 {
     padding-left: 20px;
     padding-bottom: 20px;
 }
+
+.desc2 {
+    grid-column: span 10;
+    vertical-align: top;
+    font-size: 17px;
+    padding-bottom: 20px;
+}
+
 .entry {
 }
 .entry-dot {

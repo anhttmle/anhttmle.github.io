@@ -77,6 +77,8 @@
 
 
 
+
+
 </style>
 
 <head>
@@ -87,39 +89,177 @@
     <link rel="stylesheet" type="text/css" href="/styles/common.css">
     <title>{{ site.title }}</title>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbar"
-    >
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" id="home" href="/">Home</a>
-            <a class="nav-item nav-link" id="chat" href="/about">About</a>
-        </div>
-    </div>
-</nav>
+<body style="background: #f3f2ef">
+<!--<nav class="navbar navbar-expand-lg navbar-dark" style="background: gray">-->
+<!--    <button-->
+<!--            class="navbar-toggler"-->
+<!--            type="button"-->
+<!--            data-toggle="collapse"-->
+<!--            data-target="#navbar"-->
+<!--    >-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<!--    <div class="collapse navbar-collapse" id="navbar">-->
+<!--        <div class="navbar-nav">-->
+<!--            <a class="nav-item nav-link" style="color:white;" id="home" href="/">Home</a>-->
+<!--            <a class="nav-item nav-link" style="color:white;" id="chat" href="/about">About</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
 
-<div id="dhead" class="container">
+<div id="dhead">
     <div class="row">
         <div id="dpic">
-            <img class="ppic" src="\assets\thu_thao\thu-tha.png">
+            <img class="ppic" src="{{ site.data.profile.avatar }}">
         </div>
         <div id="ddesc">
-            <h1>Phan Thu Thảo</h1>
-            <h2><span style="font-weight:bold;color:black;">Tôi</span> sinh ra vào <span style="font-weight:bold;color:blue;">ngày 29 tháng 7 năm 2016</span></h2>
-            <div id="dico"></div>
-            <div id="demail">{{ site.data.profile.email }}</div>
+            <h1>{{ site.data.profile.name }}</h1>
+            <h2>{{ site.data.profile.description }}</h2>
+            <div id="dico">
+                <img src="/assets/icons/cemail.svg" style="cursor: pointer;" class="iico" id="iemail">
+                <span style="font-weight:bold;">{{ site.data.profile.email }}</span>
+            </div>
         </div>
     </div>
 </div>
 
 <hr class="hr">
+
+<div id="profile_exp" class="container" style="">
+    <div>
+        <h2 style="color: #333 !important; font-size: 30px; font-style: initial!important; font-weight:bold;">
+            History</h2>
+    </div>
+    <br>
+    {% for exp in site.data.profile.experiences %}
+    <div class="entry row">
+        <div class="timespan">
+            {{ exp.time }}
+        </div>
+        <div class="ico">
+            <div class="entry-dot"></div>
+            <img style="border: 1px solid #bbb;" src="{{ exp.logo }}">
+        </div>
+        <div class="desc">
+            {% for role in exp.roles %}
+            <table>
+                <tr style="height:20px">
+                    <td class="htxt">
+                        <span style="font-weight:bold">{{ role.name }}</span><span style="font-style:italic;color:#bbb"> ({{ role.time }})</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="htxt" style="font-size: 15px">
+                        {{ role.description.text }}
+                    </td>
+                </tr>
+            </table>
+            <hr class="liner">
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="hr">
+
+<div id="profile_edu" class="container" style="background-color: none;">
+    <div class="liner">
+        <h2 style="color: #333 !important; font-size: 30px; font-style: initial!important; font-weight:bold;">
+            Education</h2>
+    </div>
+    <br>
+    {% for item in site.data.profile.education %}
+    <div class="entry row">
+        <div class="desc">
+            <table>
+                <tr style="height:20px">
+                    <td class="htxt">
+                        <span style="font-weight:bold">{{ item.org }}</span><span style="font-style:italic;color:#bbb"> ({{ item.time }})</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="htxt" style="font-size: 15px">
+                        {{ item.degree }}, {{ item.field }}
+                    </td>
+                </tr>
+            </table>
+            {% if forloop.index != forloop.length %}
+            <hr class="liner">
+            {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<hr class="hr">
+
+<div id="profile_certs" class="container" style="background-color: none;">
+    <div class="liner">
+        <h2 style="color: #333 !important; font-size: 30px; font-style: initial!important; font-weight:bold;">
+            Certifications</h2>
+    </div>
+    <br>
+    {% for item in site.data.profile.certs %}
+    <div class="entry row">
+        <div class="desc">
+            <table>
+                <tr style="height:20px">
+                    <td class="htxt">
+                        <span> {{ item.time }} - </span>
+                        <a href="{{ item.url }}"> <span
+                            style="text-decoration:underline;font-weight:bold">{{ item.name }}</span></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="htxt" style="font-size: 15px">
+                        {{ item.degree }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+
+<hr class="hr">
+
+<div id="profile_proj" class="container" style="background-color: none;">
+    <div class="liner">
+        <h2 style="color: #333 !important; font-size: 30px; font-style: initial!important; font-weight:bold;">
+            Projects</h2>
+    </div>
+    {% for project in site.data.profile.projects %}
+    <div class="entry row">
+        <div class="ico2">
+            <img style="border: 1px solid #bbb;" src="{{ project.logo }}">
+        </div>
+        <div class="desc2">
+            <table>
+                <tr style="height:20px">
+                    <td class="htxt">
+                        <span style="font-weight:bold">{{ project.name }}</span><span style="font-style:italic;color:#bbb"> ({{ project.time }})</span>
+                    </td>
+                </tr>
+                {% for row in project.description %}
+                <tr>
+                    <td class="htxt" style="font-size: 15px">
+                        {{ row }}
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </table>
+            <hr class="liner">
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
 
 <script src="/js/jquery-3.2.1.slim.min.js"></script>
 <script src="/js/popper.min.js"></script>
