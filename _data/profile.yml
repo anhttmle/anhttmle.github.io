@@ -6,6 +6,21 @@ experiences:
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Present"
     logo: "/assets/profile/vcs.png"
+    skills:
+      - ML/DL
+      - Tensorflow
+      - Keras
+      - Pytorch
+      - Numpy
+      - Pandas
+      - Matplotlib
+      - SQL
+      - NoSQL
+      - Python
+      - Docker
+      - K8s
+      - Kubeflow
+      - Microservice
     roles:
       - name: "R&D Manager"
         time: "Jan 2022 - Present"
@@ -15,25 +30,6 @@ experiences:
         description:
           text: "Leading R&D team on research & develop AI technology for optimizing cost and making competitive features."
           children:
-        projects:
-          - name: "Internal LLM applications"
-            description:
-              text: "Apply LLM on VCS issues such as:"
-              children:
-                - "Private document search"
-                - "Enhanced Data lookup UX"
-                - "Knowledge generative"
-                - "..."
-          - name:
-        skills:
-          - ML/DL
-          - Tensorflow/Keras/Pytorch
-          - Numpy/Pandas/Matplotlib
-          - SQL/NoSQL
-          - Python
-          - Docker
-          - K8s/Kubeflow
-          - Microservice
       - name: "Technique Leader"
         time: "Aug 2020 - Dec 2021"
         employment_type: "Full-time"
@@ -42,16 +38,6 @@ experiences:
         description:
           text: "Design & Develop AI Cyber Security products that optimal and scalable."
           children:
-        projects:
-        skills:
-          - ML/DL
-          - Tensorflow/Keras/Pytorch
-          - Numpy/Pandas/Matplotlib
-          - SQL/NoSQL
-          - Python
-          - Docker
-          - K8s/Kubeflow
-          - Microservice
   - employer: "Myself"
     time: "April 2018 - Present"
     logo: "/assets/profile/anhtt.jpg"
@@ -67,6 +53,16 @@ experiences:
   - employer: "Robochat Viet Nam"
     time: "Aug 2018 - Jul 2020"
     logo: "/assets/profile/robochat.jpg"
+    skills:
+      - ML/DL
+      - Tensorflow
+      - Keras
+      - Pytorch
+      - Numpy
+      - Pandas
+      - Matplotlib
+      - Python
+      - SQL
     roles:
       - name: "Co-Founder"
         time: "Aug 2018 - Jul 2020"
@@ -76,16 +72,23 @@ experiences:
         description:
           text: "Taking care all about problems on developing AI module (from data acquisition to training/evaluating to serving model)"
           children:
-        projects:
-        skills:
-          - ML/DL
-          - Tensorflow/Keras/Pytorch
-          - Numpy/Pandas/Matplotlib
-          - Python
-          - SQL
   - employer: "Septeni Co.,Ltd."
     time: "Dec 2015 - Apr 2018"
     logo: "/assets/profile/septech.png"
+    skills:
+      - ML/DL
+      - Tensorflow
+      - Keras
+      - Pytorch
+      - Numpy
+      - Pandas
+      - Matplotlib
+      - Python
+      - Teaching
+      - iOS
+      - Cocos2dx
+      - C++
+      - SQL
     roles:
       - name: "ML/DL Mentor"
         time: "Jun 2016 - Apr 2018"
@@ -95,12 +98,6 @@ experiences:
         description:
           text: "Teaching/Mentoring a Machine Learning Class (~10 student)"
           children:
-        skills:
-          - ML/DL
-          - Tensorflow/Keras/Pytorch
-          - Numpy/Pandas/Matplotlib
-          - Python
-          - Teaching
       - name: "Software Engineer"
         time: "Dec 2015 - Apr 2018"
         employment_type: "Full-time"
@@ -109,15 +106,13 @@ experiences:
         description:
           text: "Developing Mobile Game on Cocos2dx Engine."
           children:
-        skills:
-          - iOS
-          - Cocos2dx
-          - C++
-          - SQL
-          - ML/DL
+
   - employer: "Nal Vietnam Jsc"
     time: "Jun 2014 - Nov 2015"
     logo: "/assets/profile/nal.png"
+    skills:
+      - iOS
+      - SQL
     roles:
       - name: "iOS Developer"
         time: "Jun 2014 - Nov 2015"
@@ -127,12 +122,12 @@ experiences:
         description:
           text: "Developing iOS Application."
           children:
-        skills:
-          - iOS
-          - SQL
   - employer: "Goline Corporation"
     time: "Apr 2013 - Apr 2014"
     logo: "/assets/profile/goline.png"
+    skills:
+      - Java
+      - SQL
     roles:
       - name: "Java Developer"
         time: "Apr 2013 - Apr 2014"
@@ -142,12 +137,13 @@ experiences:
         description:
           text: "Developing Java Application."
           children:
-        skills:
-          - iOS
-          - SQL
   - employer: "EPS Jsc"
     time: "Dec 2010 - Jul 2012"
     logo: "/assets/profile/eps.png"
+    skills:
+      - Java
+      - NoSQL
+      - Lotus Note
     roles:
       - name: "Xpages Developer"
         time: "Dec 2010 - Jul 2012"
@@ -157,10 +153,6 @@ experiences:
         description:
           text: "Researching and developing products with an IBM technology - Xpages which is a web framework base on JSF (Java Server Faces)"
           children:
-        skills:
-          - Java
-          - NoSQL
-          - Lotus Note
 projects:
   - employer: "Viettel Cyber Security"
     name: "Internal LLM applications"
@@ -417,8 +409,10 @@ publications:
   - name: "An extensive examination of discovering 5-Methylcytosine Sites in Genome-Wide DNA Promoters using machine learning based approaches"
     time: "Feb 1, 2022"
     journal: "IEEE"
+    url: "https://ieeexplore.ieee.org/document/9437984?fbclid=IwAR1YtEZyauR6sElF6r5JkUOJw6WHOKDgEQANyuIY6fCKXrPWmnGczhjTt_w"
     abstract: "It is well-known that the major reason for the rapid proliferation of cancer cells are the hypomethylation of the whole cancer genome and the hypermethylation of the promoter of particular tumor suppressor genes. Locating 5-methylcytosine (5mC) sites in promoters is therefore a crucial step in further understanding of the relationship be-tween promoter methylation and the regulation of mRNA gene expression. High throughput identification of DNA 5mC in wet lab is still time-consuming and labor-extensive. Thus, finding the 5mC site of genome-wide DNA pro-moters is still an important task. We compared the effectiveness of the most popular and strong machine learning techniques namely XGBoost, Random Forest, Deep Forest, and Deep Feedforward Neural Network in predicting the 5mC sites of genome-wide DNA promoters. A feature extraction method based on k-mers embeddings learned from a language model were also applied. Overall, the performance of all the surveyed models surpassed deep learning models of the latest studies on the same dataset employing other encoding scheme. Furthermore, the best model achieved AUC scores of 0.962 on both cross-validation and independent test data. We concluded that our approach was efficient for identifying 5mC sites of promoters with high performance."
   - name: "Incorporating a transfer learning technique with amino acid embeddings to efficiently predict N-linked glycosylation sites in ion channels"
     time: "Jan 7, 2021"
     journal: "Computers in Biology and Medicine"
+    url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482521000068"
     abstract: "Glycosylation is a dynamic enzymatic process that attaches glycan to proteins or other organic molecules such as lipoproteins. Research has shown that such a process in ion channel proteins plays a fundamental role in modulating ion channel functions. This study used a computational method to predict N-linked glycosylation sites, the most common type, in ion channel proteins. From segments of ion channel proteins centered around N-linked glycosylation sites, the amino acid embedding vectors of each residue were concatenated to create features for prediction. We experimented with two different models for converting amino acids to their corresponding embeddings: one was fed with ion channel sequences and the other with a large dataset composed of more than one million protein sequences. The latter model stemmed from the idea of transfer learning technique and emerged as a more efficient feature extractor. Our best model was obtained from this transfer learning approach and a hyperparameter tuning process with a random search on 5-fold cross-validation data. It achieved an accuracy, specificity, sensitivity, and Matthews correlation coefficient of 93.4%, 92.8%, 98.6%, and 0.726, respectively. Corresponding scores on an independent test were 92.9%, 92.2%, 99%, and 0.717. These results outperform the position-specific scoring matrix features that are predominantly employed in post-translational modification site predictions. Furthermore, compared to N-GlyDE, GlycoEP, SPRINT-Gly, the most recent N-linked glycosylation site predictors, our model yields higher scores on the above 4 metrics, thus further demonstrating the efficiency of our approach."

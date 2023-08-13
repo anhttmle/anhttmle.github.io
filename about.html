@@ -79,6 +79,7 @@
 
 
 
+
 </style>
 
 <head>
@@ -90,22 +91,6 @@
     <title>{{ site.title }}</title>
 </head>
 <body style="background: #f3f2ef">
-<!--<nav class="navbar navbar-expand-lg navbar-dark" style="background: gray">-->
-<!--    <button-->
-<!--            class="navbar-toggler"-->
-<!--            type="button"-->
-<!--            data-toggle="collapse"-->
-<!--            data-target="#navbar"-->
-<!--    >-->
-<!--        <span class="navbar-toggler-icon"></span>-->
-<!--    </button>-->
-<!--    <div class="collapse navbar-collapse" id="navbar">-->
-<!--        <div class="navbar-nav">-->
-<!--            <a class="nav-item nav-link" style="color:white;" id="home" href="/">Home</a>-->
-<!--            <a class="nav-item nav-link" style="color:white;" id="chat" href="/about">About</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</nav>-->
 
 <div id="dhead">
     <div class="row">
@@ -139,6 +124,7 @@
         <div class="ico">
             <div class="entry-dot"></div>
             <img style="border: 1px solid #bbb;" src="{{ exp.logo }}">
+            <!--            <span style="background-color:rgba(85,208,241,.87);border-radius:3px">SQL</span>-->
         </div>
         <div class="desc">
             {% for role in exp.roles %}
@@ -156,13 +142,17 @@
             </table>
             <hr class="liner">
             {% endfor %}
+
+            {% for skill in exp.skills %}
+            <span style="background-color:#f3f2ef;border-radius:3px;padding:2px; margin:5px">{{ skill }}</span>
+            {% endfor %}
         </div>
 
     </div>
     {% endfor %}
 </div>
 
-<hr class="hr">
+<br>
 
 <div id="profile_edu" class="container" style="background-color: none;">
     <div class="liner">
@@ -194,7 +184,7 @@
     {% endfor %}
 </div>
 
-<hr class="hr">
+<br>
 
 <div id="profile_certs" class="container" style="background-color: none;">
     <div class="liner">
@@ -210,7 +200,7 @@
                     <td class="htxt">
                         <span> {{ item.time }} - </span>
                         <a href="{{ item.url }}"> <span
-                            style="text-decoration:underline;font-weight:bold">{{ item.name }}</span></a>
+                                style="text-decoration:underline;font-weight:bold">{{ item.name }}</span></a>
                     </td>
                 </tr>
                 <tr>
@@ -226,7 +216,7 @@
 </div>
 
 
-<hr class="hr">
+<br>
 
 <div id="profile_proj" class="container" style="background-color: none;">
     <div class="liner">
@@ -242,7 +232,8 @@
             <table>
                 <tr style="height:20px">
                     <td class="htxt">
-                        <span style="font-weight:bold">{{ project.name }}</span><span style="font-style:italic;color:#bbb"> ({{ project.time }})</span>
+                        <span style="font-weight:bold">{{ project.name }}</span><span
+                            style="font-style:italic;color:#bbb"> ({{ project.time }})</span>
                     </td>
                 </tr>
                 {% for row in project.description %}
@@ -255,6 +246,40 @@
 
             </table>
             <hr class="liner">
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<br>
+
+<div id="profile_publications" class="container" style="background-color: none;">
+    <div class="liner">
+        <h2 style="color: #333 !important; font-size: 30px; font-style: initial!important; font-weight:bold;">
+            Publications</h2>
+    </div>
+    <br>
+    {% for item in site.data.profile.publications %}
+    <div class="entry row">
+        <div class="desc">
+            <table>
+                <tr style="height:20px">
+                    <td class="htxt">
+                        <a href="{{ item.url }}" style="color: black"><span
+                                style="font-weight:bold">{{ item.name }}</span><span
+                                style="font-style:italic;color:#bbb"> ({{ item.journal }}, {{ item.time }})</span> </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="htxt" style="font-size: 15px">
+                        {{ item.abstract }}
+                    </td>
+                </tr>
+            </table>
+            {% if forloop.index != forloop.length %}
+            <hr class="liner">
+            {% endif %}
         </div>
 
     </div>
