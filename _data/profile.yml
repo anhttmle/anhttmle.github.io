@@ -34,7 +34,7 @@ experiences:
           children:
 
   - employer: "Viettel Cyber Security"
-    time: "Aug 2020 - Present"
+    time: "Aug 2020 - Sep 2023"
     logo: "/assets/profile/vcs.png"
     skills:
       - ML/DL
@@ -53,7 +53,7 @@ experiences:
       - Microservice
     roles:
       - name: "R&D Manager"
-        time: "Jan 2022 - Present"
+        time: "Jan 2022 - Sep 2023"
         employment_type: "Full-time"
         location: "Viet Nam"
         location_type: "Onsite"
