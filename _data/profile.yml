@@ -3,6 +3,36 @@ name: "Thế-Anh Trần"
 email: "anhttmle@gmail.com"
 description: "I like diving into nature of intelligence!!!"
 experiences:
+  - employer: "Cinnamon AI"
+    time: "Oct 2023 - Present"
+    logo: "/assets/profile/cinnamon.jpg"
+    skills:
+      - ML/DL
+      - Tensorflow
+      - Keras
+      - Pytorch
+      - Numpy
+      - Pandas
+      - Matplotlib
+      - Python
+      - Docker
+      - K8s
+      - MLOps
+      - Microservice
+    roles:
+      - name: "AI Engineer Lead"
+        time: "Oct 2023 - Present"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Responsible for: 
+          <br>- Overseeing the overall architecture of AI projects within the company
+          <br>- Leading the efforts in AI pipeline development and optimization
+          <br>- Standardizing working flow of AI Engineers
+          <br>- Technical & Quality requirement defining"
+          children:
+
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Present"
     logo: "/assets/profile/vcs.png"
