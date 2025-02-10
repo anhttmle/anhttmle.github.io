@@ -5,6 +5,7 @@
 - AMI:
     - Learn
     - Remember
+    - Plan
     - Reason
     - Common Sense
     - Steerable
