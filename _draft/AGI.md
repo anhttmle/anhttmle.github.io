@@ -27,6 +27,20 @@
     - Instead of providing answer by feed forward a bunch of layer, treat and inference request as an optimization request
     - Providing input to model, it will tell us what is compatible answer
     - Like Probabilistic Graphical Model, Bayesian Network
+    - In the past, All of AI is Search & Optimization problems
+    - Optimization-based inference will give AI system zero-shot learning ability
+- Energy-based model
+    - Energy function vs Cost function
+    - Low energy on compatible (x, y) pair in training set
+    - High energy on otherwise
+- Auto Regressive LLM use Feed-Forward Inference
+- Limitation of LLM: No planing
+- AI system for planing & reasoning
+    - Perception: Compute abstraction of current state
+    - World Model: Predict state result from imagined action sequence
+    - Task Objective: Measure divergence to goal
+    - Guardrail Objective: Immutable objective terms that ensure safety
+    - Operation: Finds an action sequence that minimizes the objectives
           
 
   
