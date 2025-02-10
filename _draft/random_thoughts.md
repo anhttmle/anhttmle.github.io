@@ -1,0 +1,1 @@
+- People only listen on what they want not what they can
