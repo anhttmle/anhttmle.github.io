@@ -41,7 +41,7 @@
     - Task Objective: Measure divergence to goal
     - Guardrail Objective: Immutable objective terms that ensure safety
     - Operation: Finds an action sequence that minimizes the objectives
-          
+<img width="638" alt="image" src="https://github.com/user-attachments/assets/e50bc1cf-d2e8-4295-994d-47822b03f8b5" />
 
   
 
