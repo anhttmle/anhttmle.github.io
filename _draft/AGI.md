@@ -23,6 +23,12 @@
           - Inventing new solution to unseen problems
       - Machine that are controllable and safe
           - By design not by finetuning
+- Inference as Optimization
+      - Instead of providing answer by feed forward a bunch of layer, treat and inference request as an optimization request
+      - Providing input to model, it will tell us what is compatible answer
+      - Like Probabilistic Graphical Model, Bayesian Network
+          
+
   
 
 # ...
