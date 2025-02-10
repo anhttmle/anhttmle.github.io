@@ -10,5 +10,8 @@
     - Common Sense
     - Steerable
     - Safe
+- We need Human-level AI for Intelligence Assistant
+- In near future, all interact with Digital World is through:
+      - AI Assistant: Voice, Vision, display, EMG (Electromyography - measures muscle response or electrical activity in response to a nerve's stimulation of the muscle)
 
 # ...
