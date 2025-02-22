@@ -21,5 +21,3 @@ Hierarchical representation of the Visual Cortex là cách não bộ xử lý th
 Nói đơn giản:
 
     Mắt bạn chụp lại hình ảnh ➡️ võng mạc nén dữ liệu ➡️ truyền lên vỏ não thị giác ➡️ các neuron phản ứng theo tầng lớp, mỗi tầng xử lý một đặc điểm nhỏ (cạnh, góc, hình dạng) ➡️ tất cả kết hợp lại giúp bạn "nhìn thấy" và nhận diện nhanh chóng.
-
-Bạn có muốn đào sâu hơn vào cơ chế feedforward này hay phân tích cách AI mô phỏng quá trình này qua CNN (Convolutional Neural Networks) không? 🚀
