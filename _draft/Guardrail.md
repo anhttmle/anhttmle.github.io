@@ -21,3 +21,7 @@ Guardrail type:
   - Factuality
   - Topic Detection
   - NER
+- LLM call:
+  - Score for Toxicity
+  - Rate tone of voice
+  - Verify coherence
