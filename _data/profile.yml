@@ -186,6 +186,15 @@ experiences:
           children:
 projects:
   - employer: "Cinnamon AI"
+    name: "SuperRAG"
+    time: "Nov 2024 - Present"
+    logo: "/assets/profile/cinnamon.jpg"
+    description:
+      - "System Design"
+      - "RAG flow Design"
+      - "Agentic flow Design"
+      - "Integration Design"
+  - employer: "Cinnamon AI"
     name: "Flax Scanner Hub"
     time: "Oct 2023 - Feb 2025"
     logo: "/assets/profile/cinnamon.jpg"
