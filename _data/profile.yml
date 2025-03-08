@@ -185,9 +185,19 @@ experiences:
           text: "Researching and developing products with an IBM technology - Xpages which is a web framework base on JSF (Java Server Faces)"
           children:
 projects:
+  - employer: "Cinnamon AI"
+    name: "Flax Scanner Hub"
+    time: "Oct 2023 - Feb 2025"
+    logo: "/assets/profile/cinnamon.jpg"
+    description:
+      - "Optimize pipeline & model on serving"
+      - "Apply LLM on key-value matching phase"
+      - "Experiment self-hosted LLM"
+      - "Distributed LLM model serving"
+      - "..."
   - employer: "Viettel Cyber Security"
     name: "Internal LLM applications"
-    time: "Apr 2023 - Present"
+    time: "Apr 2023 - Sep 2023"
     logo: "/assets/profile/vcs.png"
     description:
       - "Apply LLM on VCS issues such as"
@@ -197,14 +207,14 @@ projects:
       - "..."
   - employer: "Viettel Cyber Security"
     name: "Auto Pentest"
-    time: "Feb 2023 - Present"
+    time: "Feb 2023 - Sep 2023"
     logo: "/assets/profile/vcs.png"
     description:
       - "- Find out costly phase of Penetration Test for web/mobile applications and networks."
       - "- Apply weak supervision & RL for automating the costly phase, such as endpoint detection, specific attack type and building knowledge base as well."
   - employer: "Viettel Cyber Security"
     name: "Encrypted Traffic Anomaly Detection"
-    time: "Oct 2022 - Present"
+    time: "Oct 2022 - Sep 2023"
     logo: "/assets/profile/vcs.png"
     description:
       - "- Monitoring encrypted traffic"
