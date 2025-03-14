@@ -7,6 +7,9 @@ If you've ever trained a machine learning model, you know that most AI systems w
 
 Enter JEPA — Joint Embedding Predictive Architecture — a new AI model by Yann LeCun that predicts, plans, and remembers. But here’s the kicker: it has a memory system inspired by how humans think, balancing short-term memory (STM) and long-term memory (LTM).
 
+<img width="579" alt="image" src="https://github.com/user-attachments/assets/26497cf6-f84d-4403-9857-6979343e6c64" />
+
+
 So, how does JEPA remember, learn, and adapt? Let’s break it down in a way that makes sense for software engineers.
 🔥 Why Does AI Need Memory?
 
