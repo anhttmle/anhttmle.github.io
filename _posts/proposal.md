@@ -1,3 +1,10 @@
+---
+layout: post
+title:  "Transforming COBOL to Java"
+date:   2025-03-21 10:00:00 +0500
+categories: proposal
+---
+
 # Transforming COBOL to Java
 
 **Author:** NAL
