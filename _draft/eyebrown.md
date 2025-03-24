@@ -67,6 +67,9 @@ Hai phương án được đề xuất, thực hiện song song để cải thi�
     - Lợi ích:
       - Giảm sự nhạy cảm của mô hình với những biến đổi nhỏ, cải thiện độ chính xác và độ tin cậy của kết quả.
 
+![Porfolio-7  Eyebrown drawio](https://github.com/user-attachments/assets/ecd6ca55-742c-40f8-90ea-1b130e430078)
+
+
 ## Kết luận
 - Tóm lại:
   - Cả hai phương án đều nhằm giải quyết vấn đề về dữ liệu hạn chế và tính nhạy cảm của mô hình đối với các biến đổi của ảnh.
