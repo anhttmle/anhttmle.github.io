@@ -57,21 +57,20 @@ Hai phương án được đề xuất, thực hiện song song để cải thi�
 
 ### Phương án 2: Áp dụng Consistency Training (UDA)
 
-    Mục tiêu:
-        Huấn luyện mô hình để nhận diện cùng một đối tượng dưới nhiều biến thể khác nhau (góc độ, ánh sáng, độ nét) nhằm đưa ra kết quả ổn định nhất.
-    Các bước triển khai:
-        Định nghĩa tiêu chí Consistency:
-            Xác định các giới hạn biến đổi (đến mức nào ảnh vẫn là cùng một đối tượng) dựa trên các chỉ số như IoU (Intersection over Union).
-        Ứng dụng kỹ thuật UDA:
-            Áp dụng nguyên lý của UDA (Unsupervised Data Augmentation) để tận dụng dữ liệu chưa được gán nhãn và tăng cường tính ổn định trong dự đoán.
-        Lợi ích:
-            Giảm sự nhạy cảm của mô hình với những biến đổi nhỏ, cải thiện độ chính xác và độ tin cậy của kết quả.
+- **Mục tiêu**:
+    Huấn luyện mô hình để nhận diện cùng một đối tượng dưới nhiều biến thể khác nhau (góc độ, ánh sáng, độ nét) nhằm đưa ra kết quả ổn định nhất.
+- **Các bước triển khai**:
+    - Định nghĩa tiêu chí Consistency:
+      - Xác định các giới hạn biến đổi (đến mức nào ảnh vẫn là cùng một đối tượng) dựa trên các chỉ số như IoU (Intersection over Union).
+    - Ứng dụng kỹ thuật UDA:
+      - Áp dụng nguyên lý của UDA (Unsupervised Data Augmentation) để tận dụng dữ liệu chưa được gán nhãn và tăng cường tính ổn định trong dự đoán.
+    - Lợi ích:
+      - Giảm sự nhạy cảm của mô hình với những biến đổi nhỏ, cải thiện độ chính xác và độ tin cậy của kết quả.
 
 ## Kết luận
-
-    Tóm lại:
-        Cả hai phương án đều nhằm giải quyết vấn đề về dữ liệu hạn chế và tính nhạy cảm của mô hình đối với các biến đổi của ảnh.
-        Phương án 1 tập trung vào việc tối ưu hoá quy trình hiện tại qua việc tăng cường dữ liệu và điều chỉnh các thông số huấn luyện.
-        Phương án 2 hướng tới việc xây dựng một hệ thống học sâu ổn định hơn thông qua consistency training theo các nguyên tắc được đề xuất trong UDA paper.
-    Đề xuất cho khách hàng:
-        Triển khai song song cả hai giải pháp để có thể so sánh và đánh giá hiệu quả, từ đó đưa ra hướng đi tối ưu cho hệ thống AI.
+- Tóm lại:
+  - Cả hai phương án đều nhằm giải quyết vấn đề về dữ liệu hạn chế và tính nhạy cảm của mô hình đối với các biến đổi của ảnh.
+  - Phương án 1 tập trung vào việc tối ưu hoá quy trình hiện tại qua việc tăng cường dữ liệu và điều chỉnh các thông số huấn luyện.
+  - Phương án 2 hướng tới việc xây dựng một hệ thống học sâu ổn định hơn thông qua consistency training theo các nguyên tắc được đề xuất trong UDA paper.
+- Đề xuất cho khách hàng:
+  - Triển khai song song cả hai giải pháp để có thể so sánh và đánh giá hiệu quả, từ đó đưa ra hướng đi tối ưu cho hệ thống AI.
