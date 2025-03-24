@@ -27,7 +27,17 @@ Typically framed as a nearest-neighbor search problem like kNN
 
 #### LSH - Locality-Sensitive Hashing (1999)
 
-#### HNSW - Hierarchical Navigable Small World
+#### HNSW - Hierarchical Navigable Small World (2016)
+
+#### Product Quantization (2011)
+
+#### IVF - Inverted File Index (2003)
+
+#### ANNOY - Approximate Nearest Neighbors Oh Yeah) (2013)
+
+#### Others:
+- SPTAG - Space Partition Tree And Graph
+- FLANN - Fast Library for Approximate Nearest Neighbors
 
 # What are they use for?
 
