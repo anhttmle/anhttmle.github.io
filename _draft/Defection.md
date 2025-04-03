@@ -1,7 +1,7 @@
 # Userflow & Architecture
 ![Porfolio-8  Defect Detection drawio](https://github.com/user-attachments/assets/53fef0b5-84ca-4cab-9088-c583ef97c6f9)
 
-# AI
+# AI Resource Estimation
 ## 1. Information Extraction
 - Layout Detection (1 AIEs)
   - Anotating
@@ -20,7 +20,7 @@
 - Weaksupervise Training (1 AIEs)
 - Anomally Detection (0.5 AIEs)
 
-# System
+# System Resource Estimation
 - UI (0.5 FEs)
 - API (0.5 BEs)
 - Logging & Monitoring (0.5 DevOps)
