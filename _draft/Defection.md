@@ -1,7 +1,7 @@
 # Userflow & Architecture
 ![Porfolio-8  Defect Detection drawio](https://github.com/user-attachments/assets/53fef0b5-84ca-4cab-9088-c583ef97c6f9)
 
-# AI Resource Estimation
+# AI Resource Estimation (MMs)
 ## 1. Information Extraction
 - Layout Detection (1 AIEs)
   - Anotating
@@ -15,7 +15,7 @@
   - Prompt Engineering
   - Evaluating
 
-## 2. Defection Detection
+## 2. Defection Detection (MMs)
 - Backbone Training (1 AIEs)
 - Weaksupervise Training (1 AIEs)
 - Anomally Detection (0.5 AIEs)
