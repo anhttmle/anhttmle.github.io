@@ -21,6 +21,6 @@
 - Anomally Detection (0.5 AIEs)
 
 # System Resource Estimation
-- UI (0.5 FEs)
-- API (0.5 BEs)
+- UI (0.5 React Engineers)
+- API (0.5 Python Engineers)
 - Logging & Monitoring (0.5 DevOps)
