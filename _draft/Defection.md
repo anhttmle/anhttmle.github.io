@@ -24,6 +24,8 @@
 - Weaksupervise Training (1 AIEs)
 - Anomally Detection (0.5 AIEs)
 
+<br/><br/>
+
 ### 3. System Integration
 - UI (0.5 React Engineers)
 - API (0.5 Python Engineers)
