@@ -15,7 +15,7 @@
   - Prompt Engineering
   - Evaluating
 
-## 2. Object Detection
+## 2. Defection Detection
 - Backbone Training (1 AIEs)
 - Weaksupervise Training (1 AIEs)
 - Anomally Detection (0.5 AIEs)
