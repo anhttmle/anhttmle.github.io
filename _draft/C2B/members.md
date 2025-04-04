@@ -16,6 +16,7 @@
 - Software
   - System Design
   - Microservices
+  - Database Optimization
   - Mobile Development (Objective C, Swift, Java, C++,...)
   - Backend Development (Java, Python)
   - Design Pattern
