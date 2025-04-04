@@ -4,20 +4,111 @@
 **Experience**: 10 years
 <br>
 **Core Skills**: 
-- AI
-  - Learning Algorithm:
-    - Supervise
+- AI Learning
+  - Supervise Learning
+  - Self-supervise Learning
+  - Contrastive Learning
+  - Unsupervise Learning
+  - In-context Learning
+  - ...
+- AI Strategy
+- MLOps
+- Software
+  - System Design
+  - Microservices
+  - Mobile Development (Objective C, Swift, Java, C++,...)
+  - Backend Development (Java, Python)
+  - Design Pattern
+  - Cyber Security
    
 ### Publications:
 - An extensive examination of discovering 5-Methylcytosine Sites in Genome-Wide DNA Promoters using machine learning based approaches (IEEEFeb 1, 2022)
 > It is well-known that the major reason for the rapid proliferation of cancer cells are the hypomethylation of the whole cancer genome and the hypermethylation of the promoter of particular tumor suppressor genes. Locating 5-methylcytosine (5mC) sites in promoters is therefore a crucial step in further understanding of the relationship be-tween promoter methylation and the regulation of mRNA gene expression. High throughput identification of DNA 5mC in wet lab is still time-consuming and labor-extensive. Thus, finding the 5mC site of genome-wide DNA pro-moters is still an important task. We compared the effectiveness of the most popular and strong machine learning techniques namely XGBoost, Random Forest, Deep Forest, and Deep Feedforward Neural Network in predicting the 5mC sites of genome-wide DNA promoters. A feature extraction method based on k-mers embeddings learned from a language model were also applied. Overall, the performance of all the surveyed models surpassed deep learning models of the latest studies on the same dataset employing other encoding scheme. Furthermore, the best model achieved AUC scores of 0.962 on both cross-validation and independent test data. We concluded that our approach was efficient for identifying 5mC sites of promoters with high performance.
 - Incorporating a transfer learning technique with amino acid embeddings to efficiently predict N-linked glycosylation sites in ion channels (Computers in Biology and Medicine - Jan 7, 2021)
-> Glycosylation is a dynamic enzymatic process that attaches glycan to proteins or other organic molecules such as lipoproteins. Research has shown that such a process in ion channel proteins plays a fundamental role in modulating ion channel functions. This study used a computational method to predict N-linked glycosylation sites, the most common type, in ion channel proteins. From segments of ion channel proteins centered around N-linked glycosylation sites, the amino acid embedding vectors of each residue were concatenated to create features for prediction. We experimented with two different models for converting amino acids to their corresponding embeddings: one was fed with ion channel sequences and the other with a large dataset composed of more than one million protein sequences. The latter model stemmed from the idea of transfer learning technique and emerged as a more efficient feature extractor. Our best model was obtained from this transfer learning approach and a hyperparameter tuning process with a random search on 5-fold cross-validation data. It achieved an accuracy, specificity, sensitivity, and Matthews correlation coefficient of 93.4%, 92.8%, 98.6%, and 0.726, respectively. Corresponding scores on an independent test were 92.9%, 92.2%, 99%, and 0.717. These results outperform the position-specific scoring matrix features that are predominantly employed in post-translational modification site predictions. Furthermore, compared to N-GlyDE, GlycoEP, SPRINT-Gly, the most recent N-linked glycosylation site predictors, our model yields higher scores on the above 4 metrics, thus further demonstrating the efficiency of our approach. 
+> Glycosylation is a dynamic enzymatic process that attaches glycan to proteins or other organic molecules such as lipoproteins. Research has shown that such a process in ion channel proteins plays a fundamental role in modulating ion channel functions. This study used a computational method to predict N-linked glycosylation sites, the most common type, in ion channel proteins. From segments of ion channel proteins centered around N-linked glycosylation sites, the amino acid embedding vectors of each residue were concatenated to create features for prediction. We experimented with two different models for converting amino acids to their corresponding embeddings: one was fed with ion channel sequences and the other with a large dataset composed of more than one million protein sequences. The latter model stemmed from the idea of transfer learning technique and emerged as a more efficient feature extractor. Our best model was obtained from this transfer learning approach and a hyperparameter tuning process with a random search on 5-fold cross-validation data. It achieved an accuracy, specificity, sensitivity, and Matthews correlation coefficient of 93.4%, 92.8%, 98.6%, and 0.726, respectively. Corresponding scores on an independent test were 92.9%, 92.2%, 99%, and 0.717. These results outperform the position-specific scoring matrix features that are predominantly employed in post-translational modification site predictions. Furthermore, compared to N-GlyDE, GlycoEP, SPRINT-Gly, the most recent N-linked glycosylation site predictors, our model yields higher scores on the above 4 metrics, thus further demonstrating the efficiency of our approach.
+
+### Projects:
+- Agentic RAG Platform (Nov 2024 - Now)
+  - System Design
+  - RAG flow Design
+  - Agentic flow Design
+  - Integration Design 
+- Document Intelligence Platform (Oct 2023 - Feb 2025)
+  - Optimize pipeline & model on serving
+  - Apply LLM on key-value matching phase
+  - Experiment self-hosted LLM
+  - Distributed LLM model serving
+  - ...
+- Sale bot (Jan 2023 - Dec 2023)
+  - System Design
+  - Building Feedback loop flow
+  - Feature Consultant
+- LLM applications (Apr 2023 - Sep 2023): Apply LLM on several issues such as
+  - Private document search
+  - Enhanced Data lookup UX
+  - Knowledge generative
+  - ... 
+- Auto Pentest (Feb 2023 - Sep 2023)
+  - Find out costly phase of Penetration Test for web/mobile applications and networks.
+  - Apply weak supervision & RL for automating the costly phase, such as endpoint detection, specific attack type and building knowledge base as well. 
+- Encrypted Traffic Anomaly Detection (Oct 2022 - Sep 2023)
+  - Monitoring encrypted traffic
+  - Training model periodically that try to reconstruct connection behavior
+  - Capturing abnormal behavior by evaluating the reconstruction loss 
+- Keystroke Dynamic Authentication (Jan 2022 - Mar 2023)
+  - Authenticating system users by their typing behavior on entering user name & password
+  - Continuous authenticating system users by their typing behavior on working session 
+- Trusted Identity Detection (Nov 2021 - Jul 2022)
+  - Detect the most frequent pattern on User behavior 
+- IML - Interactive Machine Learning system (Apr 2021 - Mar 2022)
+  - Design/Develop AI models
+  - Design/Develop Batch/Stream Process for Training/Serving/Monitoring models and data 
+- Internal MLOps Process (Jun 2021 - Aug 2021)
+  - Design & Develop process from Data Processing to Training/Evaluating/Serving and Monitoring 
+- F2DR - Financial Fraud Detection & Response (Aug 2020 - Apr 2021)
+  - Define requirements
+  - Design system
+  - Developing features 
+- Robochat Platform (10bot Platform) (Aug 2018 - Jun 2020)
+  - Phase 1: Rely on
+    + User data (Collecting for future model as well)
+    + Data augmentation (Tf-idf replacement, Synonym replacement)
+    + Pretrained tf-idf Vectorizer (on serveral facebook fanpage)
+    + Extra data (which not belong to any Intent - sacrifice uncommon domain)
+  - Phase 2: Rely on
+    + BERT pretrained (use embedding from [CLS] token of few last layer)
+    + Data augmentation: (Similar to phase 1 + Back translation)
+    + Solving simultaneously inference from users (Training on Google Cloud and predicting on our server, batching query, ...)
+  - Phase 3:
+    + Semi-supervise Learning wise, experiment with UDA (Unsupervise Data Augmentation)
+    + Unlabeled Data crawling (Facebook Fanpage log chat from users)
+- Face Recognition (Jan 2019 - Jun 2019)
+  - Facial Detection with MTCNN
+  - Facial Verification with FaceNet Triple Loss
+  - Clustering Anchor Image by K-Mean
+  - Distance computation by vectorization implementation
+- Machine Learning Class (2016 - 2018)
+  - Maths (Derivative, Integral, Probability distribution, Convolution,...)
+  - Linear Regression
+  - Logistic Regression
+  - Artificial Neural Network
+  - CNN
+  - RNN (RNN, LSTM, GRU, Bi-directional RNN)
+  - Autoencoder
+  - Word embedded (Word2Vec, Glove)
+  - Regularization L2
+  - Drop-out
+  - Feature normalization
+  - Batch normalization
+  - Gradient Descent (batch, mini-batch, stochastict, Momentum, RMProp, Adam)
+  - Back propagation
+  - Hyperparameter Tuning (Grid Search, Random Search)
+  - Tensorflow, Keras, Numpy, Octave..  
 
 --------------------------------------------------------------------------------------------------------------------------------------------
    
 # AI Engineer
-### Name: Minh Chi Bui
+### Name: Chi-Minh Bui
 ### Experience: 5 years
 ### Core Skills:
 - Machine Learning
