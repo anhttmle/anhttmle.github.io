@@ -88,7 +88,7 @@
   - Facial Verification with FaceNet Triple Loss
   - Clustering Anchor Image by K-Mean
   - Distance computation by vectorization implementation
-- Machine Learning Class (2016 - 2018)
+- Machine Learning Class (2015 - 2018)
   - Maths (Derivative, Integral, Probability distribution, Convolution,...)
   - Linear Regression
   - Logistic Regression
