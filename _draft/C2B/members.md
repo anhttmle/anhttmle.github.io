@@ -47,8 +47,8 @@ of the 37th Pacific Asia Conference on Language, Information and Computation. (P
   - Applied quantization to the model to reduce the latency (support around 100 mils user requests per
   day).
   - Developed a DNS monitor module (tracking DNS to alert redirect site) using cron job.
-  <br>
-  **Product**: The application has integrated into the WAF and served more than 100 millions requests
+  
+  Product: The application has integrated into the WAF and served more than 100 millions requests
   per day and denied around 100 to 1000 IP attackers per day
 - Duplicate news and video detection
   - Designed an algorithm for video recommendation within the stipulated time. Used and applied tensor-
@@ -58,8 +58,8 @@ of the 37th Pacific Asia Conference on Language, Information and Computation. (P
   testing.
   - Detected duplicate news cover 95% accuracy over a thousand news per day. This helped the moder-
   ators to reduced 80% working hours to check the duplicate ones.
-  <br>
-  **Product**: The features has applied in Mocha (app for Android and IOS) and Netnews.vn
+  
+  Product: The features has applied in Mocha (app for Android and IOS) and Netnews.vn
 - Tracking human workforce using vband
   - Worked with Human Activity Recognition (HAR) problems to helped the manager tracking em-
   ployees workforce. (https://news.microsoft.com/vi-vn/2021/09/06/vantix-ung-dung- tri-tue-nhan-tao-
@@ -71,5 +71,5 @@ of the 37th Pacific Asia Conference on Language, Information and Computation. (P
   - Used Kalman-Filtering algorithms to improved the roadmap for GPS and also reduced the GPS flash-
   ing, flicking problems.
   - Built a FastAPI demo for map tracking and dockerized the application into production.
-  <br>
-  **Product**: The application has served all the VinPearls and some VinHomes projects
+  
+  Product: The application has served all the VinPearls and some VinHomes projects
