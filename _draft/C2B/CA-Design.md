@@ -116,7 +116,7 @@ graph TD
 
 ```mermaid
 flowchart TB
-  subgraph Client[" (Web, CLI, Slack, etc.)"]
+  subgraph Client["Web, CLI, Slack, etc."]
     ChatUI["Chat Interface"]
     AdminUI["Admin Page"]
   end
