@@ -125,40 +125,49 @@ flowchart TD
         AdminUI[Admin Interface]
     end
 
-    ChatUI --> API[Backend API]
-    AdminUI --> API
+    ChatUI --> Backend_API[Backend API]
+    AdminUI --> Backend_API
 
     subgraph Backend_API
-        Auth[Auth Service]
-        Parser[COBOL Parser]
-        Indexing[Indexing API]
-        Retrieval[Retrieval API]
-        QA[QnA Engine]
-        SpecGen[Spec Generator]
-        Config[Configuration API]
-        Feedback[Feedback Service]
+        AuthAPI[Auth API]
+        ParserAPI[Parser API]
+        IndexingAPI[Indexing API]
+        RetrievalAPI[Retrieval API]
+        QAAPI[Q&A API]
+        SpecGenAPI[SpecGen API]
+        ConfigAPI[Configuration API]
+        FeedbackAPI[Feedback API]
     end
 
-    API --> FileStorage[File Storage]
-    API --> DB[PostgreSQL]
-    API --> Redis[Redis Cache]
-    API --> GitHub[GitHub API]
-    API --> AICore[AI Core Processor]
+    subgraph AICore
+        Parser[Parser Module]
+        Indexing[Indexing Module]
+        Retrieval[Retrival Module]
+        QA[QA Module]
+        SpecGen[SpecGen Module]
+        Feedback[Feedback Module]
+    end
+
+    Backend_API --> FileStorage[File Storage]
+    Backend_API --> CacheDB
+    Backend_API --> GitHub
+    Backend_API --> AICore
 
     AICore --> RAG[Dify RAG Framework]
-    RAG --> Tools[Tools Inventory via HTTP]
+    RAG --> Tools[Tools Inventory]
 
-    Indexing --> MetadataDB[PostgreSQL - Metadata DB]
-    Indexing --> GraphDB[Neo4j - Graph DB]
-    Indexing --> SearchEngine[Elasticsearch]
-    Indexing --> VectorDB[Milvus]
+    Indexing --> MetadataDB
+    Indexing --> GraphDB
+    Indexing --> SearchEngine
+    Indexing --> VectorDB
 
     Retrieval --> MetadataDB
     Retrieval --> GraphDB
     Retrieval --> SearchEngine
     Retrieval --> VectorDB
 
-    QA --> OpenAI[OpenAI API]
+    QA --> Retrieval
+    SpecGen --> Retrieval
 
 
 ```
