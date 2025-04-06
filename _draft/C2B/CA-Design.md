@@ -153,9 +153,6 @@ flowchart TD
     Backend_API --> GitHub
     Backend_API --> AICore
 
-    AICore --> RAG[Dify RAG Framework]
-    RAG --> Tools[Tools Inventory]
-
     Indexing --> MetadataDB
     Indexing --> GraphDB
     Indexing --> SearchEngine
@@ -165,6 +162,9 @@ flowchart TD
     Retrieval --> GraphDB
     Retrieval --> SearchEngine
     Retrieval --> VectorDB
+    Retrieval --> RAG
+
+    RAG --> Tools[Tools Inventory]
 
     QA --> Retrieval
     SpecGen --> Retrieval
