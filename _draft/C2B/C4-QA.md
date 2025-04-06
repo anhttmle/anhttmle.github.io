@@ -33,7 +33,8 @@
 # 2. Container:
 ### What are the main high-level parts of your system?
 
-Examples:
+> Examples:
+> 
 > Backend API
 > 
 > Frontend Web UI
@@ -46,12 +47,28 @@ Examples:
 > 
 > File storage
 
-- 
+- API Gateway
+   - Indexing API: index COBOL source code to DB (require MetadataDB - PostgreSQL, GraphDB - Neo4j, Search Engine - Elastic Search, VectorDB - Milvus)
+   - Tmp Indexing API: index intermediate data (new data provide by user or system inferenced one)
+   - Retrieval API: retrieve data that indexed by Indexing API/Tmp Indexing API
+   - Configuration API
+   - Feedback API: feedback from user to help Virtual Assistant give better answer in the future)
+   - ...
+- Database:
+   - MetadataDB - PostgreSQL
+   - GraphDB - Neo4j
+   - Search Engine - Elastic Search
+   - VectorDB - Milvus
+- AI Core Processing: will request to RAG framework to running pre-defined workflow or contain agent strategy
+- RAG framework - Dify
+- Tools inventory: Providing tool for RAG framework request to by http
 
 ### How do users interact with the system?
 
-    Do they use a Web UI, or is everything through API calls (e.g., Postman, CLI tools)?
-    Will different roles use different interfaces?
+> Do they use a Web UI, or is everything through API calls (e.g., Postman, CLI tools)?
+> Will different roles use different interfaces?
+
+
 
 ### What internal services/modules are planned in the API?
 
