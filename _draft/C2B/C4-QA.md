@@ -47,18 +47,13 @@
 > 
 > File storage
 
-- API Gateway
-   - Indexing API: index COBOL source code to DB (require MetadataDB - PostgreSQL, GraphDB - Neo4j, Search Engine - Elastic Search, VectorDB - Milvus)
-   - Tmp Indexing API: index intermediate data (new data provide by user or system inferenced one)
-   - Retrieval API: retrieve data that indexed by Indexing API/Tmp Indexing API
-   - Configuration API
-   - Feedback API: feedback from user to help Virtual Assistant give better answer in the future)
-   - ...
-- Database:
+- Backend API
+- Database
    - MetadataDB - PostgreSQL
    - GraphDB - Neo4j
    - Search Engine - Elastic Search
    - VectorDB - Milvus
+- File storage
 - AI Core Processing: will request to RAG framework to running pre-defined workflow or contain agent strategy
 - RAG framework - Dify
 - Tools inventory: Providing tool for RAG framework request to by http
@@ -86,16 +81,14 @@
 > 
 > GitHub integration service
 
-- Indexing API: index COBOL source code to DB (require MetadataDB - PostgreSQL, GraphDB - Neo4j, Search Engine - Elastic Search, VectorDB - Milvus)
-- Tmp Indexing API: index intermediate data (new data provide by user or system inferenced one)
-- Retrieval API: retrieve data that indexed by Indexing API/Tmp Indexing API
-- Configuration API
-- Feedback API: feedback from user to help Virtual Assistant give better answer in the future)
-- Auth Service
 - COBOL parser
-- Spec/Documentation Generator
+- Indexing API: index data (COBOL source code, intermediate data) to DB (require MetadataDB - PostgreSQL, GraphDB - Neo4j, Search Engine - Elastic Search, VectorDB - Milvus)
+- Retrieval API: retrieve data that indexed by Indexing API
+- Configuration API
 - Q&A Engine
-- Github integration service
+- Spec/Documentation Generator
+- Auth Service
+- Feedback Service: feedback from user to help Virtual Assistant give better answer in the future)
 
 ### What external services or databases are needed?
 
