@@ -4,7 +4,7 @@
   - RAM >= 4 GiB
 
 # Vector DB:
-**- Milvus Lite**
+- **Milvus Lite**
 - Milvus Standalone
 
 # Search Engine:
