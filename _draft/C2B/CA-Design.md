@@ -66,123 +66,99 @@ graph TD
 ```
 
 
-# 🧱 C4 Level 2: Container – "COBOL to JAVA Virtual Assistant API"
+# 📦 C4 Level 2: Container – "COBOL to JAVA Virtual Assistant API"
 
-## 📦 Containers in the System
+## 🧱 Containers Overview
 
-| Container                 | Description                                                        |
-|---------------------------|--------------------------------------------------------------------|
-| **API Gateway**           | Entry point for all API calls (authentication, routing)            |
-| **Indexing API**          | Parses and indexes COBOL source code into multiple data stores     |
-| **Memory API**      | Indexes intermediate/inferred user/system data                     |
-| **Retrieval API**         | Retrieves indexed content for answering user questions             |
-| **Configuration API**     | Admin-facing API to configure system behavior                      |
-| **Feedback API**          | Collects feedback to improve assistant performance                 |
-| **Auth Service**          | Handles authentication and authorization                           |
-| **COBOL Parser**          | Extracts information from COBOL code                               |
-| **Spec/Doc Generator**    | Builds specs/docs from parsed data                                 |
-| **Q&A Engine**            | Responds to questions using data from storage and LLM              |
-| **GitHub Integration Service** | Interacts with GitHub for code access                         |
-| **AI Core Processor**     | Orchestrates calls to RAG framework or agent-based workflow        |
-| **RAG Framework (Dify)**  | External orchestrator for Retrieval-Augmented Generation           |
-| **Tools Inventory**       | Provides tools invoked via HTTP for the RAG engine                 |
-| **Admin Page**            | Interface for Admins to manage system                              |
-| **Chat Interface**        | Interface where end-users interact with the assistant              |
+| Container             | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| **Backend API**       | Core interface exposing REST endpoints to clients and handling user interaction logic |
+| **Database**          | Stores structured metadata, user data, chat logs, etc. (PostgreSQL)         |
+| **File Storage**      | Stores uploaded COBOL files or intermediary assets                          |
+| **AI Core Processor** | Executes pre-defined workflows or agent-based strategies; interfaces with the RAG framework |
+| **RAG Framework (Dify)** | Responsible for retrieval-augmented generation and agent orchestration     |
+| **Tools Inventory**   | Provides tool services (e.g., spec builder, COBOL highlighter) used by RAG via HTTP |
 
 ---
 
-## 🗃️ Databases / External Services
+## 🎮 Interaction Channels
 
-| Service              | Role                                                                |
-|----------------------|---------------------------------------------------------------------|
-| **PostgreSQL (MetadataDB)** | Stores structured metadata about COBOL system                 |
-| **Neo4j (GraphDB)**         | Stores relationships between entities/features/modules        |
-| **ElasticSearch**           | Full-text search index for COBOL code and docs                |
-| **Milvus (VectorDB)**       | Stores embeddings for semantic search                         |
-| **Redis**                   | Caching for performance                                       |
-| **OpenAI API**              | Language model for answering and reasoning                    |
-| **GitHub API**              | Source for COBOL code (optional)                              |
+| Role           | Interface                                                         |
+|----------------|--------------------------------------------------------------------|
+| **End Users**      | Chat Interface (CLI, Web, Slack, etc.)                           |
+| **Admin/Operator** | Admin Page for managing config, access, feedback loop, etc.       |
 
 ---
 
-## 👨‍💻 User Interfaces
+## ⚙️ Internal API Modules
 
-- **Chat Interface**: Used by COBOL-E, COBOL-BA, JAVA-BA, JAVA-E, JAVA-TL, JAVA-PO  
-- **Admin Page**: Used by Administrator/Operator
+- **Auth Service** – Manage authentication/authorization  
+- **COBOL Parser** – Parse and structure COBOL source code  
+- **Indexing API** – Index data to metadata DB, graph, search, and vector DBs  
+- **Retrieval API** – Query and fetch indexed data  
+- **Q&A Engine** – Handles team queries about code/specs using LLM  
+- **Spec/Documentation Generator** – Generates migration specs from COBOL code  
+- **Configuration API** – Manage system behavior and workflows  
+- **Feedback Service** – Collect user feedback for continuous improvement  
 
 ---
+
+## 🌐 External Services
+
+| Service        | Purpose                                           |
+|----------------|---------------------------------------------------|
+| **PostgreSQL** | Structured metadata & user info                   |
+| **Neo4j**      | Graph of COBOL components/modules                 |
+| **Elasticsearch** | Textual search                                  |
+| **Milvus**     | Vector search for semantic queries                |
+| **Redis**      | Caching layer                                     |
+| **OpenAI API** | External LLM processing                           |
+| **GitHub API** | Retrieve COBOL source from repositories           |
+
 
 ## 🖼️ Mermaid: Container Diagram
 
 ```mermaid
-flowchart TB
-  subgraph Client["Web, CLI, Slack, etc."]
-    ChatUI["Chat Interface"]
-    AdminUI["Admin Page"]
-  end
+flowchart TD
+    subgraph Users
+        ChatUI[Chat Interface: Web, CLI, Slack]
+        AdminUI[Admin Interface]
+    end
 
-  subgraph API_Gateway["API Gateway"]
-    IndexingAPI["Indexing API"]
-    TmpIndexingAPI["Tmp Indexing API"]
-    RetrievalAPI["Retrieval API"]
-    ConfigAPI["Configuration API"]
-    FeedbackAPI["Feedback API"]
-    AuthAPI["Auth Service"]
-  end
+    ChatUI --> API[Backend API]
+    AdminUI --> API
 
-  subgraph Services
-    COBOLParser["COBOL Parser"]
-    DocGen["Spec/Doc Generator"]
-    QAEngine["Q&A Engine"]
-    GitHubService["GitHub Integration"]
-    AICore["AI Core Processor"]
-    Tools["Tools Inventory"]
-  end
+    subgraph Backend_API
+        Auth[Auth Service]
+        Parser[COBOL Parser]
+        Indexing[Indexing API]
+        Retrieval[Retrieval API]
+        QA[QnA Engine]
+        SpecGen[Spec Generator]
+        Config[Configuration API]
+        Feedback[Feedback Service]
+    end
 
-  subgraph External
-    PostgreSQL["PostgreSQL\n(MetadataDB)"]
-    Neo4j["Neo4j\n(GraphDB)"]
-    Elastic["ElasticSearch"]
-    Milvus["Milvus\n(Vector DB)"]
-    Redis["Redis\n(Cache)"]
-    OpenAI["OpenAI API"]
-    GitHub["GitHub API"]
-    Dify["RAG Framework\n(Dify)"]
-  end
+    API --> FileStorage[File Storage]
+    API --> DB[PostgreSQL]
+    API --> Redis[Redis Cache]
+    API --> GitHub[GitHub API]
+    API --> AICore[AI Core Processor]
 
-  ChatUI --> RetrievalAPI
-  ChatUI --> FeedbackAPI
-  ChatUI --> QAEngine
+    AICore --> RAG[Dify RAG Framework]
+    RAG --> Tools[Tools Inventory via HTTP]
 
-  AdminUI --> ConfigAPI
-  AdminUI --> FeedbackAPI
+    Indexing --> MetadataDB[PostgreSQL - Metadata DB]
+    Indexing --> GraphDB[Neo4j - Graph DB]
+    Indexing --> SearchEngine[Elasticsearch]
+    Indexing --> VectorDB[Milvus]
 
-  IndexingAPI -->|Store data| PostgreSQL
-  IndexingAPI --> Neo4j
-  IndexingAPI --> Elastic
-  IndexingAPI --> Milvus
+    Retrieval --> MetadataDB
+    Retrieval --> GraphDB
+    Retrieval --> SearchEngine
+    Retrieval --> VectorDB
 
-  TmpIndexingAPI --> PostgreSQL
-  TmpIndexingAPI --> Milvus
+    QA --> OpenAI[OpenAI API]
 
-  RetrievalAPI --> PostgreSQL
-  RetrievalAPI --> Elastic
-  RetrievalAPI --> Milvus
-  RetrievalAPI --> QAEngine
-
-  QAEngine --> AICore
-  AICore --> Dify
-  Dify --> Tools
-  Dify --> OpenAI
-  Dify --> Redis
-
-  GitHubService --> GitHub
-  COBOLParser --> IndexingAPI
-  COBOLParser --> TmpIndexingAPI
-  DocGen --> RetrievalAPI
-
-  ConfigAPI --> Redis
-  FeedbackAPI --> PostgreSQL
-  AuthAPI --> Redis
 
 ```
