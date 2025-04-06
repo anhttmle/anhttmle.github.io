@@ -34,13 +34,19 @@
 ### What are the main high-level parts of your system?
 
 Examples:
+> Backend API
+> 
+> Frontend Web UI
+> 
+> Database
+> 
+> Worker for background tasks
+> 
+> Vector DB / AI service
+> 
+> File storage
 
-    Backend API
-    Frontend Web UI
-    Database
-    Worker for background tasks
-    Vector DB / AI service
-    File storage
+- 
 
 ### How do users interact with the system?
 
