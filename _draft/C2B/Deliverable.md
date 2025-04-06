@@ -8,7 +8,7 @@
 - [x] ~~User Interface (Web UI or Chat Plugin)~~ => API Package
 - [x] ~~Infrastructure Design (Development & Production environments)~~
 3. Assistant Interface Specification
-- [x] Interaction Design between PO/BA/SE and the Bot
+- [ ] Interaction Design between PO/BA/SE and the Bot
 - [x] ~~Interface Options: Simple Web UI or Integration with Chat Tools (Slack, etc.)~~
 4. Core Processing Modules
 - [ ] Bot Assistant Core: Handling user requests and commands
