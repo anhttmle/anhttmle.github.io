@@ -92,14 +92,14 @@ graph TD
 
 ## ⚙️ Internal API Modules
 
-- **Auth Service** – Manage authentication/authorization  
-- **COBOL Parser** – Parse and structure COBOL source code  
+- **Auth API** – Manage authentication/authorization  
+- **Parser API** – Parse and structure COBOL source code  
 - **Indexing API** – Index data to metadata DB, graph, search, and vector DBs  
 - **Retrieval API** – Query and fetch indexed data  
-- **Q&A Engine** – Handles team queries about code/specs using LLM  
-- **Spec/Documentation Generator** – Generates migration specs from COBOL code  
+- **Q&A API** – Handles team queries about code/specs using LLM
+- **Spec Gen API** – Generates migration specs from COBOL code  
 - **Configuration API** – Manage system behavior and workflows  
-- **Feedback Service** – Collect user feedback for continuous improvement  
+- **Feedback API** – Collect user feedback for continuous improvement  
 
 ---
 
