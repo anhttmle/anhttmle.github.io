@@ -91,7 +91,11 @@
 - Retrieval API: retrieve data that indexed by Indexing API/Tmp Indexing API
 - Configuration API
 - Feedback API: feedback from user to help Virtual Assistant give better answer in the future)
-- Others
+- Auth Service
+- COBOL parser
+- Spec/Documentation Generator
+- Q&A Engine
+- Github integration service
 
 ### What external services or databases are needed?
 
