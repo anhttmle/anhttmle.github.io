@@ -29,3 +29,40 @@
 > (e.g., Bank APIs, payment gateways, identity providers…)
 
 - Github: to access to COBOL source code (optional)
+
+# 2. Container:
+### What are the main high-level parts of your system?
+
+Examples:
+
+    Backend API
+    Frontend Web UI
+    Database
+    Worker for background tasks
+    Vector DB / AI service
+    File storage
+
+### How do users interact with the system?
+
+    Do they use a Web UI, or is everything through API calls (e.g., Postman, CLI tools)?
+    Will different roles use different interfaces?
+
+### What internal services/modules are planned in the API?
+
+Examples:
+
+    Auth service
+    COBOL parser
+    Spec/documentation generator
+    Q&A engine (LLM-based?)
+    GitHub integration service
+
+### What external services or databases are needed?
+
+Examples:
+
+    PostgreSQL for user data
+    Vector DB for embedding & retrieval
+    Redis for caching
+    GitHub API
+    OpenAI or internal LLM?
