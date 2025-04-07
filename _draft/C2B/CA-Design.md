@@ -66,7 +66,7 @@ graph TD
 ```
 
 
-# 📦 C4 Level 2: Container – "COBOL to JAVA Virtual Assistant API"
+# 📦 Level 2: Container
 
 ## 🧱 Containers Overview
 
