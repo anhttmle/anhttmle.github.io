@@ -77,7 +77,7 @@ graph TD
 | **File Storage**      | Stores uploaded COBOL files or intermediary assets                          |
 | **AI Core Processor** | Executes pre-defined workflows or agent-based strategies; interfaces with the RAG framework |
 | **RAG Framework (Dify)** | Responsible for retrieval-augmented generation and agent orchestration     |
-| **Tools Inventory**   | Provides tool services (e.g., spec builder, COBOL highlighter) used by RAG via HTTP |
+| **Tools Inventory**   | Provides tool services used by RAG via HTTP |
 
 ---
 
