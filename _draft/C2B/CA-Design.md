@@ -37,6 +37,7 @@ A backend API package acting as a virtual assistant for the team involved in mig
 
 - **GitHub/GitLab (Optional):** For accessing COBOL source repositories
 - **LLM API**
+- **ReRank API**
 
 ## 🖼️ Diagram
 ```mermaid
