@@ -36,6 +36,7 @@ A backend API package acting as a virtual assistant for the team involved in mig
 ## 🔗 External Systems
 
 - **GitHub/GitLab (Optional):** For accessing COBOL source repositories
+- **LLM API**
 
 ## 🖼️ Diagram
 ```mermaid
