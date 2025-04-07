@@ -51,9 +51,12 @@ graph TD
         Admin[Administrator / Operator]
     end
 
-    subgraph System
-        VA[Virtual Assistant API]
+    subgraph VA[Virtual Assistant API]
+        
     end
+
+    VA --> LLM[LLM API]
+    VA --> ReRanker[ReRank API]
 
     COBOL_E -->|Upload COBOL code<br>Ask questions| VA
     COBOL_BA -->|Provide spec template<br>Ask questions| VA
