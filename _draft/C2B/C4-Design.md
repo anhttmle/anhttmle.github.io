@@ -130,10 +130,10 @@ flowchart TD
         AdminUI[Admin Interface]
     end
 
-    ChatUI --> Backend_API[Backend API]
-    AdminUI --> Backend_API
+    ChatUI --> API_Gateway[API Gateway]
+    AdminUI --> API_Gateway
 
-    subgraph Backend_API
+    subgraph API_Gateway
         AuthAPI[Auth API]
         ParserAPI[Parser API]
         IndexingAPI[Indexing API]
@@ -153,10 +153,10 @@ flowchart TD
         Feedback[Feedback Module]
     end
 
-    Backend_API --> FileStorage[File Storage]
-    Backend_API --> CacheDB
-    Backend_API --> GitHub
-    Backend_API --> AICore
+    API_Gateway --> FileStorage[File Storage]
+    API_Gateway --> CacheDB
+    API_Gateway --> GitHub
+    API_Gateway --> AICore
 
     Parser --> Indexing
     Parser --> FileStorage
