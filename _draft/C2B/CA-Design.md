@@ -158,7 +158,7 @@ flowchart TD
     Backend_API --> GitHub
     Backend_API --> AICore
 
-    ParserAPI --> Indexing
+    Parser --> Indexing
     
     Indexing --> MetadataDB
     Indexing --> GraphDB
