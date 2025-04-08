@@ -159,6 +159,7 @@ flowchart TD
     Backend_API --> AICore
 
     Parser --> Indexing
+    Parser --> FileStorage
     
     Indexing --> MetadataDB
     Indexing --> GraphDB
