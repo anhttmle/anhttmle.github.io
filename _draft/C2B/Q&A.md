@@ -1,3 +1,6 @@
+## 0. Providing 3rd API key for development
+- LLM: OpenAI API key (https://platform.openai.com/api-keys)
+- ReRanker: Cohere API key (https://dashboard.cohere.com/welcome/login?redirect_uri=%2Fapi-keys)
 ## 1. Who will use the Assistant?
 - COBOL-E (Cobol Engineer) – Required: Responsible for reviewing specifications to ensure they align with the logic implemented in the source code.
 - COBOL-BA (Business Analyst for Cobol projects) – Required: Provides the documentation template and ensures that specifications reflect the correct business logic.
