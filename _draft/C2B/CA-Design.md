@@ -158,19 +158,21 @@ flowchart TD
     Backend_API --> GitHub
     Backend_API --> AICore
 
+    ParserAPI --> Indexing
+    
     Indexing --> MetadataDB
     Indexing --> GraphDB
     Indexing --> SearchEngine
     Indexing --> VectorDB
 
-    Retrieval --> MetadataDB
-    Retrieval --> GraphDB
-    Retrieval --> SearchEngine
-    Retrieval --> VectorDB
     Retrieval --> RAG
-
     RAG --> Tools[Tools Inventory]
 
+    Tools --> MetadataDB
+    Tools --> GraphDB
+    Tools --> SearchEngine
+    Tools --> VectorDB
+    
     QA --> Retrieval
     SpecGen --> Retrieval
 
