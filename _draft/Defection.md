@@ -1,3 +1,6 @@
+<img width="1051" alt="image" src="https://github.com/user-attachments/assets/760defd4-e87b-4463-8a65-a38130957765" />
+
+
 # Userflow & Architecture
 ![Porfolio-8  Defect Detection drawio](https://github.com/user-attachments/assets/53fef0b5-84ca-4cab-9088-c583ef97c6f9)
 
