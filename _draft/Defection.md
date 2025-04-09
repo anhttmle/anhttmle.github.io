@@ -1,5 +1,7 @@
 <img width="1440" alt="image" src="https://github.com/user-attachments/assets/6cd54281-c832-4958-9ce8-df4f1c8a217d" />
 
+<div style="page-break-after: always;"></div>
+
 # Userflow & Architecture
 ![Porfolio-8  Defect Detection drawio](https://github.com/user-attachments/assets/53fef0b5-84ca-4cab-9088-c583ef97c6f9)
 
