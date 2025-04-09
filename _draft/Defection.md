@@ -24,7 +24,9 @@
 - Weaksupervise Training (1 AIEs)
 - Anomally Detection (0.5 AIEs)
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always; visibility: hidden"> 
+\pagebreak 
+</div>
 
 ### 3. System Integration
 - UI (0.5 React Engineers)
