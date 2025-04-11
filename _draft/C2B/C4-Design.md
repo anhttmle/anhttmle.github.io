@@ -170,7 +170,7 @@ flowchart TD
 
 ---
 
-## ⚙️ AI Core Processor
+## ⚙️ AI Core
 - **Spec Gen Module** – Execute Retrieve Pipeline for generate Specs
 - **Q&A Module** – Execute Retrieve Pipeline for Q&A Module & generate answer
 - **Retrieval Module** – Request to RAG pipelines
