@@ -148,7 +148,7 @@ flowchart TD
         Parser[Parser Module]
         Indexing[Indexing Module]
         Retrieval[Retrival Module]
-        QA[QA Module]
+        Q&A[Q&A Module]
         SpecGen[SpecGen Module]
         Feedback[Feedback Module]
     end
@@ -174,7 +174,7 @@ flowchart TD
     Tools --> SearchEngine
     Tools --> VectorDB
     
-    QA --> Retrieval
+    Q&A --> Retrieval
     SpecGen --> Retrieval
 
 
