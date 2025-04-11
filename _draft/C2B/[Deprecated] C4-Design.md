@@ -153,6 +153,13 @@ flowchart TD
         Feedback[Feedback Module]
     end
 
+    subgraph AI_Databases
+        MetadataDB
+        GraphDB
+        SearchEngine
+        VectorDB
+    end
+
     API_Gateway --> FileStorage[File Storage]
     API_Gateway --> CacheDB
     API_Gateway --> GitHub
@@ -161,18 +168,12 @@ flowchart TD
     Parser --> Indexing
     Parser --> FileStorage
     
-    Indexing --> MetadataDB
-    Indexing --> GraphDB
-    Indexing --> SearchEngine
-    Indexing --> VectorDB
+    Indexing --> AI_Databases
 
     Retrieval --> RAG
     RAG --> Tools[Tools Inventory]
 
-    Tools --> MetadataDB
-    Tools --> GraphDB
-    Tools --> SearchEngine
-    Tools --> VectorDB
+    Tools --> AI_Databases
     
     Q&A --> Retrieval
     SpecGen --> Retrieval
