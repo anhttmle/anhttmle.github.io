@@ -95,7 +95,69 @@ graph TD
 
 ---
 
-## ⚙️ Internal API Modules
+## 🌐 External Services
+
+| Service        | Purpose                                           |
+|----------------|---------------------------------------------------|
+| **File storage** | File Storage Service                            |
+| **Redis**      | Caching layer                                     |
+| **OpenAI API** | External LLM processing                           |
+| **Cohere API** | Re-ranking relevant document                      |
+| **GitHub API** | Retrieve COBOL source from repositories           |
+
+---
+
+## 🖼️ Mermaid: Container Diagram
+
+```mermaid
+flowchart TD
+    subgraph Users
+        ChatUI[Chat Interface: Web, CLI, Slack]
+        AdminUI[Admin Interface]
+    end
+
+    subgraph API_Gateway
+        
+    end
+
+    ChatUI --> API_Gateway
+    AdminUI --> API_Gateway
+
+    API_Gateway --> FileStorage[File Storage]
+    API_Gateway --> CacheDB
+    API_Gateway --> GitHub
+
+    API_Gateway --> AICore
+
+    subgraph AICore
+        
+    end
+
+    subgraph RAG
+        
+    end
+
+    subgraph AI_Databases
+
+    end
+
+    subgraph Tools[Tools Inventory]
+        
+    end
+    
+    AICore --> RAG
+    AICore --> AI_Databases
+    AICore --> OpenAI
+    AICore --> Cohere
+
+    RAG --> Tools
+    Tools --> AI_Databases
+
+```
+
+# 🧩 Level 3: Component
+
+## 🧱 API Gateway
 
 - **Auth API** – Manage authentication/authorization  
 - **Parser API** – Parse and structure COBOL source code  
@@ -108,17 +170,31 @@ graph TD
 
 ---
 
-## 🌐 External Services
+## ⚙️ AI Core Processor
+- **Spec Gen Module** – Execute Retrieve Pipeline for generate Specs
+- **Q&A Module** – Execute Retrieve Pipeline for Q&A Module & generate answer
+- **Retrieval Module** – Request to RAG pipelines
+- **Parser Module** – Parsing Cobol Repo to appropriate formated document
+- **Indexing Module** – Indexing document to Databases
+- **Feedback Module** – Processing feedback from user
 
-| Service        | Purpose                                           |
-|----------------|---------------------------------------------------|
-| **PostgreSQL** | Structured metadata & user info                   |
-| **Neo4j**      | Graph of COBOL components/modules                 |
-| **Elasticsearch** | Textual search                                  |
-| **Milvus**     | Vector search for semantic queries                |
-| **Redis**      | Caching layer                                     |
-| **OpenAI API** | External LLM processing                           |
-| **GitHub API** | Retrieve COBOL source from repositories           |
+## 🔍 RAG Framework
+- **Pre-defined Pipelines** – Processing feedback from user
+
+## 🧰 Tools Inventory
+- **Semantic Search** – Search VectorDB
+- **Graph Search** - Search GraphDB
+- **Metadata Search** - Search Metadata
+- **Fulltext Search** - Execute Search Engine
+- ...
+
+
+## 🧠 AI_Databases
+- **Metadata Database** – Store metadata of document, chunk, file,...
+- **Graph Database** – Store relationship among variable, chunk, file,...
+- **Search Engine** – Store raw text for searching by keyword/term
+- **Vector Database** – Store vector of chunk/term to do semantic search
+
 
 
 ## 🖼️ Mermaid: Container Diagram
@@ -153,6 +229,29 @@ flowchart TD
         Feedback[Feedback Module]
     end
 
+    subgraph RAG
+        PredefineFlow
+    end
+
+    subgraph AI_Databases
+        MetadataDB
+        GraphDB
+        SearchEngine
+        VectorDB
+    end
+
+    subgraph Tools[Tools Inventory]
+        RetrieveMetadata
+        RetrieveNeighbordata
+        FulltextSearch
+        SemanticSearch
+
+        RetrieveMetadata --> MetadataDB
+        RetrieveNeighbordata --> GraphDB
+        FulltextSearch --> SearchEngine
+        SemanticSearch --> VectorDB
+    end
+
     API_Gateway --> FileStorage[File Storage]
     API_Gateway --> CacheDB
     API_Gateway --> GitHub
@@ -167,12 +266,7 @@ flowchart TD
     Indexing --> VectorDB
 
     Retrieval --> RAG
-    RAG --> Tools[Tools Inventory]
-
-    Tools --> MetadataDB
-    Tools --> GraphDB
-    Tools --> SearchEngine
-    Tools --> VectorDB
+    RAG --> Tools
     
     Q&A --> Retrieval
     SpecGen --> Retrieval
