@@ -66,7 +66,7 @@ graph TD
     JAVA_PO -->|Review feature coverage| VA
     JAVA_TL -->|Validate architecture| VA
     Admin -->|Manage users & config| VA
-    GitHub[(GitHub/GitLab)] -->|Provide source code| VA
+    Git[(GitHub/GitLab)] -->|Provide source code| VA
 
 ```
 
@@ -103,7 +103,7 @@ graph TD
 | **Redis**      | Caching layer                                     |
 | **OpenAI API** | External LLM processing                           |
 | **Cohere API** | Re-ranking relevant document                      |
-| **GitHub API** | Retrieve COBOL source from repositories           |
+| **Git API** | Retrieve COBOL source from repositories           |
 
 ---
 
@@ -125,7 +125,7 @@ flowchart TD
 
     API_Gateway --> FileStorage[File Storage]
     API_Gateway --> CacheDB
-    API_Gateway --> GitHub
+    API_Gateway --> Git
 
     API_Gateway --> AICore
 
@@ -254,7 +254,7 @@ flowchart TD
 
     API_Gateway --> FileStorage[File Storage]
     API_Gateway --> CacheDB
-    API_Gateway --> GitHub
+    API_Gateway --> Git
     API_Gateway --> AICore
 
     Parser --> Indexing
