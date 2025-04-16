@@ -1,18 +1,18 @@
 # Week 1: Finalize Specs & Architecture Design
 ## Target modules:
-- Architecture
-- Userflow
-- Type of user
+- _Architecture_
+- _Userflow_
+- _Type of user_
 
 ## Task:
-- Finalize user
-- Architecture Design
-- Userflow
+- _Finalize user_
+- _Architecture Design_
+- _Userflow_
 - Prepare Infra
   - Deploy Dify
   - Deploy Metadata DB (SQL Lite)
-  - Deploy File Storage (Local File System)
-  - Deploy VectorDB (Milvus Lite)
+  - _Deploy File Storage (Local File System)_
+  - _Deploy VectorDB (Milvus Lite)_
 
 # Week 2: Component Design & Interface Development
 ## Target modules:
