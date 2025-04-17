@@ -85,4 +85,7 @@ flowchart TD
 > Progressively enhance system efficiency
 
 # Sprint 1:
-- Finalize 
+- Finalize product requirement
+    - Who is the user?
+    - Which problem that the Assistant solve?
+    - How user interact with the Assistant?
