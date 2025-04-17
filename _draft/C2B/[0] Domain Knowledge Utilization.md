@@ -29,7 +29,7 @@
   - Any other tool (like Jira, Google Drive,...) can provide more accurate context
 <img width="244" alt="image" src="https://github.com/user-attachments/assets/628582a7-8dab-4b29-80f5-26f13ac5feec" />
 
-# Inject domain knowledge at runtime: Feedback API
+# Inject domain knowledge on runtime: Feedback API
 - Design feedback loop to let user provide feedback on quality of answer
 ## Examples:
 - COBOL-E, COBOL-BA verify the answer and references
