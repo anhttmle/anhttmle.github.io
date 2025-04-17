@@ -79,13 +79,27 @@ flowchart TD
 > Enables encapsulation and accelerates development by allowing more engineers to contribute concurrently.
 - Deliver full end-to-end flow early
 > Allows clients to begin testing as soon as possible.
-- Inject human knowledge to handle AI uncertainty
+- Inject human knowledge to handle AI uncertainty (_inject knowledge on devtime_)
 > Helps identify inefficient steps and replace them with human expertise when necessary.
-- Leveraging feedback loops
+- Leveraging feedback loops (_inject knowledge on runtime_)
 > Progressively enhance system efficiency
 
-# Sprint 1:
-- Finalize product requirement
+# Phase 1: Finalize product requirement & MVP
+- Answer the questions:
     - Who is the user?
-    - Which problem that the Assistant solve?
+      
+      -> Which problems does the Assistant solve?
+      
+      -> Which feature that the Assistant will have?
+        - Extract Knowledge from COBOL source code (_create & upload by COBOL-E_)
+        - Answer Q&A about the **Extracted Knowledge from COBOL** (_COBOL-E, COBOL-BA_)
+        - Extract Knowledge from Document Specs (_create & upload by COBOL-BA_)
+        - Answer Q&A about the **Extracted Knowledge from Document Specs** (_JAVA-E, JAVA-Lead, JAVA-PO, JAVA-BA_)
+        - Authentication/Authorization/Configuration setting (_configure by Admin_)
     - How user interact with the Assistant?
+      
+      -> Define userflow
+- System & Solution Design
+- Build MVP
+
+# Phase 2: 
