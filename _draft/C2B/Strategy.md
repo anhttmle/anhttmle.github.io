@@ -9,6 +9,26 @@
 > Progressively enhance system efficiency
 
 # Roadmap
+
+```mermaid
+
+gantt
+  title Product Development Roadmap
+  dateFormat  YYYY-MM-DD
+  axisFormat  %b %d
+
+  section Phase 1
+  Finalize Requirements & MVP      :active, phase1, 2025-04-01, 30d
+
+  section Phase 2 
+  Develop production & Evaluation:phase2, 2025-05-01, 30d
+
+  section Phase 3
+  Improvement             :phase3, 2025-06-01, 30d
+
+
+```
+
 ## Phase 1: Finalize product requirement & MVP (1st month)
 - Answer the questions:
     - Who is the user?
@@ -35,4 +55,29 @@
     - Q&A on Extract Knowledge from COBOL source code (COBOL-E, COBOL-BA) 
     - Basic configuration (switch API vendor) 
 
-## Phase 2: 
+## Phase 2: Develop production & Evaluation
+- Evaluation type:
+    - Actor:
+        - Human: COBOL-E or COBOL-BA
+        - Assistant
+    - Automatically: preparing pairs of Question + Answer of COBOL-E & COBOL-BA
+        - Ask question on UI/API & get Answer (by Assistant)
+        - Perpare Golden Answer (by Human)
+
+      => Auto evaluate by LLM
+      
+    - Manually: vote like/dislike on UI (by Human)
+- Evaluation target:
+    - Context-hit rate: Assistant successfully retrieved relevant context
+    - Accuracy rate: Assistant provides correct answers
+- Develop production base on finalized feature provide by Phase 1
+
+## Phase 3: Improvement
+- Iteratively evaluate and improve the Assistant answers
+```mermaid
+
+graph TD
+  Evaluate --> Improvement
+  Improvement --> Evaluate
+
+```
