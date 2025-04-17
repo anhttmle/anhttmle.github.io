@@ -9,7 +9,7 @@
 > Progressively enhance system efficiency
 
 # Roadmap
-## Phase 1: Finalize product requirement & MVP
+## Phase 1: Finalize product requirement & MVP (1st month)
 - Answer the questions:
     - Who is the user?
       
@@ -21,6 +21,10 @@
         - Extract Knowledge from Document Specs (_create & upload by COBOL-BA_)
         - Answer Q&A about the **Extracted Knowledge from Document Specs** (_JAVA-E, JAVA-Lead, JAVA-PO, JAVA-BA_)
         - Authentication/Authorization/Configuration setting (_configure by Admin_)
+        - Utility features: (_All type of user_)
+            - Auto translate Japanese <-> Vietnamese
+            - ...
+            
     - How user interact with the Assistant?
       
       -> Define userflow
