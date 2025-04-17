@@ -30,9 +30,9 @@
       -> Define userflow
 - System & Solution Design
 - Build MVP
-    - Upload COBOL zip file
-    - Extract Knowledge from COBOL source code (simply summarizing each COBOL file content & indexing to database)
-    - Q&A on Extract Knowledge from COBOL source code (COBOL-E, COBOL-BA)
-    - Basic configuration (switch API vendor)
+    - Upload COBOL zip file 
+    - Extract Knowledge from COBOL source code (simply summarizing each COBOL file content & indexing to database) 
+    - Q&A on Extract Knowledge from COBOL source code (COBOL-E, COBOL-BA) 
+    - Basic configuration (switch API vendor) 
 
 ## Phase 2: 
