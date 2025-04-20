@@ -1,4 +1,4 @@
-# Week 1: Finalize Specs & Architecture Design
+# Goal 1: Finalize Specs & Architecture Design
 ## Target modules:
 - _Architecture_
 - _Userflow_
@@ -14,7 +14,7 @@
   - _Deploy File Storage (Local File System)_
   - _Deploy VectorDB (Milvus Lite)_
 
-# Week 2: Component Design & Interface Development
+# Goal 2: Component Design & Interface Development
 ## Target modules:
 - COBOL Parser module: convert from COBOL repo to appropriate artifact
   - DIVISION
