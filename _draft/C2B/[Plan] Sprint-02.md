@@ -31,3 +31,8 @@
 - Gather user types, SME knowledge
 - Preparing docunent for product
 
+# Others:
+- Bring logics of index/retrieval step to Tool Inventory
+- Deploy Dify
+- Bring pipeline configuration to Dify
+
