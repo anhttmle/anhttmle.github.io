@@ -15,3 +15,6 @@
 # Feedback loop
 - Tag on reference
 - Up vote/Down vote for Assistant Answer
+- Add comment on Reference -> fewshot prompt
+- Add comment on Answer -> fewshot prompt
+- 
