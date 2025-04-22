@@ -18,6 +18,9 @@
   
 ## 4. Can you describe how a typical COBOL-E reads and analyzes the source code?
 > (Seeking domain knowledge of COBOL-E)
+- CALL -> execute external module
+- PERFORM -> execute internal COBOL file
+- COBOL file name stand for biz feature
 
 ## 5. Once the product is complete, how will it be used?
   - Option 1: Upload repositories to generate specs and interact via chat
