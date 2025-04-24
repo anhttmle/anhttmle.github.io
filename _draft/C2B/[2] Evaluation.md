@@ -1,7 +1,7 @@
 <img width="1024" alt="image" src="https://github.com/user-attachments/assets/43bca136-dff2-43db-a893-a99f7ac79a47" />
 
 # Evaluation Flow
-## Manually Review Flow
+## 1. Manually Review Flow
 - Human: Ask a question
 - Assistant: Provide answer and references to it
   - File Path
@@ -29,7 +29,7 @@ sequenceDiagram
 
 ```
 
-## Hit Rate Evaluation Flow
+## 2. Hit Rate Evaluation Flow
 ```mermaid
 sequenceDiagram
     participant Human
@@ -55,7 +55,7 @@ sequenceDiagram
 - Hit?: Human quickly scans to see if any is relevant.
 - Miss: If zero relevant references, it’s escalated to an expert to refine the assistant’s retrieval.
 
-## Accuracy Evaluation Flow
+## 3. Accuracy Evaluation Flow
 ```mermaid
 sequenceDiagram
     participant Human
