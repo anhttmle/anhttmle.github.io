@@ -67,7 +67,7 @@ sequenceDiagram
     Assistant-->>Human: Provide answer + ranked references
     Human->>Human: Verify each reference for correctness (True/False)
     Human-->>Assistant: ✔️/❌ Feedback per reference
-    Human->>Human: Compute Accuracy = (# correct references) / (total references)
+    Human->>Human: Compute Accuracy = correct references / total references
     alt If Accuracy < threshold
         Human->>AIExpert: Flag low-accuracy retrieval for expert review
     end
