@@ -21,6 +21,7 @@
 - Bring pipeline configuration to Dify
 
 # Evaluation Explaination
+[Evaluation Document](https://github.com/anhttmle/anhttmle.github.io/blob/feat/random-thoughts/_draft/C2B/%5B2%5D%20Evaluation.md)
 
 
 # Q&A
