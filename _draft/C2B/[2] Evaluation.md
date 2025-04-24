@@ -1,5 +1,4 @@
 # Evaluation Flow
-### Manually on MVP
 - Human: Ask a question
 - Assistant: Provide answer and references to it
   - File Path
