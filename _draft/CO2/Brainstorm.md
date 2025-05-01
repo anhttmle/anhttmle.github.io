@@ -10,7 +10,9 @@ Giảm phát thải CO₂ và phân loại rác tại nguồn: Xu hướng và g
 # 2. Hướng tiếp cận hệ sinh thái khuyến khích phân loại tại nguồn
 
 - **Cơ chế thưởng xanh**: Xây dựng hệ thống tích lũy “điểm xanh” cho cư dân khi phân loại đúng (chẳng hạn đổi điểm lấy quà, ưu đãi dịch vụ, giảm phí bảo trì). Có thể sử dụng token điện tử hoặc QR code ghi nhận lượng rác đúng loại. Các nền tảng gamification (ứng dụng có bảng xếp hạng, thành tích) cũng tăng tính tương tác. Ví dụ, giải pháp iTrash đề xuất động cơ tự động (token, voucher) khuyến khích người dùng áp dụng phân loại​ (arxiv.org).
+  
 - **Tích hợp ứng dụng quản lý cư dân**: Kết hợp tính năng phân loại vào app chung cư hiện có (mục “Bảo vệ môi trường” hoặc “Thông báo nhà quản lý”). Ứng dụng có thể hướng dẫn phân loại, giao tiếp với cảm biến thùng rác thông minh (nếu có) và thông báo lịch thu gom. Dữ liệu phân loại của cư dân được thu thập tự động để chấm điểm, nhắc nhở và phát phần thưởng.
+  
 - **Sự kiện và cộng đồng**: Tổ chức các chiến dịch, cuộc thi “Ngôi nhà xanh – chung cư sạch” theo quãng thời gian. Khuyến khích đội nhóm cư dân thi đua, dùng poster và workshop để giáo dục. Hợp tác với chính quyền địa phương, tổ chức xã hội về môi trường (ví dụ Quỹ Bảo vệ Môi trường) để tài trợ phần thưởng và tuyên truyền.
 
 # 3. Các thành phần chính của MVP (SDK tích hợp app quản lý chung cư)
