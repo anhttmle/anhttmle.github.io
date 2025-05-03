@@ -126,3 +126,60 @@ percentile = (users_you_beat / total_active_users) × 100
 `(user_id, tutorial_id, total_steps, completed_steps, last_updated)`  
 - **Daily aggregation**  
 Pre‑aggregate time and mass metrics per user/day for efficient reporting.
+
+## Data to Collect
+
+1. **Users & Sessions**  
+   - `user_id`  
+   - `session_id`  
+   - `entry_point` (enum: `IntegratedPlatform`, `AppWeb`, `Anonymous`)  
+   - `session_start`, `session_end` (timestamps)
+
+2. **Tutorial Progress**  
+   - `user_id`, `tutorial_id`  
+   - `tutorial_type` (`RecyclingProcess`, `CategoryInstruction`, `CampaignTutorial`)  
+   - `total_steps`, `steps_completed`  
+   - `last_updated` (timestamp)
+
+3. **Waste Submissions**  
+   - `user_id`, `submission_id`  
+   - `category_id`, `weight_kg` or `count_units`  
+   - `timestamp`
+
+4. **Campaign & Mission Joins**  
+   - `user_id`, `campaign_id` or `mission_id`  
+   - `join_timestamp`  
+   - Optional: `campaign_tutorial_progress` (same schema as Tutorial Progress)
+
+5. **Rewards & Exchanges**  
+   - `user_id`, `reward_id`  
+   - `reward_type` (`Voucher`, `Donation`, `CC`)  
+   - `points_redeemed`, `value` (monetary or CC units)  
+   - `exchange_timestamp`
+
+6. **Green Market Transactions**  
+   - `transaction_id`  
+   - `from_user_id`, `to_user_id`  
+   - `item_type` (`CC`, `Voucher`)  
+   - `quantity`, `total_value`  
+   - `transaction_timestamp`
+
+7. **Carbon Reports & Conversions**  
+   - `bag_id`, `operator_id`, `logistic_id`, `recycler_id`  
+   - `report_id`, `carbon_amount`  
+   - `report_timestamp`
+
+8. **Time on Screen**  
+   - `user_id`, `screen_type` (`AppWeb`, `RecyclingTutorial`, `CategoryInstruction`, `CampaignTutorial`)  
+   - `enter_timestamp`, `exit_timestamp`
+
+9. **Daily Aggregates (for performance)**  
+   - `(user_id, date)`  
+     - `active_time_total`  
+     - `waste_sorted_kg`  
+     - `sessions_count`  
+     - `green_points_earned`
+
+10. **Peer Comparison / Leaderboards**  
+    - `(metric_name, period, user_id, metric_value, rank, percentile)`
+
