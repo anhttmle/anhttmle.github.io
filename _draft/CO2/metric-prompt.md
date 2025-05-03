@@ -1,0 +1,58 @@
+Context: 
+- I am developing a system about 'waste sorting'. Which is named "NATURA" 
+- System description: 
+  - The system will work with other platforms (integrating by using my defined SDK) and also work as NATURA App/Web
+  - User journey order
+    - Integrated Platform (Logistic Platform, Resident Platform, Banking App, Fintech App)
+    - Entry Point (Banner, Sorting Campaign, Reference from other users, Notification from Ads)
+    - Onboarding Tutorial (Recycling Process Tutorial -> many Waste Category Separation Instructions)
+    - Utilization
+      - login (from other platform, NATURA's App/Web), anonymous login, sign up
+      - refer other user to sign up, join, ...
+      - open an tutorial about how a specific Waste Category Separation Instruction
+      - submit sorted waste
+      - tracking the waste
+      - Joining a Campaign, Mission (will walk through Campaign/Mission Tutorial)
+      - Viewing Dashboard which visualize Green Point user got after classify the waste and other metrics
+      - Viewing Archivements which is rewarded after finish a Green Campaign or Green Mission
+      - Exchange Green Point to Voucher, Donation, CC (a.k.a Carbon Certificate)
+      - Make transaction in Green Market (exchange CC with other users, organizations,...)
+      - and many more will be defined in the future
+- Carbon Flow:
+  - Carbon Id (user, bag of sorted waste) -> Trash
+  - Trash -> Operators collecting
+  - Operators collecting -> Logistic (Trash Vehicle)
+  - Logistic -> Recycle Orgs (Company/Organization who use the sorted waste to build recycling Product)
+  - Recycle Orgs -> Carbon Report (result of collecting sorted waste)
+  - Carbon Report -> Carbon Reward (the result can be exchange to reward a.k.a Green Point)
+  - Carbon Reward -> Green Action (some option doing by NATURA but decide by user earned the reward)
+  - Green Action -> Carbon Id (user will got voucher, Donation reputation or money by doing the Green Action)
+
+Task: I want to make documentation for the following metrics
+- User Activity metrics
+  - Green Point
+  - Favourite Entry Point
+    - From others platform
+    - From anonymous
+    - From NATURA App/Web
+  - Recycling Process Tutorial skip at % (such as finish 5/10 steps -> 50%)
+  - Waste Category Separation Instruction skip at % (for each category)
+  - Campaign/Mission Tutorial skip at % (for each Campaign/Mission)
+  - Archivement
+    - Amount of category in kg/unit
+    - Number/Value of reward that exchanged
+      - Number/Value of Voucher
+      - Number/Value of Donation
+      - Number/Value of CC
+    - Number/Value of Green Market transaction
+  - Time metrics
+    - Total active time (count for each day active)
+    - Streak for sequence of active days
+    - Velocity of sorting (like 5 kg per week)
+    - Time on screen
+      - NATURA App/Web
+      - Tutorial type
+- User Activity Window metrics (similar to User Activity metrics but for a period of time lately)
+- Peer metrics (similar to User Activity metrics but compare among users)
+  - Leaderboard (top 10, 100,... users)
+  - User is doing better than % all users (like better than 30% users)
