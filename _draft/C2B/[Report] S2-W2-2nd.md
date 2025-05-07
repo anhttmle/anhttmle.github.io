@@ -16,7 +16,7 @@
 - Preparing docunent for product
 
 ## Others
-- Bring logics of index/retrieval step to Tool Inventory
+- **Bring logics of index/retrieval step to Tool Inventory**
 - Deploy Dify
 - Bring pipeline configuration to Dify
 
