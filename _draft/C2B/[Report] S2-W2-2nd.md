@@ -80,5 +80,4 @@
 
 # Q&A
 ### Evaluation Explaination
-[Evaluation Document]([https://github.com/anhttmle/anhttmle.github.io/blob/feat/random-thoughts/_draft/C2B/%5B2%5D%20Evaluation.md](https://sys-inc.backlog.com/ViewWikiAttachmentPdf.action?attachmentId=607552))
-
+[Evaluation Document](https://github.com/anhttmle/anhttmle.github.io/blob/feat/random-thoughts/_draft/C2B/%5B2%5D%20Evaluation.md)
