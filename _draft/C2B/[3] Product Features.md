@@ -1,3 +1,4 @@
+
 # 1. Configuration
 - Currently we only support using openAI models
 <img width="317" alt="image" src="https://github.com/user-attachments/assets/bcf93f8b-3248-432e-b524-96d7cc7716f9" />
@@ -45,7 +46,7 @@
 
 > Useful for automated performance tracking.
 
-### C. 💬 Add Comment on Reference ➝ feeds Few-shot Prompt
+~~C. 💬 Add Comment on Reference ➝ feeds Few-shot Prompt~~
 
 
 ### D. 💬 Add Comment on Answer ➝ feeds Few-shot Prompt
