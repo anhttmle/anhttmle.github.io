@@ -7,7 +7,7 @@
 - User can login and using as separate session, also help clarify feedback among users
 <img width="1557" alt="image" src="https://github.com/user-attachments/assets/82ef650f-e4ee-4335-b945-ff99faae209f" />
 
-# 4. Indexing data
+# 3. Indexing data
    - Upload/Index Cobol Repo (Zip file)
 <img width="312" alt="image" src="https://github.com/user-attachments/assets/0419c1e0-3a23-43e6-ba84-a125a72c50f1" />
 
@@ -24,11 +24,11 @@
 <img width="303" alt="image" src="https://github.com/user-attachments/assets/190a9ab2-f0af-4d50-8516-b675e7517f69" />
 
 
-# 5. Answer Generation
+# 4. Answer Generation
 - Generate data base on user question
 <img width="1224" alt="image" src="https://github.com/user-attachments/assets/ccf17aaf-cb73-493a-a542-31511f860df1" />
 
-# 6. Feedback
+# 5. Feedback
 ### A. Tag on Reference
 - Users can label references as relevant or irrelevant.
 <img width="481" alt="image" src="https://github.com/user-attachments/assets/c825d36f-b078-4344-a968-5b783aad0128" />
