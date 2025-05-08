@@ -15,11 +15,13 @@
    - Semantic Storing (Backend)
 
    - Delete Indexed data
-<img width="312" alt="image" src="https://github.com/user-attachments/assets/6317d2d0-356c-4c04-9869-7bbc79a112f2" />
+<img width="335" alt="image" src="https://github.com/user-attachments/assets/2705141e-3a25-4a8a-a5c7-ffd4ad77104a" />
+
 
 
    - Visualize Indexing Status
-<img width="312" alt="image" src="https://github.com/user-attachments/assets/57560eb1-024e-4d2a-8805-c909ecb3e844" />
+<img width="303" alt="image" src="https://github.com/user-attachments/assets/190a9ab2-f0af-4d50-8516-b675e7517f69" />
+
 
 # 5. Answer Generation
 - Generate data base on user question
