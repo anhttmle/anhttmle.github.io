@@ -1,5 +1,28 @@
 <img width="763" alt="image" src="https://github.com/user-attachments/assets/73a7c497-0010-404a-8d3c-36120fa97139" />
 
+```mermaid
+flowchart TD
+    FE[Front End - Web Application developed with Streamlit]
+    APIGW[API Gateway - Fast API]
+    AICore[AI Core - Fast API]
+    RAG[RAG - API Service]
+    ToolInv[Tool Inventory - API]
+    DB[Databases]
+    Langchain[Langchain - FastAPI]
+    Dify[Dify - Flow API]
+
+    FE --> APIGW
+    APIGW --> AICore
+    AICore --> RAG
+    AICore --> ToolInv
+    ToolInv --> DB
+    RAG --> ToolInv
+    ToolInv --> DB
+    RAG --> DB
+    RAG --> Langchain
+    RAG --> Dify
+
+```
 
 # 1. Front End (Streamlit)
 - Login/Logout
