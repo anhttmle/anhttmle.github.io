@@ -1,4 +1,4 @@
-# Auth API
+# ---- Auth API ----
 
 ## 1. Login
 ## 2. Logout
@@ -12,7 +12,7 @@
 ## 4. Update User's Setting
 ## 5. Register & Wait for Admin Approve
 
-# Parser API
+# ---- Parser API ----
 
 ## 1. Upload Repo
 ## 2. Upload Biz Context
@@ -21,7 +21,7 @@
 ## 5. Stop "Parsing Job" by Job Id
 ## 6. Get list of Running "Parsing Job"
 
-# Indexing API
+# ---- Indexing API ----
 
 ## 1. Start "Chunking Job" which convert document to chunks
 ## 2. Start "Extract metadata Job" which extract metadata from document
@@ -36,7 +36,7 @@
 ## 6. Stop Job by Job Id
 ## 7. Get list of Running Jobs
 
-# QA API
+# ---- QA API ----
 
 ## 1. Create Conversation
 ## 2. Delete Conversation
@@ -46,7 +46,7 @@
 ## 6. Stop "Query Job" by Job Id
 ## 7. Get list of Running "Query Job"
 
-# Sepcs Gen API
+# ---- Sepcs Gen API ----
 
 ## 1. Start "Gen Specs Job" which generate specificatio from repo's source code
 ## 2. Get "Gen Specs Job" status by Job Id
@@ -63,21 +63,20 @@
 ## 10. Get Sub Specs by SubSpecs Id
 
 
-# Configuration API
+# ---- Configuration API ----
 
 ## 1. Create Object Configuration
 ## 2. Update Object Configuration
 
-# Feedback API
+# ---- Feedback API ----
 
 ## 1. Rating for an answer
 ## 2. Text feedback for an answer
 ## 3. Refine an answer
 
-# Retrieval API
+# ---- Retrieval API ----
 
 ## 1. Create "Chat Retrieval Job" which is execute flow of retrieve context for a user's question
 ## 2. Get "Chat Retrieval Job" status by Job Id
 ## 3. Stop "Chat Retrieval Job" by Job Id
 ## 4. Get list of Running "Chat Retrieval Job"
-# Retrieval API
