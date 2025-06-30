@@ -10,7 +10,7 @@
   - Language
   - Theme
 ## 4. Update User's Setting
-## 5. Register & Wait for Admin Approve
+## 5. Register
 
 # ---- Parser API ----
 
