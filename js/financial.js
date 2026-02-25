@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalByPerson = assetValues.reduce((acc, row) => acc.map((sum, i) => sum + (parseFloat(row[i]) || 0)), new Array(assetValues[0].length).fill(0));
         const trTotal = document.createElement('tr');
         trTotal.style.fontWeight = 'bold';
-        trTotal.innerHTML = `<td>Total (VNĐ)</td>` + totalByPerson.map(v => `<td class="asset-value-cell">${formatNumber(v)}</td>`).join('');
+        trTotal.innerHTML = `<td>Tổng cộng (VNĐ)</td>` + totalByPerson.map(v => `<td class="asset-value-cell">${formatNumber(v)}</td>`).join('');
         tbody.appendChild(trTotal);
         table.appendChild(tbody);
         document.getElementById('data-container').style.display = 'block';
