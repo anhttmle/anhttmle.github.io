@@ -386,10 +386,6 @@
         <section class="game-frame">
             <div class="floating-hud" aria-hidden="true">
                 <div class="floating-hud-card">
-                    <span>Điểm</span>
-                    <strong id="floatingScore">0</strong>
-                </div>
-                <div class="floating-hud-card">
                     <span>Độ tinh khiết</span>
                     <strong><b id="floatingPurity">0</b>%</strong>
                 </div>
@@ -428,7 +424,6 @@
             const overlay = document.getElementById("overlay");
             const scoreEl = document.getElementById("score");
             const bestScoreEl = document.getElementById("bestScore");
-            const floatingScoreEl = document.getElementById("floatingScore");
             const floatingPurityEl = document.getElementById("floatingPurity");
             const finalScoreEl = document.getElementById("finalScore");
             const restartButton = document.getElementById("restartButton");
@@ -792,7 +787,6 @@
                 game.player.y = game.height - 72;
                 overlay.classList.remove("is-visible");
                 scoreEl.textContent = "0";
-                floatingScoreEl.textContent = "0";
                 floatingPurityEl.textContent = "0";
                 requestAnimationFrame(update);
             }
@@ -800,7 +794,6 @@
             function updateScore(nextValue) {
                 game.score = nextValue;
                 scoreEl.textContent = String(game.score);
-                floatingScoreEl.textContent = String(game.score);
                 floatingPurityEl.textContent = String(game.score);
 
                 if (game.score > game.bestScore) {
