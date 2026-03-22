@@ -455,7 +455,8 @@
                 backgroundBubbles: [],
                 backgroundLayer: null,
                 enemySprite: createEnemySprite(),
-                pseudoFullscreen: false
+                pseudoFullscreen: true,
+                hasAttemptedNativeFullscreen: false
             };
 
             bestScoreEl.textContent = String(game.bestScore);
@@ -511,6 +512,33 @@
                     }
                 } catch (error) {
                     console.error("Fullscreen toggle failed", error);
+                } finally {
+                    updateFullscreenUi();
+                    setTimeout(resizeCanvas, 50);
+                }
+            }
+
+            async function tryEnterNativeFullscreen() {
+                if (
+                    game.hasAttemptedNativeFullscreen ||
+                    document.fullscreenElement ||
+                    document.webkitFullscreenElement
+                ) {
+                    return;
+                }
+
+                game.hasAttemptedNativeFullscreen = true;
+
+                try {
+                    if (appShell.requestFullscreen) {
+                        await appShell.requestFullscreen();
+                        game.pseudoFullscreen = false;
+                    } else if (appShell.webkitRequestFullscreen) {
+                        appShell.webkitRequestFullscreen();
+                        game.pseudoFullscreen = false;
+                    }
+                } catch (error) {
+                    game.pseudoFullscreen = true;
                 } finally {
                     updateFullscreenUi();
                     setTimeout(resizeCanvas, 50);
@@ -742,6 +770,7 @@
             }
 
             function handlePointerDown(event) {
+                tryEnterNativeFullscreen();
                 game.pointerActive = true;
                 movePlayerTo(event.clientX);
             }
@@ -1073,6 +1102,7 @@
             updateFullscreenUi();
             resizeCanvas();
             resetGame();
+            setTimeout(tryEnterNativeFullscreen, 0);
         })();
     </script>
 </body>
