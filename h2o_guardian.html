@@ -172,6 +172,41 @@
             backdrop-filter: blur(10px);
         }
 
+        .floating-hud {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 2;
+            display: flex;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .floating-hud-card {
+            min-width: 112px;
+            padding: 10px 12px;
+            border-radius: 18px;
+            border: 1px solid rgba(103, 232, 249, 0.18);
+            background: rgba(8, 15, 31, 0.62);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 30px rgba(2, 8, 23, 0.18);
+        }
+
+        .floating-hud-card span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .floating-hud-card strong {
+            display: block;
+            margin-top: 4px;
+            color: white;
+            font-size: clamp(18px, 2.8vw, 24px);
+        }
+
         .overlay.is-visible {
             display: flex;
         }
@@ -302,6 +337,19 @@
             .secondary-button {
                 width: 100%;
             }
+
+            .floating-hud {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+
+            .floating-hud-card {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 9px 10px;
+            }
         }
     </style>
 </head>
@@ -336,6 +384,17 @@
         </section>
 
         <section class="game-frame">
+            <div class="floating-hud" aria-hidden="true">
+                <div class="floating-hud-card">
+                    <span>Điểm</span>
+                    <strong id="floatingScore">0</strong>
+                </div>
+                <div class="floating-hud-card">
+                    <span>Độ tinh khiết</span>
+                    <strong><b id="floatingPurity">0</b>%</strong>
+                </div>
+            </div>
+
             <canvas id="gameCanvas" aria-label="H2O Guardian game"></canvas>
 
             <div id="overlay" class="overlay">
@@ -369,6 +428,8 @@
             const overlay = document.getElementById("overlay");
             const scoreEl = document.getElementById("score");
             const bestScoreEl = document.getElementById("bestScore");
+            const floatingScoreEl = document.getElementById("floatingScore");
+            const floatingPurityEl = document.getElementById("floatingPurity");
             const finalScoreEl = document.getElementById("finalScore");
             const restartButton = document.getElementById("restartButton");
             const fullscreenButton = document.getElementById("fullscreenButton");
@@ -731,12 +792,16 @@
                 game.player.y = game.height - 72;
                 overlay.classList.remove("is-visible");
                 scoreEl.textContent = "0";
+                floatingScoreEl.textContent = "0";
+                floatingPurityEl.textContent = "0";
                 requestAnimationFrame(update);
             }
 
             function updateScore(nextValue) {
                 game.score = nextValue;
                 scoreEl.textContent = String(game.score);
+                floatingScoreEl.textContent = String(game.score);
+                floatingPurityEl.textContent = String(game.score);
 
                 if (game.score > game.bestScore) {
                     game.bestScore = game.score;
