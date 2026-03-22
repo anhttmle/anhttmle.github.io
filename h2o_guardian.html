@@ -431,6 +431,44 @@
                 return sprite;
             }
 
+            function createBeamSprite() {
+                const beamCanvas = document.createElement("canvas");
+                beamCanvas.width = 256;
+                beamCanvas.height = 48;
+
+                const beamCtx = beamCanvas.getContext("2d");
+                const glowGradient = beamCtx.createLinearGradient(
+                    0,
+                    beamCanvas.height / 2,
+                    beamCanvas.width,
+                    beamCanvas.height / 2
+                );
+
+                glowGradient.addColorStop(0, "rgba(255, 251, 235, 1)");
+                glowGradient.addColorStop(0.45, "rgba(253, 224, 71, 1)");
+                glowGradient.addColorStop(1, "rgba(125, 211, 252, 0)");
+
+                beamCtx.strokeStyle = glowGradient;
+                beamCtx.lineCap = "round";
+                beamCtx.lineWidth = 18;
+                beamCtx.shadowColor = "rgba(251, 191, 36, 0.95)";
+                beamCtx.shadowBlur = 18;
+                beamCtx.beginPath();
+                beamCtx.moveTo(10, beamCanvas.height / 2);
+                beamCtx.lineTo(beamCanvas.width - 18, beamCanvas.height / 2);
+                beamCtx.stroke();
+
+                beamCtx.shadowBlur = 0;
+                beamCtx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+                beamCtx.lineWidth = 5;
+                beamCtx.beginPath();
+                beamCtx.moveTo(10, beamCanvas.height / 2);
+                beamCtx.lineTo(beamCanvas.width - 18, beamCanvas.height / 2);
+                beamCtx.stroke();
+
+                return beamCanvas;
+            }
+
             const game = {
                 width: 0,
                 height: 0,
@@ -452,8 +490,10 @@
                 enemies: [],
                 items: [],
                 particles: [],
+                purifierBeams: [],
                 backgroundBubbles: [],
                 backgroundLayer: null,
+                beamSprite: createBeamSprite(),
                 enemySprite: createEnemySprite(),
                 pseudoFullscreen: true,
                 hasAttemptedNativeFullscreen: false
@@ -597,6 +637,21 @@
                     particle.y *= scaleY;
                 });
 
+                game.purifierBeams.forEach((beam) => {
+                    beam.fromX *= scaleX;
+                    beam.fromY *= scaleY;
+                    beam.toX *= scaleX;
+                    beam.toY *= scaleY;
+                    beam.length = Math.hypot(
+                        beam.toX - beam.fromX,
+                        beam.toY - beam.fromY
+                    );
+                    beam.angle = Math.atan2(
+                        beam.toY - beam.fromY,
+                        beam.toX - beam.fromX
+                    );
+                });
+
                 createBackgroundBubbles();
                 buildBackgroundLayer();
             }
@@ -671,6 +726,7 @@
                 game.enemies = [];
                 game.items = [];
                 game.particles = [];
+                game.purifierBeams = [];
                 game.player.x = game.width / 2;
                 game.player.y = game.height - 72;
                 overlay.classList.remove("is-visible");
@@ -690,6 +746,10 @@
             }
 
             function spawnEnemy() {
+                if (game.enemies.length >= 9) {
+                    return;
+                }
+
                 const radius = randomBetween(
                     game.width * 0.04,
                     game.width * 0.075
@@ -730,6 +790,43 @@
                         color
                     });
                 }
+            }
+
+            function createPurifierBeams(sourceX, sourceY, targets) {
+                if (targets.length === 0) {
+                    const targetX = sourceX;
+                    const targetY = sourceY - game.height * 0.22;
+
+                    game.purifierBeams.push({
+                        fromX: sourceX,
+                        fromY: sourceY,
+                        toX: targetX,
+                        toY: targetY,
+                        length: Math.hypot(targetX - sourceX, targetY - sourceY),
+                        angle: Math.atan2(targetY - sourceY, targetX - sourceX),
+                        life: 0.28,
+                        maxLife: 0.28,
+                        width: Math.max(5, game.width * 0.012)
+                    });
+                    return;
+                }
+
+                targets.forEach((enemy) => {
+                    const length = Math.hypot(enemy.x - sourceX, enemy.y - sourceY);
+                    const angle = Math.atan2(enemy.y - sourceY, enemy.x - sourceX);
+
+                    game.purifierBeams.push({
+                        fromX: sourceX,
+                        fromY: sourceY,
+                        toX: enemy.x,
+                        toY: enemy.y,
+                        length,
+                        angle,
+                        life: 0.22,
+                        maxLife: 0.22,
+                        width: Math.max(4, enemy.radius * 0.32)
+                    });
+                });
             }
 
             function endGame() {
@@ -870,7 +967,13 @@
                     );
 
                     if (distance < game.player.radius + item.radius) {
+                        const enemiesToClear = game.enemies.map((enemy) => ({
+                            x: enemy.x,
+                            y: enemy.y,
+                            radius: enemy.radius
+                        }));
                         game.items.splice(index, 1);
+                        createPurifierBeams(item.x, item.y, enemiesToClear);
                         game.enemies = [];
                         updateScore(game.score + 10);
                         createParticles(
@@ -900,6 +1003,19 @@
 
                     if (particle.life <= 0) {
                         game.particles.splice(index, 1);
+                    }
+                }
+
+                for (
+                    let index = game.purifierBeams.length - 1;
+                    index >= 0;
+                    index -= 1
+                ) {
+                    const beam = game.purifierBeams[index];
+                    beam.life -= deltaTime;
+
+                    if (beam.life <= 0) {
+                        game.purifierBeams.splice(index, 1);
                     }
                 }
             }
@@ -1051,8 +1167,35 @@
                 });
             }
 
+            function drawPurifierBeams() {
+                game.purifierBeams.forEach((beam) => {
+                    const alpha = beam.life / beam.maxLife;
+                    const sprite = game.beamSprite;
+                    const drawWidth = beam.length;
+                    const drawHeight = beam.width * (1.2 + alpha * 0.6);
+
+                    ctx.save();
+                    ctx.globalAlpha = alpha;
+                    ctx.translate(beam.fromX, beam.fromY);
+                    ctx.rotate(beam.angle);
+                    ctx.drawImage(
+                        sprite,
+                        0,
+                        0,
+                        sprite.width,
+                        sprite.height,
+                        0,
+                        -drawHeight / 2,
+                        drawWidth,
+                        drawHeight
+                    );
+                    ctx.restore();
+                });
+            }
+
             function render() {
                 drawBackground();
+                drawPurifierBeams();
                 drawPlayer();
                 game.enemies.forEach(drawEnemy);
                 game.items.forEach(drawItem);
