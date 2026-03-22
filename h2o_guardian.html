@@ -175,21 +175,23 @@
         .floating-hud {
             position: absolute;
             top: 16px;
-            left: 16px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 2;
             display: flex;
-            gap: 10px;
+            justify-content: center;
             pointer-events: none;
         }
 
         .floating-hud-card {
-            min-width: 112px;
+            width: fit-content;
             padding: 10px 12px;
             border-radius: 18px;
             border: 1px solid rgba(103, 232, 249, 0.18);
             background: rgba(8, 15, 31, 0.62);
             backdrop-filter: blur(10px);
             box-shadow: 0 12px 30px rgba(2, 8, 23, 0.18);
+            text-align: center;
         }
 
         .floating-hud-card span {
@@ -340,14 +342,11 @@
 
             .floating-hud {
                 top: 10px;
-                left: 10px;
-                right: 10px;
-                gap: 8px;
+                left: 50%;
+                right: auto;
             }
 
             .floating-hud-card {
-                flex: 1 1 0;
-                min-width: 0;
                 padding: 9px 10px;
             }
         }
