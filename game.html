@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+    <meta
+        name="description"
+        content="H2O Guardian là game arcade né vi khuẩn, thu thập ngọc thanh tẩy
+        và giữ độ tinh khiết cao nhất."
+    >
+    <title>H2O Guardian | Landing Page</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg-start: #020617;
+            --bg-end: #0f172a;
+            --panel: rgba(8, 15, 31, 0.72);
+            --panel-border: rgba(103, 232, 249, 0.22);
+            --accent: #67e8f9;
+            --accent-strong: #22d3ee;
+            --accent-warm: #fbbf24;
+            --danger: #fb7185;
+            --text-main: #e0f2fe;
+            --text-soft: #94a3b8;
+            --shadow: 0 24px 60px rgba(2, 8, 23, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            font-family:
+                Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.16), transparent 28%),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(251, 191, 36, 0.08),
+                    transparent 26%
+                ),
+                linear-gradient(180deg, var(--bg-start), var(--bg-end));
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding:
+                max(20px, env(safe-area-inset-top))
+                max(16px, env(safe-area-inset-right))
+                max(20px, env(safe-area-inset-bottom))
+                max(16px, env(safe-area-inset-left));
+        }
+
+        .hero {
+            min-height: 100dvh;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            align-items: center;
+            gap: 28px;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(103, 232, 249, 0.18);
+            background: rgba(8, 15, 31, 0.56);
+            color: var(--accent);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 18px 0 14px;
+            font-size: clamp(40px, 7vw, 78px);
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 168px;
+            padding: 15px 24px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 700;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #082f49;
+            background: linear-gradient(135deg, #a5f3fc, #22d3ee);
+            box-shadow: 0 18px 35px rgba(34, 211, 238, 0.22);
+        }
+
+        .button-secondary {
+            border-color: rgba(103, 232, 249, 0.18);
+            background: rgba(8, 15, 31, 0.58);
+            color: var(--text-main);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .meta-card {
+            min-width: 140px;
+            padding: 14px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.52);
+        }
+
+        .meta-card span {
+            display: block;
+            color: var(--text-soft);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .meta-card strong {
+            display: block;
+            margin-top: 8px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 560px;
+            border-radius: 36px;
+            overflow: hidden;
+            border: 1px solid var(--panel-border);
+            background:
+                linear-gradient(180deg, rgba(8, 15, 31, 0.7), rgba(2, 8, 23, 0.92)),
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.1), transparent 34%);
+            box-shadow: var(--shadow);
+        }
+
+        .mock-screen {
+            position: absolute;
+            inset: 18px;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(2, 6, 23, 0.92), rgba(8, 47, 73, 0.88)),
+                linear-gradient(180deg, #020617, #0f172a);
+            border: 1px solid rgba(103, 232, 249, 0.14);
+        }
+
+        .mock-bubble,
+        .mock-virus,
+        .mock-orb,
+        .mock-drop {
+            position: absolute;
+            border-radius: 999px;
+        }
+
+        .mock-bubble {
+            background: rgba(224, 242, 254, 0.18);
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
+        }
+
+        .mock-drop {
+            left: 50%;
+            bottom: 74px;
+            width: 74px;
+            height: 92px;
+            transform: translateX(-50%);
+            background:
+                radial-gradient(circle at 40% 24%, rgba(255, 255, 255, 0.95), transparent 24%),
+                linear-gradient(180deg, #9be7ff, #22d3ee);
+            clip-path: path(
+                "M37 0 C57 23 74 40 74 59 C74 80 57 92 37 92 C17 92 0 80 0 59 C0 40 17 23 37 0 Z"
+            );
+            filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.4));
+        }
+
+        .mock-virus {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3CradialGradient id='core' cx='36%25' cy='34%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23ffd5df' /%3E%3Cstop offset='55%25' stop-color='%23fb7185' /%3E%3Cstop offset='100%25' stop-color='%23be123c' /%3E%3C/radialGradient%3E%3Cfilter id='glow' x='-40%25' y='-40%25' width='180%25' height='180%25'%3E%3CfeGaussianBlur stdDeviation='4' result='blur' /%3E%3CfeMerge%3E%3CfeMergeNode in='blur' /%3E%3CfeMergeNode in='SourceGraphic' /%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23glow)'%3E%3Cg stroke='%23fecdd3' stroke-width='7' stroke-linecap='round'%3E%3Cline x1='64' y1='10' x2='64' y2='28' /%3E%3Cline x1='64' y1='100' x2='64' y2='118' /%3E%3Cline x1='10' y1='64' x2='28' y2='64' /%3E%3Cline x1='100' y1='64' x2='118' y2='64' /%3E%3Cline x1='25' y1='25' x2='37' y2='37' /%3E%3Cline x1='91' y1='91' x2='103' y2='103' /%3E%3Cline x1='25' y1='103' x2='37' y2='91' /%3E%3Cline x1='91' y1='37' x2='103' y2='25' /%3E%3C/g%3E%3Ccircle cx='64' cy='64' r='34' fill='url(%23core)' stroke='%23ffe4ea' stroke-width='5' /%3E%3Ccircle cx='52' cy='56' r='5' fill='%23fff1f2' /%3E%3Ccircle cx='76' cy='56' r='5' fill='%23fff1f2' /%3E%3Ccircle cx='63' cy='76' r='8' fill='%23fecdd3' opacity='0.9' /%3E%3C/g%3E%3C/svg%3E");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(0 0 18px rgba(251, 113, 133, 0.24));
+        }
+
+        .mock-orb {
+            background:
+                radial-gradient(circle at 40% 30%, #fff7cc, #fbbf24 56%, #f59e0b 100%);
+            box-shadow: 0 0 28px rgba(251, 191, 36, 0.3);
+        }
+
+        .mock-hud {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.68);
+            color: white;
+            text-align: center;
+        }
+
+        .mock-hud span {
+            display: block;
+            color: var(--text-soft);
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .mock-hud strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 22px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .feature-card {
+            padding: 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.52);
+        }
+
+        .feature-card strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .footer-note {
+            margin-top: 18px;
+            color: var(--text-soft);
+            font-size: 14px;
+        }
+
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-block: 28px 24px;
+            }
+
+            .hero-copy {
+                max-width: none;
+            }
+
+            .hero-visual {
+                min-height: 500px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .page {
+                padding: 14px;
+            }
+
+            .hero {
+                gap: 18px;
+                padding-block: 18px;
+            }
+
+            .hero-visual {
+                min-height: 420px;
+                border-radius: 28px;
+            }
+
+            .mock-screen {
+                inset: 12px;
+                border-radius: 22px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .hero-meta {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">Arcade Mobile Game</div>
+                <h1>H2O Guardian</h1>
+                <p>
+                    Hóa thân thành giọt nước tinh khiết, né vi khuẩn đang rơi xuống
+                    và kích hoạt viên ngọc vàng để quét sạch mọi nguồn bẩn trên màn
+                    hình. Trò chơi được tối ưu cho điện thoại, tablet và browser máy
+                    tính.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="game_play.html">
+                        Chơi Ngay
+                    </a>
+                </div>
+
+                <div class="hero-meta">
+                    <div class="meta-card">
+                        <span>Nền tảng</span>
+                        <strong>Mobile + Desktop</strong>
+                    </div>
+                    <div class="meta-card">
+                        <span>Lối chơi</span>
+                        <strong>Né và Thanh Tẩy</strong>
+                    </div>
+                    <div class="meta-card">
+                        <span>Phong cách</span>
+                        <strong>Neon Water</strong>
+                    </div>
+                </div>
+
+                <div id="features" class="feature-grid">
+                    <article class="feature-card">
+                        <strong>Responsive Gameplay</strong>
+                        <p>
+                            Chơi mượt trên browser điện thoại, iPad và desktop với
+                            giao diện được tối ưu theo từng kích thước màn hình.
+                        </p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Hiệu Ứng Thanh Tẩy</strong>
+                        <p>
+                            Viên ngọc vàng kích hoạt tia thanh tẩy, tạo cảm giác bùng
+                            nổ.
+                        </p>
+                    </article>
+                </div>
+            </div>
+
+            <aside class="hero-visual" aria-label="Minh họa H2O Guardian">
+                <div class="mock-screen">
+                    <div class="mock-hud">
+                        <span>Độ tinh khiết</span>
+                        <strong>86%</strong>
+                    </div>
+
+                    <div
+                        class="mock-bubble"
+                        style="width: 14px; height: 14px; left: 16%; top: 18%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 8px; height: 8px; left: 72%; top: 14%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 16px; height: 16px; left: 30%; top: 58%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 10px; height: 10px; left: 80%; top: 42%;"
+                    ></div>
+
+                    <div
+                        class="mock-virus"
+                        style="width: 50px; height: 50px; left: 18%; top: 28%;"
+                    ></div>
+                    <div
+                        class="mock-virus"
+                        style="width: 58px; height: 58px; left: 66%; top: 36%;"
+                    ></div>
+                    <div
+                        class="mock-virus"
+                        style="width: 44px; height: 44px; left: 42%; top: 18%;"
+                    ></div>
+
+                    <div
+                        class="mock-orb"
+                        style="width: 34px; height: 34px; left: 58%; top: 62%;"
+                    ></div>
+
+                    <div class="mock-drop"></div>
+                </div>
+            </aside>
+        </section>
+    </main>
+</body>
+</html>
