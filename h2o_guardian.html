@@ -4,23 +4,28 @@
     <meta charset="UTF-8">
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
-        user-scalable=no, viewport-fit=cover"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
-    <title>H2O Guardian</title>
+    <meta
+        name="description"
+        content="H2O Guardian là game arcade né vi khuẩn, thu thập ngọc thanh tẩy
+        và giữ độ tinh khiết cao nhất."
+    >
+    <title>H2O Guardian | Landing Page</title>
     <style>
         :root {
             color-scheme: dark;
             --bg-start: #020617;
             --bg-end: #0f172a;
-            --panel: rgba(10, 23, 46, 0.72);
-            --panel-border: rgba(125, 211, 252, 0.24);
+            --panel: rgba(8, 15, 31, 0.72);
+            --panel-border: rgba(103, 232, 249, 0.22);
             --accent: #67e8f9;
             --accent-strong: #22d3ee;
+            --accent-warm: #fbbf24;
             --danger: #fb7185;
-            --warning: #fbbf24;
             --text-main: #e0f2fe;
             --text-soft: #94a3b8;
+            --shadow: 0 24px 60px rgba(2, 8, 23, 0.45);
         }
 
         * {
@@ -34,1276 +39,421 @@
         }
 
         body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding:
-                max(12px, env(safe-area-inset-top))
-                max(12px, env(safe-area-inset-right))
-                max(12px, env(safe-area-inset-bottom))
-                max(12px, env(safe-area-inset-left));
-            overflow: hidden;
             font-family:
                 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
                 "Segoe UI", sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 38%),
-                linear-gradient(180deg, var(--bg-start), var(--bg-end));
             color: var(--text-main);
-            touch-action: none;
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.16), transparent 28%),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(251, 191, 36, 0.08),
+                    transparent 26%
+                ),
+                linear-gradient(180deg, var(--bg-start), var(--bg-end));
         }
 
-        body.pseudo-fullscreen {
-            padding: 0;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
-        .app-shell {
-            position: relative;
-            width: min(100%, 1100px);
-            height: min(100dvh - 24px, 920px);
+        .page {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding:
+                max(20px, env(safe-area-inset-top))
+                max(16px, env(safe-area-inset-right))
+                max(20px, env(safe-area-inset-bottom))
+                max(16px, env(safe-area-inset-left));
+        }
+
+        .hero {
+            min-height: 100dvh;
             display: grid;
-            grid-template-rows: auto minmax(0, 1fr) auto;
-            gap: 14px;
-        }
-
-        .app-shell.is-fullscreen {
-            width: 100vw;
-            height: 100dvh;
-            max-width: none;
-            gap: 0;
-        }
-
-        .top-bar {
-            display: flex;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 14px 18px;
-            border: 1px solid var(--panel-border);
-            border-radius: 24px;
-            background: var(--panel);
-            backdrop-filter: blur(16px);
-            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+            gap: 28px;
         }
 
-        .top-bar-actions {
-            display: flex;
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(103, 232, 249, 0.18);
+            background: rgba(8, 15, 31, 0.56);
+            color: var(--accent);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .title-wrap h1 {
+        .hero h1 {
+            margin: 18px 0 14px;
+            font-size: clamp(40px, 7vw, 78px);
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
             margin: 0;
-            font-size: clamp(20px, 2.5vw, 30px);
-            letter-spacing: 0.04em;
-        }
-
-        .title-wrap p {
-            margin: 4px 0 0;
             color: var(--text-soft);
-            font-size: clamp(12px, 1.5vw, 14px);
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.7;
         }
 
-        .stats {
+        .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            justify-content: flex-end;
+            gap: 14px;
+            margin-top: 28px;
         }
 
-        .stat-card {
-            min-width: 118px;
-            padding: 10px 14px;
-            border: 1px solid rgba(103, 232, 249, 0.2);
-            border-radius: 18px;
-            background: rgba(7, 18, 37, 0.72);
-            text-align: left;
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 168px;
+            padding: 15px 24px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 700;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
         }
 
-        .stat-card span {
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            color: #082f49;
+            background: linear-gradient(135deg, #a5f3fc, #22d3ee);
+            box-shadow: 0 18px 35px rgba(34, 211, 238, 0.22);
+        }
+
+        .button-secondary {
+            border-color: rgba(103, 232, 249, 0.18);
+            background: rgba(8, 15, 31, 0.58);
+            color: var(--text-main);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .meta-card {
+            min-width: 140px;
+            padding: 14px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.52);
+        }
+
+        .meta-card span {
             display: block;
-            font-size: 12px;
             color: var(--text-soft);
+            font-size: 12px;
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
 
-        .stat-card strong {
+        .meta-card strong {
             display: block;
-            margin-top: 4px;
-            font-size: clamp(20px, 2.2vw, 28px);
+            margin-top: 8px;
+            font-size: 20px;
             color: white;
         }
 
-        .game-frame {
+        .hero-visual {
             position: relative;
-            display: grid;
-            place-items: center;
-            min-height: 0;
-            border-radius: 32px;
-            background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.55), rgba(2, 6, 23, 0.7)),
-                radial-gradient(circle at top, rgba(34, 211, 238, 0.1), transparent 45%);
-            border: 1px solid rgba(103, 232, 249, 0.18);
-            box-shadow:
-                inset 0 1px 0 rgba(255, 255, 255, 0.06),
-                0 25px 60px rgba(2, 8, 23, 0.5);
+            min-height: 560px;
+            border-radius: 36px;
             overflow: hidden;
+            border: 1px solid var(--panel-border);
+            background:
+                linear-gradient(180deg, rgba(8, 15, 31, 0.7), rgba(2, 8, 23, 0.92)),
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.1), transparent 34%);
+            box-shadow: var(--shadow);
         }
 
-        canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 28px;
-            touch-action: none;
-        }
-
-        .overlay {
+        .mock-screen {
             position: absolute;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(2, 6, 23, 0.72);
-            backdrop-filter: blur(10px);
+            inset: 18px;
+            border-radius: 28px;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg, rgba(2, 6, 23, 0.92), rgba(8, 47, 73, 0.88)),
+                linear-gradient(180deg, #020617, #0f172a);
+            border: 1px solid rgba(103, 232, 249, 0.14);
         }
 
-        .floating-hud {
+        .mock-bubble,
+        .mock-virus,
+        .mock-orb,
+        .mock-drop {
+            position: absolute;
+            border-radius: 999px;
+        }
+
+        .mock-bubble {
+            background: rgba(224, 242, 254, 0.18);
+            box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.08);
+        }
+
+        .mock-drop {
+            left: 50%;
+            bottom: 74px;
+            width: 74px;
+            height: 92px;
+            transform: translateX(-50%);
+            background:
+                radial-gradient(circle at 40% 24%, rgba(255, 255, 255, 0.95), transparent 24%),
+                linear-gradient(180deg, #9be7ff, #22d3ee);
+            clip-path: path(
+                "M37 0 C57 23 74 40 74 59 C74 80 57 92 37 92 C17 92 0 80 0 59 C0 40 17 23 37 0 Z"
+            );
+            filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.4));
+        }
+
+        .mock-virus {
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3CradialGradient id='core' cx='36%25' cy='34%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23ffd5df' /%3E%3Cstop offset='55%25' stop-color='%23fb7185' /%3E%3Cstop offset='100%25' stop-color='%23be123c' /%3E%3C/radialGradient%3E%3Cfilter id='glow' x='-40%25' y='-40%25' width='180%25' height='180%25'%3E%3CfeGaussianBlur stdDeviation='4' result='blur' /%3E%3CfeMerge%3E%3CfeMergeNode in='blur' /%3E%3CfeMergeNode in='SourceGraphic' /%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23glow)'%3E%3Cg stroke='%23fecdd3' stroke-width='7' stroke-linecap='round'%3E%3Cline x1='64' y1='10' x2='64' y2='28' /%3E%3Cline x1='64' y1='100' x2='64' y2='118' /%3E%3Cline x1='10' y1='64' x2='28' y2='64' /%3E%3Cline x1='100' y1='64' x2='118' y2='64' /%3E%3Cline x1='25' y1='25' x2='37' y2='37' /%3E%3Cline x1='91' y1='91' x2='103' y2='103' /%3E%3Cline x1='25' y1='103' x2='37' y2='91' /%3E%3Cline x1='91' y1='37' x2='103' y2='25' /%3E%3C/g%3E%3Ccircle cx='64' cy='64' r='34' fill='url(%23core)' stroke='%23ffe4ea' stroke-width='5' /%3E%3Ccircle cx='52' cy='56' r='5' fill='%23fff1f2' /%3E%3Ccircle cx='76' cy='56' r='5' fill='%23fff1f2' /%3E%3Ccircle cx='63' cy='76' r='8' fill='%23fecdd3' opacity='0.9' /%3E%3C/g%3E%3C/svg%3E");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            filter: drop-shadow(0 0 18px rgba(251, 113, 133, 0.24));
+        }
+
+        .mock-orb {
+            background:
+                radial-gradient(circle at 40% 30%, #fff7cc, #fbbf24 56%, #f59e0b 100%);
+            box-shadow: 0 0 28px rgba(251, 191, 36, 0.3);
+        }
+
+        .mock-hud {
             position: absolute;
             top: 16px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .floating-hud-card {
-            width: fit-content;
-            padding: 10px 12px;
+            padding: 10px 16px;
             border-radius: 18px;
-            border: 1px solid rgba(103, 232, 249, 0.18);
-            background: rgba(8, 15, 31, 0.62);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 12px 30px rgba(2, 8, 23, 0.18);
+            border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.68);
+            color: white;
             text-align: center;
         }
 
-        .floating-hud-card span {
+        .mock-hud span {
             display: block;
-            font-size: 11px;
             color: var(--text-soft);
-            text-transform: uppercase;
+            font-size: 11px;
             letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
 
-        .floating-hud-card strong {
+        .mock-hud strong {
             display: block;
             margin-top: 4px;
-            color: white;
-            font-size: clamp(18px, 2.8vw, 24px);
+            font-size: 22px;
         }
 
-        .overlay.is-visible {
-            display: flex;
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
         }
 
-        .overlay-card {
-            width: min(100%, 380px);
-            padding: 28px 24px;
-            text-align: center;
-            border-radius: 28px;
-            border: 1px solid rgba(251, 113, 133, 0.24);
-            background: rgba(15, 23, 42, 0.88);
-            box-shadow: 0 18px 50px rgba(2, 8, 23, 0.4);
-        }
-
-        .overlay-card h2 {
-            margin: 0;
-            font-size: clamp(28px, 5vw, 38px);
-            color: #ffd4dc;
-        }
-
-        .overlay-card p {
-            margin: 12px 0 20px;
-            color: var(--text-soft);
-            line-height: 1.5;
-        }
-
-        .overlay-card strong {
-            color: white;
-        }
-
-        button {
-            appearance: none;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 999px;
-            font-size: 16px;
-            font-weight: 700;
-            color: #082f49;
-            background: linear-gradient(135deg, #a5f3fc, #22d3ee);
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.24);
-        }
-
-        .secondary-button {
-            padding: 12px 18px;
-            font-size: 14px;
-            color: var(--text-main);
-            background: rgba(8, 15, 31, 0.8);
-            border: 1px solid rgba(103, 232, 249, 0.24);
-            box-shadow: none;
-        }
-
-        .bottom-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 12px 18px;
-            border-radius: 22px;
-            background: rgba(8, 15, 31, 0.66);
+        .feature-card {
+            padding: 18px;
+            border-radius: 24px;
             border: 1px solid rgba(103, 232, 249, 0.14);
+            background: rgba(8, 15, 31, 0.52);
+        }
+
+        .feature-card strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--text-soft);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        .footer-note {
+            margin-top: 18px;
             color: var(--text-soft);
             font-size: 14px;
         }
 
-        .bottom-bar b {
-            color: var(--accent);
-        }
-
-        .app-shell.is-fullscreen .top-bar,
-        .app-shell.is-fullscreen .bottom-bar {
-            display: none;
-        }
-
-        .app-shell.is-fullscreen .game-frame {
-            border-radius: 0;
-            border: none;
-            box-shadow: none;
-            background: #020617;
-        }
-
-        .app-shell.is-fullscreen canvas,
-        .app-shell.is-fullscreen .overlay {
-            border-radius: 0;
-        }
-
-        @media (max-width: 860px) {
-            .app-shell {
-                height: min(100dvh - 24px, 1000px);
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding-block: 28px 24px;
             }
 
-            .top-bar,
-            .bottom-bar {
-                flex-direction: column;
-                align-items: stretch;
+            .hero-copy {
+                max-width: none;
             }
 
-            .top-bar-actions {
-                justify-content: space-between;
+            .hero-visual {
+                min-height: 500px;
             }
 
-            .stats {
-                justify-content: stretch;
-            }
-
-            .stat-card {
-                flex: 1 1 0;
-                min-width: 0;
+            .feature-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 520px) {
-            body {
-                padding: 10px;
+        @media (max-width: 560px) {
+            .page {
+                padding: 14px;
             }
 
-            .app-shell {
-                gap: 10px;
-                height: min(100dvh - 20px, 920px);
+            .hero {
+                gap: 18px;
+                padding-block: 18px;
             }
 
-            .top-bar,
-            .bottom-bar,
-            .overlay-card {
+            .hero-visual {
+                min-height: 420px;
+                border-radius: 28px;
+            }
+
+            .mock-screen {
+                inset: 12px;
                 border-radius: 22px;
             }
 
-            .secondary-button {
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button {
                 width: 100%;
             }
 
-            .floating-hud {
-                top: 10px;
-                left: 50%;
-                right: auto;
-            }
-
-            .floating-hud-card {
-                padding: 9px 10px;
+            .hero-meta {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <main class="app-shell">
-        <section class="top-bar">
-            <div class="title-wrap">
+    <main class="page">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">Arcade Mobile Game</div>
                 <h1>H2O Guardian</h1>
                 <p>
-                    Né vi khuẩn, nhặt lõi thanh lọc và giữ độ tinh khiết cao nhất.
+                    Hóa thân thành giọt nước tinh khiết, né vi khuẩn đang rơi xuống
+                    và kích hoạt viên ngọc vàng để quét sạch mọi nguồn bẩn trên màn
+                    hình. Trò chơi được tối ưu cho điện thoại, tablet và browser máy
+                    tính.
                 </p>
-            </div>
-            <div class="stats">
-                <div class="stat-card">
-                    <span>Độ tinh khiết</span>
-                    <strong><b id="score">0</b>%</strong>
-                </div>
-                <div class="stat-card">
-                    <span>Kỷ lục</span>
-                    <strong><b id="bestScore">0</b>%</strong>
-                </div>
-            </div>
-            <div class="top-bar-actions">
-                <button
-                    id="fullscreenButton"
-                    class="secondary-button"
-                    type="button"
-                >
-                    Full screen
-                </button>
-            </div>
-        </section>
 
-        <section class="game-frame">
-            <div class="floating-hud" aria-hidden="true">
-                <div class="floating-hud-card">
-                    <span>Độ tinh khiết</span>
-                    <strong><b id="floatingPurity">0</b>%</strong>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="game_play.html">
+                        Chơi Ngay
+                    </a>
                 </div>
-            </div>
 
-            <canvas id="gameCanvas" aria-label="H2O Guardian game"></canvas>
+                <div class="hero-meta">
+                    <div class="meta-card">
+                        <span>Nền tảng</span>
+                        <strong>Mobile + Desktop</strong>
+                    </div>
+                    <div class="meta-card">
+                        <span>Lối chơi</span>
+                        <strong>Né và Thanh Tẩy</strong>
+                    </div>
+                    <div class="meta-card">
+                        <span>Phong cách</span>
+                        <strong>Neon Water</strong>
+                    </div>
+                </div>
 
-            <div id="overlay" class="overlay">
-                <div class="overlay-card">
-                    <h2>Bị nhiễm bẩn!</h2>
-                    <p id="finalScore">
-                        Độ tinh khiết cuối cùng: <strong>0%</strong>
-                    </p>
-                    <button id="restartButton" type="button">Chơi lại</button>
+                <div id="features" class="feature-grid">
+                    <article class="feature-card">
+                        <strong>Responsive Gameplay</strong>
+                        <p>
+                            Chơi mượt trên browser điện thoại, iPad và desktop với
+                            giao diện được tối ưu theo từng kích thước màn hình.
+                        </p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Hiệu Ứng Thanh Tẩy</strong>
+                        <p>
+                            Viên ngọc vàng kích hoạt tia thanh tẩy, tạo cảm giác bùng
+                            nổ.
+                        </p>
+                    </article>
                 </div>
             </div>
-        </section>
 
-        <section class="bottom-bar">
-            <div>
-                <b>Điều khiển:</b> kéo, chạm, rê chuột hoặc dùng phím
-                <b>A/D</b>, <b>←/→</b>.
-            </div>
-            <div>
-                <b>Mẹo:</b> lõi vàng sẽ quét sạch vi khuẩn và tăng thêm điểm.
-            </div>
+            <aside class="hero-visual" aria-label="Minh họa H2O Guardian">
+                <div class="mock-screen">
+                    <div class="mock-hud">
+                        <span>Độ tinh khiết</span>
+                        <strong>86%</strong>
+                    </div>
+
+                    <div
+                        class="mock-bubble"
+                        style="width: 14px; height: 14px; left: 16%; top: 18%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 8px; height: 8px; left: 72%; top: 14%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 16px; height: 16px; left: 30%; top: 58%;"
+                    ></div>
+                    <div
+                        class="mock-bubble"
+                        style="width: 10px; height: 10px; left: 80%; top: 42%;"
+                    ></div>
+
+                    <div
+                        class="mock-virus"
+                        style="width: 50px; height: 50px; left: 18%; top: 28%;"
+                    ></div>
+                    <div
+                        class="mock-virus"
+                        style="width: 58px; height: 58px; left: 66%; top: 36%;"
+                    ></div>
+                    <div
+                        class="mock-virus"
+                        style="width: 44px; height: 44px; left: 42%; top: 18%;"
+                    ></div>
+
+                    <div
+                        class="mock-orb"
+                        style="width: 34px; height: 34px; left: 58%; top: 62%;"
+                    ></div>
+
+                    <div class="mock-drop"></div>
+                </div>
+            </aside>
         </section>
     </main>
-
-    <script>
-        (() => {
-            const canvas = document.getElementById("gameCanvas");
-            const ctx = canvas.getContext("2d");
-            const appShell = document.querySelector(".app-shell");
-            const frameEl = document.querySelector(".game-frame");
-            const overlay = document.getElementById("overlay");
-            const scoreEl = document.getElementById("score");
-            const bestScoreEl = document.getElementById("bestScore");
-            const floatingPurityEl = document.getElementById("floatingPurity");
-            const finalScoreEl = document.getElementById("finalScore");
-            const restartButton = document.getElementById("restartButton");
-            const fullscreenButton = document.getElementById("fullscreenButton");
-
-            const STORAGE_KEY = "h2o_guardian_best_score";
-            const ENEMY_SPRITE_SVG = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-                    <defs>
-                        <radialGradient id="core" cx="36%" cy="34%" r="70%">
-                            <stop offset="0%" stop-color="#ffd5df" />
-                            <stop offset="55%" stop-color="#fb7185" />
-                            <stop offset="100%" stop-color="#be123c" />
-                        </radialGradient>
-                        <filter
-                            id="glow"
-                            x="-40%"
-                            y="-40%"
-                            width="180%"
-                            height="180%"
-                        >
-                            <feGaussianBlur stdDeviation="4" result="blur" />
-                            <feMerge>
-                                <feMergeNode in="blur" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    <g filter="url(#glow)">
-                        <g stroke="#fecdd3" stroke-width="7" stroke-linecap="round">
-                            <line x1="64" y1="10" x2="64" y2="28" />
-                            <line x1="64" y1="100" x2="64" y2="118" />
-                            <line x1="10" y1="64" x2="28" y2="64" />
-                            <line x1="100" y1="64" x2="118" y2="64" />
-                            <line x1="25" y1="25" x2="37" y2="37" />
-                            <line x1="91" y1="91" x2="103" y2="103" />
-                            <line x1="25" y1="103" x2="37" y2="91" />
-                            <line x1="91" y1="37" x2="103" y2="25" />
-                        </g>
-                        <circle
-                            cx="64"
-                            cy="64"
-                            r="34"
-                            fill="url(#core)"
-                            stroke="#ffe4ea"
-                            stroke-width="5"
-                        />
-                        <circle cx="52" cy="56" r="5" fill="#fff1f2" />
-                        <circle cx="76" cy="56" r="5" fill="#fff1f2" />
-                        <circle cx="63" cy="76" r="8" fill="#fecdd3" opacity="0.9" />
-                    </g>
-                </svg>
-            `;
-
-            function createEnemySprite() {
-                const sprite = new Image();
-                sprite.decoding = "async";
-                sprite.src =
-                    "data:image/svg+xml;charset=utf-8," +
-                    encodeURIComponent(ENEMY_SPRITE_SVG);
-                return sprite;
-            }
-
-            function createBeamSprite() {
-                const beamCanvas = document.createElement("canvas");
-                beamCanvas.width = 256;
-                beamCanvas.height = 48;
-
-                const beamCtx = beamCanvas.getContext("2d");
-                const glowGradient = beamCtx.createLinearGradient(
-                    0,
-                    beamCanvas.height / 2,
-                    beamCanvas.width,
-                    beamCanvas.height / 2
-                );
-
-                glowGradient.addColorStop(0, "rgba(255, 251, 235, 1)");
-                glowGradient.addColorStop(0.45, "rgba(253, 224, 71, 1)");
-                glowGradient.addColorStop(1, "rgba(125, 211, 252, 0)");
-
-                beamCtx.strokeStyle = glowGradient;
-                beamCtx.lineCap = "round";
-                beamCtx.lineWidth = 18;
-                beamCtx.shadowColor = "rgba(251, 191, 36, 0.95)";
-                beamCtx.shadowBlur = 18;
-                beamCtx.beginPath();
-                beamCtx.moveTo(10, beamCanvas.height / 2);
-                beamCtx.lineTo(beamCanvas.width - 18, beamCanvas.height / 2);
-                beamCtx.stroke();
-
-                beamCtx.shadowBlur = 0;
-                beamCtx.strokeStyle = "rgba(255, 255, 255, 0.9)";
-                beamCtx.lineWidth = 5;
-                beamCtx.beginPath();
-                beamCtx.moveTo(10, beamCanvas.height / 2);
-                beamCtx.lineTo(beamCanvas.width - 18, beamCanvas.height / 2);
-                beamCtx.stroke();
-
-                return beamCanvas;
-            }
-
-            const game = {
-                width: 0,
-                height: 0,
-                dpr: Math.min(window.devicePixelRatio || 1, 2),
-                running: false,
-                lastFrame: 0,
-                score: 0,
-                bestScore: Number(localStorage.getItem(STORAGE_KEY)) || 0,
-                spawnEnemyTimer: 0,
-                spawnItemTimer: 0,
-                keyboardDirection: 0,
-                pointerActive: false,
-                player: {
-                    x: 0,
-                    y: 0,
-                    radius: 22,
-                    speed: 420
-                },
-                enemies: [],
-                items: [],
-                particles: [],
-                purifierBeams: [],
-                backgroundBubbles: [],
-                backgroundLayer: null,
-                beamSprite: createBeamSprite(),
-                enemySprite: createEnemySprite(),
-                pseudoFullscreen: true,
-                hasAttemptedNativeFullscreen: false
-            };
-
-            bestScoreEl.textContent = String(game.bestScore);
-            ctx.imageSmoothingEnabled = true;
-            ctx.imageSmoothingQuality = "high";
-
-            function clamp(value, min, max) {
-                return Math.min(Math.max(value, min), max);
-            }
-
-            function randomBetween(min, max) {
-                return Math.random() * (max - min) + min;
-            }
-
-            function isFullscreenActive() {
-                return Boolean(
-                    document.fullscreenElement ||
-                        document.webkitFullscreenElement ||
-                        game.pseudoFullscreen
-                );
-            }
-
-            function updateFullscreenUi() {
-                const isFullscreen = isFullscreenActive();
-                appShell.classList.toggle("is-fullscreen", isFullscreen);
-                document.body.classList.toggle("pseudo-fullscreen", game.pseudoFullscreen);
-                fullscreenButton.textContent = isFullscreen
-                    ? "Thoát full screen"
-                    : "Full screen";
-            }
-
-            async function toggleFullscreen() {
-                try {
-                    if (isFullscreenActive()) {
-                        if (document.fullscreenElement && document.exitFullscreen) {
-                            await document.exitFullscreen();
-                        } else if (
-                            document.webkitFullscreenElement &&
-                            document.webkitExitFullscreen
-                        ) {
-                            document.webkitExitFullscreen();
-                        } else {
-                            game.pseudoFullscreen = false;
-                        }
-                    } else if (appShell.requestFullscreen) {
-                        game.pseudoFullscreen = false;
-                        await appShell.requestFullscreen();
-                    } else if (appShell.webkitRequestFullscreen) {
-                        game.pseudoFullscreen = false;
-                        appShell.webkitRequestFullscreen();
-                    } else {
-                        game.pseudoFullscreen = true;
-                    }
-                } catch (error) {
-                    console.error("Fullscreen toggle failed", error);
-                } finally {
-                    updateFullscreenUi();
-                    setTimeout(resizeCanvas, 50);
-                }
-            }
-
-            async function tryEnterNativeFullscreen() {
-                if (
-                    game.hasAttemptedNativeFullscreen ||
-                    document.fullscreenElement ||
-                    document.webkitFullscreenElement
-                ) {
-                    return;
-                }
-
-                game.hasAttemptedNativeFullscreen = true;
-
-                try {
-                    if (appShell.requestFullscreen) {
-                        await appShell.requestFullscreen();
-                        game.pseudoFullscreen = false;
-                    } else if (appShell.webkitRequestFullscreen) {
-                        appShell.webkitRequestFullscreen();
-                        game.pseudoFullscreen = false;
-                    }
-                } catch (error) {
-                    game.pseudoFullscreen = true;
-                } finally {
-                    updateFullscreenUi();
-                    setTimeout(resizeCanvas, 50);
-                }
-            }
-
-            function resizeCanvas() {
-                const previousWidth = game.width || 430;
-                const previousHeight = game.height || 720;
-                const frameRect = frameEl.getBoundingClientRect();
-                const aspectRatio = 10 / 16;
-                const framePadding = isFullscreenActive() ? 0 : 18;
-                let nextWidth = frameRect.width - framePadding;
-                let nextHeight = frameRect.height - framePadding;
-
-                if (nextWidth / nextHeight > aspectRatio) {
-                    nextWidth = nextHeight * aspectRatio;
-                } else {
-                    nextHeight = nextWidth / aspectRatio;
-                }
-
-                game.width = Math.max(280, Math.floor(nextWidth));
-                game.height = Math.max(420, Math.floor(nextHeight));
-
-                canvas.style.width = game.width + "px";
-                canvas.style.height = game.height + "px";
-                canvas.width = Math.floor(game.width * game.dpr);
-                canvas.height = Math.floor(game.height * game.dpr);
-                ctx.setTransform(game.dpr, 0, 0, game.dpr, 0, 0);
-
-                const scaleX = game.width / previousWidth;
-                const scaleY = game.height / previousHeight;
-
-                game.player.x = clamp(
-                    (game.player.x || game.width / 2) * scaleX,
-                    game.player.radius,
-                    game.width - game.player.radius
-                );
-                game.player.y = game.height - 72;
-                game.player.radius = clamp(game.width * 0.055, 18, 30);
-
-                game.enemies.forEach((enemy) => {
-                    enemy.x *= scaleX;
-                    enemy.y *= scaleY;
-                    enemy.radius = clamp(enemy.radius * scaleX, 16, 34);
-                });
-
-                game.items.forEach((item) => {
-                    item.x *= scaleX;
-                    item.y *= scaleY;
-                    item.radius = clamp(item.radius * scaleX, 12, 22);
-                });
-
-                game.particles.forEach((particle) => {
-                    particle.x *= scaleX;
-                    particle.y *= scaleY;
-                });
-
-                game.purifierBeams.forEach((beam) => {
-                    beam.fromX *= scaleX;
-                    beam.fromY *= scaleY;
-                    beam.toX *= scaleX;
-                    beam.toY *= scaleY;
-                    beam.length = Math.hypot(
-                        beam.toX - beam.fromX,
-                        beam.toY - beam.fromY
-                    );
-                    beam.angle = Math.atan2(
-                        beam.toY - beam.fromY,
-                        beam.toX - beam.fromX
-                    );
-                });
-
-                createBackgroundBubbles();
-                buildBackgroundLayer();
-            }
-
-            function createBackgroundBubbles() {
-                const amount = Math.max(10, Math.floor(game.width / 26));
-                game.backgroundBubbles = Array.from(
-                    { length: amount },
-                    () => ({
-                        x: randomBetween(0, game.width),
-                        y: randomBetween(0, game.height),
-                        radius: randomBetween(2, 7),
-                        speed: randomBetween(8, 20),
-                        alpha: randomBetween(0.08, 0.18)
-                    })
-                );
-            }
-
-            function buildBackgroundLayer() {
-                const layer = document.createElement("canvas");
-                layer.width = game.width;
-                layer.height = game.height;
-
-                const layerCtx = layer.getContext("2d");
-                const skyGradient = layerCtx.createLinearGradient(
-                    0,
-                    0,
-                    0,
-                    game.height
-                );
-                skyGradient.addColorStop(0, "#020617");
-                skyGradient.addColorStop(0.55, "#082f49");
-                skyGradient.addColorStop(1, "#0f172a");
-
-                layerCtx.fillStyle = skyGradient;
-                layerCtx.fillRect(0, 0, game.width, game.height);
-
-                const glow = layerCtx.createRadialGradient(
-                    game.width * 0.5,
-                    game.height * 0.16,
-                    10,
-                    game.width * 0.5,
-                    game.height * 0.16,
-                    game.width * 0.5
-                );
-                glow.addColorStop(0, "rgba(103, 232, 249, 0.18)");
-                glow.addColorStop(1, "rgba(103, 232, 249, 0)");
-                layerCtx.fillStyle = glow;
-                layerCtx.fillRect(0, 0, game.width, game.height);
-
-                layerCtx.strokeStyle = "rgba(125, 211, 252, 0.06)";
-                layerCtx.lineWidth = 1;
-
-                for (let y = 0; y <= game.height; y += 72) {
-                    layerCtx.beginPath();
-                    layerCtx.moveTo(0, y);
-                    layerCtx.lineTo(game.width, y);
-                    layerCtx.stroke();
-                }
-
-                game.backgroundLayer = layer;
-            }
-
-            function resetGame() {
-                game.score = 0;
-                game.spawnEnemyTimer = 0;
-                game.spawnItemTimer = 0;
-                game.keyboardDirection = 0;
-                game.pointerActive = false;
-                game.lastFrame = 0;
-                game.running = true;
-                game.enemies = [];
-                game.items = [];
-                game.particles = [];
-                game.purifierBeams = [];
-                game.player.x = game.width / 2;
-                game.player.y = game.height - 72;
-                overlay.classList.remove("is-visible");
-                scoreEl.textContent = "0";
-                floatingPurityEl.textContent = "0";
-                requestAnimationFrame(update);
-            }
-
-            function updateScore(nextValue) {
-                game.score = nextValue;
-                scoreEl.textContent = String(game.score);
-                floatingPurityEl.textContent = String(game.score);
-
-                if (game.score > game.bestScore) {
-                    game.bestScore = game.score;
-                    bestScoreEl.textContent = String(game.bestScore);
-                    localStorage.setItem(STORAGE_KEY, String(game.bestScore));
-                }
-            }
-
-            function spawnEnemy() {
-                if (game.enemies.length >= 9) {
-                    return;
-                }
-
-                const radius = randomBetween(
-                    game.width * 0.04,
-                    game.width * 0.075
-                );
-
-                game.enemies.push({
-                    x: randomBetween(radius, game.width - radius),
-                    y: -radius * 2,
-                    radius,
-                    speed: randomBetween(150, 240) + game.score * 1.8,
-                    rotation: randomBetween(0, Math.PI * 2),
-                    spin: randomBetween(-1.4, 1.4)
-                });
-            }
-
-            function spawnItem() {
-                const radius = clamp(game.width * 0.034, 13, 18);
-
-                game.items.push({
-                    x: randomBetween(radius, game.width - radius),
-                    y: -radius * 3,
-                    radius,
-                    speed: randomBetween(150, 210),
-                    pulse: randomBetween(0, Math.PI * 2)
-                });
-            }
-
-            function createParticles(x, y, color, amount) {
-                for (let index = 0; index < amount; index += 1) {
-                    game.particles.push({
-                        x,
-                        y,
-                        radius: randomBetween(2, 6),
-                        vx: randomBetween(-110, 110),
-                        vy: randomBetween(-140, 40),
-                        life: randomBetween(0.35, 0.85),
-                        maxLife: randomBetween(0.35, 0.85),
-                        color
-                    });
-                }
-            }
-
-            function createPurifierBeams(sourceX, sourceY, targets) {
-                if (targets.length === 0) {
-                    const targetX = sourceX;
-                    const targetY = sourceY - game.height * 0.22;
-
-                    game.purifierBeams.push({
-                        fromX: sourceX,
-                        fromY: sourceY,
-                        toX: targetX,
-                        toY: targetY,
-                        length: Math.hypot(targetX - sourceX, targetY - sourceY),
-                        angle: Math.atan2(targetY - sourceY, targetX - sourceX),
-                        life: 0.28,
-                        maxLife: 0.28,
-                        width: Math.max(5, game.width * 0.012)
-                    });
-                    return;
-                }
-
-                targets.forEach((enemy) => {
-                    const length = Math.hypot(enemy.x - sourceX, enemy.y - sourceY);
-                    const angle = Math.atan2(enemy.y - sourceY, enemy.x - sourceX);
-
-                    game.purifierBeams.push({
-                        fromX: sourceX,
-                        fromY: sourceY,
-                        toX: enemy.x,
-                        toY: enemy.y,
-                        length,
-                        angle,
-                        life: 0.22,
-                        maxLife: 0.22,
-                        width: Math.max(4, enemy.radius * 0.32)
-                    });
-                });
-            }
-
-            function endGame() {
-                game.running = false;
-                createParticles(
-                    game.player.x,
-                    game.player.y,
-                    "rgba(251, 113, 133, 0.95)",
-                    16
-                );
-                finalScoreEl.innerHTML =
-                    "Độ tinh khiết cuối cùng: <strong>" + game.score + "%</strong>";
-                overlay.classList.add("is-visible");
-            }
-
-            function movePlayerTo(clientX) {
-                const rect = canvas.getBoundingClientRect();
-                const relativeX = clientX - rect.left;
-                game.player.x = clamp(
-                    relativeX,
-                    game.player.radius,
-                    game.width - game.player.radius
-                );
-            }
-
-            function handlePointerMove(event) {
-                if (!game.running) {
-                    return;
-                }
-
-                if (event.pointerType !== "mouse" || game.pointerActive) {
-                    event.preventDefault();
-                }
-
-                if (event.pointerType === "mouse" || game.pointerActive) {
-                    movePlayerTo(event.clientX);
-                }
-            }
-
-            function handlePointerDown(event) {
-                tryEnterNativeFullscreen();
-                game.pointerActive = true;
-                movePlayerTo(event.clientX);
-            }
-
-            function handlePointerUp() {
-                game.pointerActive = false;
-            }
-
-            function handleKeyDown(event) {
-                if (event.key === "ArrowLeft" || event.key === "a") {
-                    game.keyboardDirection = -1;
-                }
-
-                if (event.key === "ArrowRight" || event.key === "d") {
-                    game.keyboardDirection = 1;
-                }
-            }
-
-            function handleKeyUp(event) {
-                if (
-                    event.key === "ArrowLeft" ||
-                    event.key === "a" ||
-                    event.key === "ArrowRight" ||
-                    event.key === "d"
-                ) {
-                    game.keyboardDirection = 0;
-                }
-            }
-
-            function updateBackground(deltaTime) {
-                game.backgroundBubbles.forEach((bubble) => {
-                    bubble.y -= bubble.speed * deltaTime;
-
-                    if (bubble.y < -bubble.radius) {
-                        bubble.y = game.height + bubble.radius;
-                        bubble.x = randomBetween(0, game.width);
-                    }
-                });
-            }
-
-            function updateEntities(deltaTime) {
-                const difficultyFactor = Math.min(2.8, 1 + game.score / 80);
-
-                game.spawnEnemyTimer -= deltaTime;
-                game.spawnItemTimer -= deltaTime;
-
-                if (game.spawnEnemyTimer <= 0) {
-                    spawnEnemy();
-                    game.spawnEnemyTimer = randomBetween(0.35, 0.7) / difficultyFactor;
-                }
-
-                if (game.spawnItemTimer <= 0) {
-                    spawnItem();
-                    game.spawnItemTimer = randomBetween(4.5, 7.5);
-                }
-
-                if (game.keyboardDirection !== 0) {
-                    game.player.x = clamp(
-                        game.player.x +
-                            game.keyboardDirection *
-                                game.player.speed *
-                                deltaTime,
-                        game.player.radius,
-                        game.width - game.player.radius
-                    );
-                }
-
-                for (let index = game.enemies.length - 1; index >= 0; index -= 1) {
-                    const enemy = game.enemies[index];
-                    enemy.y += enemy.speed * deltaTime;
-                    enemy.rotation += enemy.spin * deltaTime;
-
-                    const distance = Math.hypot(
-                        game.player.x - enemy.x,
-                        game.player.y - enemy.y
-                    );
-
-                    if (distance < game.player.radius + enemy.radius * 0.82) {
-                        endGame();
-                        return;
-                    }
-
-                    if (enemy.y - enemy.radius > game.height) {
-                        game.enemies.splice(index, 1);
-                        updateScore(game.score + 1);
-                    }
-                }
-
-                for (let index = game.items.length - 1; index >= 0; index -= 1) {
-                    const item = game.items[index];
-                    item.y += item.speed * deltaTime;
-                    item.pulse += deltaTime * 5;
-
-                    const distance = Math.hypot(
-                        game.player.x - item.x,
-                        game.player.y - item.y
-                    );
-
-                    if (distance < game.player.radius + item.radius) {
-                        const enemiesToClear = game.enemies.map((enemy) => ({
-                            x: enemy.x,
-                            y: enemy.y,
-                            radius: enemy.radius
-                        }));
-                        game.items.splice(index, 1);
-                        createPurifierBeams(item.x, item.y, enemiesToClear);
-                        game.enemies = [];
-                        updateScore(game.score + 10);
-                        createParticles(
-                            item.x,
-                            item.y,
-                            "rgba(251, 191, 36, 0.95)",
-                            12
-                        );
-                        continue;
-                    }
-
-                    if (item.y - item.radius > game.height) {
-                        game.items.splice(index, 1);
-                    }
-                }
-
-                for (
-                    let index = game.particles.length - 1;
-                    index >= 0;
-                    index -= 1
-                ) {
-                    const particle = game.particles[index];
-                    particle.life -= deltaTime;
-                    particle.x += particle.vx * deltaTime;
-                    particle.y += particle.vy * deltaTime;
-                    particle.vy += 180 * deltaTime;
-
-                    if (particle.life <= 0) {
-                        game.particles.splice(index, 1);
-                    }
-                }
-
-                for (
-                    let index = game.purifierBeams.length - 1;
-                    index >= 0;
-                    index -= 1
-                ) {
-                    const beam = game.purifierBeams[index];
-                    beam.life -= deltaTime;
-
-                    if (beam.life <= 0) {
-                        game.purifierBeams.splice(index, 1);
-                    }
-                }
-            }
-
-            function drawBackground() {
-                if (game.backgroundLayer) {
-                    ctx.drawImage(game.backgroundLayer, 0, 0, game.width, game.height);
-                }
-
-                game.backgroundBubbles.forEach((bubble) => {
-                    ctx.beginPath();
-                    ctx.fillStyle = "rgba(224, 242, 254, " + bubble.alpha + ")";
-                    ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            function drawPlayer() {
-                const { x, y, radius } = game.player;
-
-                ctx.save();
-                ctx.translate(x, y);
-
-                const playerGlow = ctx.createRadialGradient(
-                    0,
-                    radius * 0.2,
-                    radius * 0.2,
-                    0,
-                    0,
-                    radius * 2.1
-                );
-                playerGlow.addColorStop(0, "rgba(255, 255, 255, 0.95)");
-                playerGlow.addColorStop(0.35, "rgba(103, 232, 249, 0.9)");
-                playerGlow.addColorStop(1, "rgba(34, 211, 238, 0.08)");
-
-                ctx.shadowColor = "rgba(34, 211, 238, 0.65)";
-                ctx.shadowBlur = radius * 1.2;
-                ctx.beginPath();
-                ctx.moveTo(0, -radius * 1.3);
-                ctx.bezierCurveTo(
-                    radius * 1.05,
-                    -radius * 0.25,
-                    radius * 0.95,
-                    radius * 1.2,
-                    0,
-                    radius * 1.45
-                );
-                ctx.bezierCurveTo(
-                    -radius * 0.95,
-                    radius * 1.2,
-                    -radius * 1.05,
-                    -radius * 0.25,
-                    0,
-                    -radius * 1.3
-                );
-                ctx.closePath();
-                ctx.fillStyle = playerGlow;
-                ctx.fill();
-
-                ctx.shadowBlur = 0;
-                ctx.beginPath();
-                ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
-                ctx.arc(-radius * 0.28, -radius * 0.28, radius * 0.22, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
-
-            function drawEnemy(enemy) {
-                const spriteSize = enemy.radius * 2.8;
-
-                ctx.save();
-                ctx.translate(enemy.x, enemy.y);
-                ctx.rotate(enemy.rotation);
-
-                ctx.shadowColor = "rgba(251, 113, 133, 0.2)";
-                ctx.shadowBlur = enemy.radius * 0.7;
-
-                if (game.enemySprite.complete) {
-                    ctx.drawImage(
-                        game.enemySprite,
-                        -spriteSize / 2,
-                        -spriteSize / 2,
-                        spriteSize,
-                        spriteSize
-                    );
-                } else {
-                    ctx.fillStyle = "#fb7185";
-                    ctx.beginPath();
-                    ctx.arc(0, 0, enemy.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-
-                ctx.restore();
-            }
-
-            function drawItem(item) {
-                ctx.save();
-                ctx.translate(item.x, item.y);
-
-                const glowStrength = 1 + Math.sin(item.pulse) * 0.08;
-                ctx.shadowColor = "rgba(251, 191, 36, 0.55)";
-                ctx.shadowBlur = item.radius * 1.6;
-
-                const gradient = ctx.createRadialGradient(
-                    0,
-                    0,
-                    item.radius * 0.18,
-                    0,
-                    0,
-                    item.radius * 1.2
-                );
-                gradient.addColorStop(0, "rgba(255, 251, 235, 1)");
-                gradient.addColorStop(0.45, "rgba(253, 224, 71, 1)");
-                gradient.addColorStop(1, "rgba(245, 158, 11, 0.95)");
-
-                ctx.scale(glowStrength, glowStrength);
-                ctx.beginPath();
-                ctx.fillStyle = gradient;
-                ctx.arc(0, 0, item.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.beginPath();
-                ctx.strokeStyle = "rgba(255, 255, 255, 0.92)";
-                ctx.lineWidth = 2;
-                ctx.moveTo(-item.radius * 0.48, 0);
-                ctx.lineTo(item.radius * 0.48, 0);
-                ctx.moveTo(0, -item.radius * 0.48);
-                ctx.lineTo(0, item.radius * 0.48);
-                ctx.stroke();
-                ctx.restore();
-            }
-
-            function drawParticles() {
-                game.particles.forEach((particle) => {
-                    const alpha = particle.life / particle.maxLife;
-                    ctx.beginPath();
-                    ctx.fillStyle = particle.color.replace(
-                        /\d*\.?\d+\)$/,
-                        alpha + ")"
-                    );
-                    ctx.arc(
-                        particle.x,
-                        particle.y,
-                        particle.radius * alpha,
-                        0,
-                        Math.PI * 2
-                    );
-                    ctx.fill();
-                });
-            }
-
-            function drawPurifierBeams() {
-                game.purifierBeams.forEach((beam) => {
-                    const alpha = beam.life / beam.maxLife;
-                    const sprite = game.beamSprite;
-                    const drawWidth = beam.length;
-                    const drawHeight = beam.width * (1.2 + alpha * 0.6);
-
-                    ctx.save();
-                    ctx.globalAlpha = alpha;
-                    ctx.translate(beam.fromX, beam.fromY);
-                    ctx.rotate(beam.angle);
-                    ctx.drawImage(
-                        sprite,
-                        0,
-                        0,
-                        sprite.width,
-                        sprite.height,
-                        0,
-                        -drawHeight / 2,
-                        drawWidth,
-                        drawHeight
-                    );
-                    ctx.restore();
-                });
-            }
-
-            function render() {
-                drawBackground();
-                drawPurifierBeams();
-                drawPlayer();
-                game.enemies.forEach(drawEnemy);
-                game.items.forEach(drawItem);
-                drawParticles();
-            }
-
-            function update(timestamp) {
-                if (!game.running) {
-                    render();
-                    return;
-                }
-
-                if (!game.lastFrame) {
-                    game.lastFrame = timestamp;
-                }
-
-                const deltaTime = Math.min((timestamp - game.lastFrame) / 1000, 0.032);
-                game.lastFrame = timestamp;
-
-                updateBackground(deltaTime);
-                updateEntities(deltaTime);
-                render();
-
-                if (game.running) {
-                    requestAnimationFrame(update);
-                }
-            }
-
-            canvas.addEventListener("pointerdown", handlePointerDown);
-            canvas.addEventListener("pointermove", handlePointerMove);
-            window.addEventListener("pointerup", handlePointerUp);
-            window.addEventListener("pointercancel", handlePointerUp);
-            window.addEventListener("keydown", handleKeyDown);
-            window.addEventListener("keyup", handleKeyUp);
-            window.addEventListener("resize", resizeCanvas);
-            document.addEventListener("fullscreenchange", () => {
-                updateFullscreenUi();
-                resizeCanvas();
-            });
-            document.addEventListener("webkitfullscreenchange", () => {
-                updateFullscreenUi();
-                resizeCanvas();
-            });
-            restartButton.addEventListener("click", resetGame);
-            fullscreenButton.addEventListener("click", toggleFullscreen);
-
-            updateFullscreenUi();
-            resizeCanvas();
-            resetGame();
-            setTimeout(tryEnterNativeFullscreen, 0);
-        })();
-    </script>
 </body>
 </html>
