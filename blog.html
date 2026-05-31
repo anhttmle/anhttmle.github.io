@@ -1,0 +1,167 @@
+---
+layout: default
+title: "Blog"
+permalink: /blog/
+---
+
+<div class="profile-wrapper">
+  <div class="section-card" style="margin-top: 32px;">
+    <h1 class="section-title">Blog</h1>
+
+    <!-- Topic filter pills -->
+    <div class="topic-filters" role="tablist" aria-label="Filter by topic">
+      <button
+        class="topic-btn active"
+        data-topic="all"
+        role="tab"
+        aria-selected="true"
+      >All</button>
+      {% assign all_cats = "" | split: "" %}
+      {% for post in site.posts %}
+        {% for cat in post.categories %}
+          {% unless all_cats contains cat %}
+            {% assign all_cats = all_cats | push: cat %}
+          {% endunless %}
+        {% endfor %}
+      {% endfor %}
+      {% for cat in all_cats %}
+      <button
+        class="topic-btn"
+        data-topic="{{ cat | downcase }}"
+        role="tab"
+        aria-selected="false"
+      >{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <input
+      type="search"
+      class="topic-search"
+      id="blog-search"
+      placeholder="Search posts…"
+      aria-label="Search blog posts"
+      autocomplete="off"
+    >
+
+    {% if site.posts.size == 0 %}
+    <p style="color: var(--text-muted); font-style: italic; margin-top: 16px;">
+      No posts yet. Check back soon.
+    </p>
+    {% else %}
+    <div class="blog-list" id="blog-list">
+      {% for post in site.posts %}
+      {% assign post_cats = post.categories | join: " " | downcase %}
+      {% assign search_blob = post.title %}
+      {% if post.description %}
+        {% assign search_blob = search_blob | append: " " | append: post.description %}
+      {% elsif post.excerpt %}
+        {% assign search_blob = search_blob | append: " " | append: post.excerpt | strip_html %}
+      {% endif %}
+      {% for cat in post.categories %}
+        {% assign search_blob = search_blob | append: " " | append: cat %}
+      {% endfor %}
+      <article
+        class="blog-item"
+        data-categories="{{ post_cats }}"
+        data-search="{{ search_blob | downcase }}"
+      >
+        <div class="blog-item-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">
+            {{ post.date | date: "%B %-d, %Y" }}
+          </time>
+          {% if post.categories.size > 0 %}
+          <span class="blog-item-cats">
+            {% for cat in post.categories %}
+            <button
+              class="skill-pill blog-cat-link"
+              data-topic="{{ cat | downcase }}"
+            >{{ cat }}</button>
+            {% endfor %}
+          </span>
+          {% endif %}
+        </div>
+        <h2 class="blog-item-title">
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        {% if post.description %}
+        <p class="blog-item-excerpt">{{ post.description }}</p>
+        {% elsif post.excerpt %}
+        <p class="blog-item-excerpt">
+          {{ post.excerpt | strip_html | truncatewords: 40 }}
+        </p>
+        {% endif %}
+        <a class="blog-item-read-more" href="{{ post.url }}">
+          Read more &rarr;
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <p
+      class="blog-empty-msg"
+      id="blog-empty"
+      hidden
+      style="color: var(--text-muted); font-style: italic; margin-top: 16px;"
+    >No posts in this topic yet.</p>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+(function () {
+  var buttons      = document.querySelectorAll('.topic-btn, .blog-cat-link');
+  var articles     = document.querySelectorAll('.blog-item');
+  var empty        = document.getElementById('blog-empty');
+  var search       = document.getElementById('blog-search');
+  var currentTopic = 'all';
+
+  function applyFilters() {
+    var q = search ? search.value.trim().toLowerCase() : '';
+    var visible = 0;
+
+    articles.forEach(function (art) {
+      var cats = art.dataset.categories || '';
+      var topicMatch = currentTopic === 'all' ||
+        cats.split(' ').indexOf(currentTopic) !== -1;
+      var searchMatch = !q ||
+        (art.dataset.search || '').indexOf(q) !== -1;
+      var show = topicMatch && searchMatch;
+      art.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (empty) {
+      empty.hidden = visible > 0;
+      empty.textContent = q
+        ? 'No posts match your search.'
+        : 'No posts in this topic yet.';
+    }
+
+    document.querySelectorAll('.topic-btn').forEach(function (btn) {
+      var isActive = btn.dataset.topic === currentTopic;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    history.replaceState(
+      null, '',
+      currentTopic === 'all' ? '/blog/' : '#' + currentTopic
+    );
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      currentTopic = btn.dataset.topic;
+      applyFilters();
+    });
+  });
+
+  if (search) {
+    search.addEventListener('input', applyFilters);
+  }
+
+  var hash = location.hash.replace('#', '');
+  if (hash) currentTopic = hash;
+  applyFilters();
+})();
+</script>

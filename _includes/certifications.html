@@ -1,0 +1,13 @@
+<section class="section-card">
+  <h2 class="section-title">Certifications</h2>
+  {% for item in site.data.profile.certs %}
+  <div class="entry-item">
+    <div class="entry-title">
+      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+        {{ item.name }}
+      </a>
+      <span class="entry-period">({{ item.time }})</span>
+    </div>
+  </div>
+  {% endfor %}
+</section>

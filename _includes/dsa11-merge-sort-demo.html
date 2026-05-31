@@ -1,0 +1,56 @@
+<div class="dsa11-demo" id="dsa11-demo">
+  <style>
+    .dsa11-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa11-demo .dsa11-row { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.35rem 0; align-items: center; }
+    .dsa11-demo .dsa11-label { font-size: 0.72rem; color: var(--text-muted); width: 4rem; font-weight: 600; }
+    .dsa11-demo .dsa11-cell { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-size: 0.78rem; font-weight: 600; }
+    .dsa11-demo .dsa11-cell.is-left { background: #dbeafe; border-color: #2563eb; }
+    .dsa11-demo .dsa11-cell.is-right { background: #fee2e2; border-color: #dc2626; }
+    .dsa11-demo .dsa11-cell.is-sorted { background: var(--accent-light); border-color: var(--accent); }
+    .dsa11-demo .dsa11-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa11-demo .dsa11-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa11-demo .dsa11-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa11-demo .dsa11-cell.is-left { background: #1e3a5f; color: #93c5fd; }
+      .dsa11-demo .dsa11-cell.is-right { background: #450a0a; color: #fca5a5; }
+    }
+  </style>
+  <div class="dsa11-row"><span class="dsa11-label">Left</span><div id="dsa11-left" style="display:flex;gap:4px"></div></div>
+  <div class="dsa11-row"><span class="dsa11-label">Right</span><div id="dsa11-right" style="display:flex;gap:4px"></div></div>
+  <div class="dsa11-row"><span class="dsa11-label">Result</span><div id="dsa11-out" style="display:flex;gap:4px"></div></div>
+  <div class="dsa11-controls">
+    <button type="button" class="dsa11-btn" id="dsa11-prev">← Trước</button>
+    <button type="button" class="dsa11-btn" id="dsa11-next">Tiếp →</button>
+    <button type="button" class="dsa11-btn" id="dsa11-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa11-hint" id="dsa11-hint"></div>
+  <script>
+  (function () {
+    var steps = [
+      { left: [3, 5], right: [4, 6], out: [], hint: 'Divide: [3,5,4,6] → [3,5] | [4,6]' },
+      { left: [3], right: [5], out: [], hint: 'Divide tiếp: [3] | [5] và [4] | [6]' },
+      { left: [3], right: [5], out: [3, 5], hint: 'Merge [3]+[5] → [3,5]' },
+      { left: [4], right: [6], out: [3, 5, 4, 6], hint: 'Merge [4]+[6] → [4,6]. Merge [3,5]+[4,6] → [3,4,5,6]' },
+      { left: [], right: [], out: [3, 4, 5, 6], hint: 'Hoàn thành! Merge Sort: O(n log n), stable.' }
+    ];
+    var pos = 0, timer = null;
+    function cells(arr, cls) { return arr.map(function(v){ return '<div class="dsa11-cell '+cls+'">'+v+'</div>'; }).join(''); }
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa11-left').innerHTML = cells(s.left, 'is-left') || '<span style="color:var(--text-muted)">—</span>';
+      document.getElementById('dsa11-right').innerHTML = cells(s.right, 'is-right') || '<span style="color:var(--text-muted)">—</span>';
+      document.getElementById('dsa11-out').innerHTML = cells(s.out, 'is-sorted') || '<span style="color:var(--text-muted)">—</span>';
+      document.getElementById('dsa11-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa11-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa11-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa11-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa11-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa11-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

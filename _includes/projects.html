@@ -1,0 +1,29 @@
+<section class="section-card">
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+    {% for project in site.data.profile.projects %}
+    <div class="project-card">
+      <div class="project-header">
+        {% if project.logo %}
+        <img
+          class="project-logo"
+          src="{{ project.logo }}"
+          alt="{{ project.employer }}"
+        >
+        {% endif %}
+        <div>
+          <div class="project-name">{{ project.name }}</div>
+          <div class="project-period">{{ project.time }}</div>
+        </div>
+      </div>
+      {% if project.description %}
+      <ul class="project-desc">
+        {% for row in project.description %}
+        <li>{{ row }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>

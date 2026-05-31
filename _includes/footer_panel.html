@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<footer class="site-footer">
+  <p>
+    &copy; {{ 'now' | date: '%Y' }}
+    {{ site.data.profile.name }}
+    &middot;
+    <a href="mailto:{{ site.data.profile.email }}">
+      {{ site.data.profile.email }}
+    </a>
+  </p>
+</footer>

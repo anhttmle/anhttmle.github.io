@@ -1,0 +1,54 @@
+<div class="dsa13-demo" id="dsa13-demo">
+  <style>
+    .dsa13-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa13-demo .dsa13-nodes { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa13-demo .dsa13-node { display: flex; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .dsa13-demo .dsa13-val { padding: 0.4rem 0.5rem; background: var(--card-bg); font-family: monospace; font-weight: 600; border-right: 1px solid var(--border); }
+    .dsa13-demo .dsa13-ptr { padding: 0.4rem 0.35rem; background: var(--accent-light); font-family: monospace; font-size: 0.72rem; color: var(--accent-dark); }
+    .dsa13-demo .dsa13-node.is-curr .dsa13-val { background: var(--accent); color: #fff; }
+    .dsa13-demo .dsa13-arrow { color: var(--text-muted); margin: 0 2px; }
+    .dsa13-demo .dsa13-null { color: var(--text-muted); font-family: monospace; font-size: 0.78rem; }
+    .dsa13-demo .dsa13-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa13-demo .dsa13-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa13-demo .dsa13-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+  </style>
+  <div class="dsa13-nodes" id="dsa13-list"></div>
+  <div class="dsa13-controls">
+    <button type="button" class="dsa13-btn" id="dsa13-prev">← Trước</button>
+    <button type="button" class="dsa13-btn" id="dsa13-next">Tiếp →</button>
+    <button type="button" class="dsa13-btn" id="dsa13-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa13-hint" id="dsa13-hint"></div>
+  <script>
+  (function () {
+    var vals = [10, 20, 30, 40];
+    var steps = [
+      { idx: 0, hint: 'head → node(10). Mỗi node: value + pointer tới node tiếp.' },
+      { idx: 1, hint: 'curr = curr.next → node(20). Traversal O(n).' },
+      { idx: 2, hint: 'curr → node(30). Insert/delete tại vị trí biết: O(1).' },
+      { idx: 3, hint: 'curr → node(40) → null. Access by index: O(n) — không random access.' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      var html = '';
+      vals.forEach(function(v, i) {
+        html += '<div class="dsa13-node' + (i === s.idx ? ' is-curr' : '') + '"><div class="dsa13-val">' + v + '</div><div class="dsa13-ptr">→</div></div>';
+        if (i < vals.length - 1) html += '<span class="dsa13-arrow"></span>';
+      });
+      html += '<span class="dsa13-null">null</span>';
+      document.getElementById('dsa13-list').innerHTML = html;
+      document.getElementById('dsa13-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa13-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa13-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa13-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa13-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa13-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1300);
+    };
+    render();
+  })();
+  </script>
+</div>

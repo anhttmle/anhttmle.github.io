@@ -1,0 +1,58 @@
+<div class="dsa23-demo" id="dsa23-demo">
+  <style>
+    .dsa23-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa23-demo .dsa23-grid { display: grid; grid-template-columns: repeat(5, 2rem); gap: 3px; margin: 0.5rem 0; }
+    .dsa23-demo .dsa23-cell { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 3px; font-family: monospace; font-size: 0.75rem; font-weight: 600; }
+    .dsa23-demo .dsa23-cell.wall { background: #374151; color: #9ca3af; }
+    .dsa23-demo .dsa23-cell.path { background: var(--accent-light); border-color: var(--accent); }
+    .dsa23-demo .dsa23-cell.curr { background: var(--accent); color: #fff; }
+    .dsa23-demo .dsa23-cell.start { background: #86efac; }
+    .dsa23-demo .dsa23-cell.end { background: #fca5a5; }
+    .dsa23-demo .dsa23-cell.dead { opacity: 0.4; }
+    .dsa23-demo .dsa23-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa23-demo .dsa23-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa23-demo .dsa23-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+  </style>
+  <div class="dsa23-grid" id="dsa23-grid"></div>
+  <div class="dsa23-controls">
+    <button type="button" class="dsa23-btn" id="dsa23-prev">← Trước</button>
+    <button type="button" class="dsa23-btn" id="dsa23-next">Tiếp →</button>
+    <button type="button" class="dsa23-btn" id="dsa23-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa23-hint" id="dsa23-hint"></div>
+  <script>
+  (function () {
+    var maze = ['S', '.', '.', '#', '.', '.', '#', '.', '.', '.', '.', '.', '#', '.', 'E', '.', '#', '.', '.', '.', '.', '.', '.', '.', '.'];
+    var steps = [
+      { path: [0], curr: 0, dead: [], hint: 'Start S. Backtracking: thử path, undo nếu dead end.' },
+      { path: [0, 1, 2], curr: 2, dead: [], hint: 'Đi phải. Mark visited, explore neighbors.' },
+      { path: [0, 1, 2, 7], curr: 7, dead: [], hint: 'Gặp wall # → backtrack (undo), thử hướng khác.' },
+      { path: [0, 1, 2, 6, 11, 16], curr: 16, dead: [3], hint: 'Tìm path tới E. Prune branch không dẫn tới goal.' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa23-grid').innerHTML = maze.map(function(c, i) {
+        var cls = 'dsa23-cell';
+        if (c === '#') cls += ' wall';
+        else if (c === 'S') cls += ' start';
+        else if (c === 'E') cls += ' end';
+        if (s.path.indexOf(i) >= 0 && c !== 'S' && c !== 'E') cls += ' path';
+        if (i === s.curr) cls += ' curr';
+        if (s.dead.indexOf(i) >= 0) cls += ' dead';
+        return '<div class="' + cls + '">' + (c === '.' ? '·' : c) + '</div>';
+      }).join('');
+      document.getElementById('dsa23-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa23-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa23-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa23-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa23-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa23-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1500);
+    };
+    render();
+  })();
+  </script>
+</div>

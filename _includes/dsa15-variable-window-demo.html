@@ -1,0 +1,52 @@
+<div class="dsa15-demo" id="dsa15-demo">
+  <style>
+    .dsa15-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa15-demo .dsa15-str { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa15-demo .dsa15-char { width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; }
+    .dsa15-demo .dsa15-char.is-window { background: var(--accent-light); border-color: var(--accent); }
+    .dsa15-demo .dsa15-char.is-left { border-left: 3px solid #2563eb; }
+    .dsa15-demo .dsa15-char.is-right { border-right: 3px solid #dc2626; }
+    .dsa15-demo .dsa15-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa15-demo .dsa15-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa15-demo .dsa15-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+  </style>
+  <div class="dsa15-str" id="dsa15-str"></div>
+  <div class="dsa15-controls">
+    <button type="button" class="dsa15-btn" id="dsa15-prev">← Trước</button>
+    <button type="button" class="dsa15-btn" id="dsa15-next">Tiếp →</button>
+    <button type="button" class="dsa15-btn" id="dsa15-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa15-hint" id="dsa15-hint"></div>
+  <script>
+  (function () {
+    var str = 'abcbb'.split('');
+    var steps = [
+      { l: 0, r: 0, hint: 'Expand: window="a". Set={a}, len=1' },
+      { l: 0, r: 2, hint: 'Expand: "abc". Set={a,b,c}, len=3' },
+      { l: 0, r: 3, hint: 'Expand "b" duplicate! Shrink left: l=1, window="bcb"' },
+      { l: 2, r: 4, hint: 'Expand "b" lại dup. Shrink. Max substring không dup: "abc" len=3' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa15-str').innerHTML = str.map(function(c,i) {
+        var cls = 'dsa15-char';
+        if (i >= s.l && i <= s.r) cls += ' is-window';
+        if (i === s.l) cls += ' is-left';
+        if (i === s.r) cls += ' is-right';
+        return '<div class="' + cls + '">' + c + '</div>';
+      }).join('');
+      document.getElementById('dsa15-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa15-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa15-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa15-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa15-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa15-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

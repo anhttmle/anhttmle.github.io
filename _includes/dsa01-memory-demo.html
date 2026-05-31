@@ -1,0 +1,158 @@
+<div class="dsa01-demo" id="dsa01-demo">
+  <style>
+    .dsa01-demo {
+      margin: 1.25rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      font-size: 0.85rem;
+    }
+    .dsa01-demo .dsa01-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.75rem 0 0.35rem;
+    }
+    .dsa01-demo .dsa01-title:first-child { margin-top: 0; }
+    .dsa01-demo .dsa01-track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: flex-end;
+    }
+    .dsa01-demo .dsa01-cell-wrap { text-align: center; }
+    .dsa01-demo .dsa01-addr {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      margin-bottom: 2px;
+    }
+    .dsa01-demo .dsa01-cell {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .dsa01-demo .dsa01-cell.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+    .dsa01-demo .dsa01-cell.is-index {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+    .dsa01-demo .dsa01-controls {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+    .dsa01-demo .dsa01-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+    }
+    .dsa01-demo .dsa01-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa01-demo .dsa01-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+    .dsa01-demo .dsa01-hint {
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .dsa01-demo .dsa01-formula {
+      margin-top: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+    }
+  </style>
+
+  <div class="dsa01-title">Array trong RAM (contiguous memory)</div>
+  <div class="dsa01-track" id="dsa01-memory"></div>
+
+  <div class="dsa01-controls">
+    <button type="button" class="dsa01-btn" id="dsa01-prev">← Trước</button>
+    <button type="button" class="dsa01-btn" id="dsa01-next">Tiếp →</button>
+    <button type="button" class="dsa01-btn" id="dsa01-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa01-hint" id="dsa01-hint"></div>
+  <div class="dsa01-formula" id="dsa01-formula"></div>
+
+  <script>
+  (function () {
+    var data = [10, 25, 30, 45, 50];
+    var baseAddr = 0x1000;
+    var steps = [
+      { idx: 0, hint: 'Truy cập arr[0]: địa chỉ = base + 0 × size → O(1)' },
+      { idx: 2, hint: 'Truy cập arr[2]: nhảy thẳng tới ô thứ 3, không cần duyệt' },
+      { idx: 4, hint: 'Truy cập arr[4]: phần tử cuối vẫn O(1) nhờ index' }
+    ];
+    var pos = 0;
+    var timer = null;
+    var memEl = document.getElementById('dsa01-memory');
+    var hintEl = document.getElementById('dsa01-hint');
+    var formulaEl = document.getElementById('dsa01-formula');
+    var playBtn = document.getElementById('dsa01-play');
+
+    function render() {
+      var s = steps[pos];
+      memEl.innerHTML = data.map(function (v, i) {
+        var cls = 'dsa01-cell' + (i === s.idx ? ' is-active' : '');
+        var addr = '0x' + (baseAddr + i * 4).toString(16).toUpperCase();
+        return '<div class="dsa01-cell-wrap"><div class="dsa01-addr">' + addr +
+          '</div><div class="' + cls + '">' + v + '</div></div>';
+      }).join('');
+      hintEl.textContent = 'Bước ' + (pos + 1) + '/' + steps.length + ' · ' + s.hint;
+      formulaEl.textContent = 'arr[' + s.idx + '] = ' + data[s.idx] +
+        ' · address = base + ' + s.idx + ' × element_size';
+    }
+
+    function stopPlay() {
+      if (timer) { clearInterval(timer); timer = null; }
+      playBtn.classList.remove('is-active');
+      playBtn.textContent = '▶ Tự chạy';
+    }
+
+    document.getElementById('dsa01-prev').onclick = function () {
+      stopPlay(); pos = Math.max(0, pos - 1); render();
+    };
+    document.getElementById('dsa01-next').onclick = function () {
+      stopPlay(); pos = Math.min(steps.length - 1, pos + 1); render();
+    };
+    playBtn.onclick = function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.classList.add('is-active');
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () {
+        pos = pos >= steps.length - 1 ? 0 : pos + 1;
+        render();
+      }, 1200);
+    };
+    render();
+  })();
+  </script>
+</div>

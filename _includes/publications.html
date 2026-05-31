@@ -1,0 +1,18 @@
+<section class="section-card">
+  <h2 class="section-title">Publications</h2>
+  {% for item in site.data.profile.publications %}
+  <div class="pub-item">
+    <div class="pub-title">
+      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">
+        {{ item.name }}
+      </a>
+    </div>
+    <div class="pub-meta">
+      {{ item.journal }} &middot; {{ item.time }}
+    </div>
+    {% if item.abstract %}
+    <p class="pub-abstract">{{ item.abstract }}</p>
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>

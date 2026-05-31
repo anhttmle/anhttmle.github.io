@@ -1,0 +1,50 @@
+<div class="dsa21-demo" id="dsa21-demo">
+  <style>
+    .dsa21-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa21-demo .dsa21-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 4px; min-height: 120px; margin: 0.5rem 0; }
+    .dsa21-demo .dsa21-frame { padding: 0.35rem 0.6rem; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-size: 0.78rem; width: 100%; max-width: 280px; }
+    .dsa21-demo .dsa21-frame.is-top { background: var(--accent-light); border-color: var(--accent); }
+    .dsa21-demo .dsa21-result { margin-top: 0.5rem; font-family: monospace; font-size: 0.82rem; color: var(--text-muted); }
+    .dsa21-demo .dsa21-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa21-demo .dsa21-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa21-demo .dsa21-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+  </style>
+  <div class="dsa21-title" style="font-size:0.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:0.35rem">Call Stack — fib(4)</div>
+  <div class="dsa21-stack" id="dsa21-stack"></div>
+  <div class="dsa21-result" id="dsa21-result"></div>
+  <div class="dsa21-controls">
+    <button type="button" class="dsa21-btn" id="dsa21-prev">← Trước</button>
+    <button type="button" class="dsa21-btn" id="dsa21-next">Tiếp →</button>
+    <button type="button" class="dsa21-btn" id="dsa21-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa21-hint" id="dsa21-hint"></div>
+  <script>
+  (function () {
+    var steps = [
+      { stack: ['fib(4)'], result: '', hint: 'Gọi fib(4). Base case: fib(0)=0, fib(1)=1.' },
+      { stack: ['fib(4)', 'fib(3)'], result: '', hint: 'fib(4) = fib(3) + fib(2). Push fib(3).' },
+      { stack: ['fib(4)', 'fib(3)', 'fib(2)'], result: '', hint: 'fib(3) = fib(2) + fib(1). Push fib(2).' },
+      { stack: ['fib(4)', 'fib(3)', 'fib(2)', 'fib(1)'], result: '', hint: 'fib(1)=1 base case. Pop, return 1.' },
+      { stack: ['fib(4)', 'fib(3)'], result: 'fib(3)=2', hint: 'Unwind stack. Memoization tránh tính lại → O(n).' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa21-stack').innerHTML = s.stack.map(function(f, i) {
+        return '<div class="dsa21-frame' + (i === s.stack.length-1 ? ' is-top' : '') + '">' + f + '</div>';
+      }).join('');
+      document.getElementById('dsa21-result').textContent = s.result ? 'Return: ' + s.result : '';
+      document.getElementById('dsa21-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa21-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa21-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa21-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa21-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa21-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

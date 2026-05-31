@@ -1,0 +1,12 @@
+<section class="section-card">
+  <h2 class="section-title">Education</h2>
+  {% for item in site.data.profile.education %}
+  <div class="entry-item">
+    <div class="entry-title">
+      {{ item.org }}
+      <span class="entry-period">({{ item.time }})</span>
+    </div>
+    <div class="entry-sub">{{ item.degree }}, {{ item.field }}</div>
+  </div>
+  {% endfor %}
+</section>

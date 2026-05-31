@@ -1,0 +1,73 @@
+<div class="dsa05-demo" id="dsa05-demo">
+  <style>
+    .dsa05-demo {
+      margin: 1.25rem 0; padding: 1rem 1.1rem;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); font-size: 0.85rem;
+    }
+    .dsa05-demo .dsa05-title { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin: 0.5rem 0 0.35rem; }
+    .dsa05-demo .dsa05-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .dsa05-demo .dsa05-entry {
+      padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: 4px;
+      background: var(--card-bg); font-family: monospace; font-size: 0.8rem;
+    }
+    .dsa05-demo .dsa05-entry.is-lookup { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+    .dsa05-demo .dsa05-entry.is-insert { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .dsa05-demo .dsa05-key { color: var(--text-muted); font-size: 0.72rem; }
+    .dsa05-demo .dsa05-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa05-demo .dsa05-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa05-demo .dsa05-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa05-demo .dsa05-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa05-demo .dsa05-entry.is-insert { background: #451a03; border-color: #f59e0b; color: #fde68a; }
+    }
+  </style>
+
+  <div class="dsa05-title">Hash Map: key → value</div>
+  <div class="dsa05-grid" id="dsa05-map"></div>
+  <div class="dsa05-controls">
+    <button type="button" class="dsa05-btn" id="dsa05-prev">← Trước</button>
+    <button type="button" class="dsa05-btn" id="dsa05-next">Tiếp →</button>
+    <button type="button" class="dsa05-btn" id="dsa05-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa05-hint" id="dsa05-hint"></div>
+
+  <script>
+  (function () {
+    var steps = [
+      { entries: [], highlight: -1, type: '', hint: 'Hash Map rỗng. Mỗi entry: key → value.' },
+      { entries: [{ k: 'name', v: 'Alice' }], highlight: 0, type: 'insert', hint: 'insert("name", "Alice"): hash("name") → bucket → O(1) average' },
+      { entries: [{ k: 'name', v: 'Alice' }, { k: 'age', v: 25 }], highlight: 1, type: 'insert', hint: 'insert("age", 25): thêm entry mới' },
+      { entries: [{ k: 'name', v: 'Alice' }, { k: 'age', v: 25 }], highlight: 0, type: 'lookup', hint: 'get("name"): hash → bucket → trả "Alice" — O(1) average' }
+    ];
+    var pos = 0, timer = null;
+    var mapEl = document.getElementById('dsa05-map');
+    var hintEl = document.getElementById('dsa05-hint');
+    var playBtn = document.getElementById('dsa05-play');
+
+    function render() {
+      var s = steps[pos];
+      mapEl.innerHTML = s.entries.length === 0 ? '<span style="color:var(--text-muted)">(empty)</span>'
+        : s.entries.map(function (e, i) {
+          var cls = 'dsa05-entry';
+          if (i === s.highlight) cls += s.type === 'lookup' ? ' is-lookup' : ' is-insert';
+          return '<div class="' + cls + '"><div class="dsa05-key">' + e.k + '</div>' + e.v + '</div>';
+        }).join('');
+      hintEl.textContent = 'Bước ' + (pos + 1) + '/' + steps.length + ' · ' + s.hint;
+    }
+
+    function stopPlay() {
+      if (timer) { clearInterval(timer); timer = null; }
+      playBtn.textContent = '▶ Tự chạy';
+    }
+    document.getElementById('dsa05-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos - 1); render(); };
+    document.getElementById('dsa05-next').onclick = function () { stopPlay(); pos = Math.min(steps.length - 1, pos + 1); render(); };
+    playBtn.onclick = function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length - 1 ? 0 : pos + 1; render(); }, 1300);
+    };
+    render();
+  })();
+  </script>
+</div>

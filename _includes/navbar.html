@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg site-navbar">
+  <a class="navbar-brand" href="/">{{ site.title }}</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#main-nav"
+    aria-controls="main-nav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main-nav">
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item">
+        <a
+          class="nav-link{% if page.url == '/' %} active{% endif %}"
+          href="/"
+        >Home</a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link{% if page.url == '/about.html' or page.url == '/about/' %} active{% endif %}"
+          href="/about"
+        >About</a>
+      </li>
+
+      <!-- Blog dropdown -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle{% if page.url contains '/blog' or page.categories %} active{% endif %}"
+          href="/blog/"
+          id="blog-dropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >Blog</a>
+        <div class="dropdown-menu dropdown-menu-right nav-dropdown" aria-labelledby="blog-dropdown">
+          <a class="dropdown-item" href="/blog/">
+            <span class="nav-drop-icon">&#9782;</span> All Posts
+          </a>
+          <div class="dropdown-divider"></div>
+          {% assign all_cats = "" | split: "" %}
+          {% for post in site.posts %}
+            {% for cat in post.categories %}
+              {% unless all_cats contains cat %}
+                {% assign all_cats = all_cats | push: cat %}
+              {% endunless %}
+            {% endfor %}
+          {% endfor %}
+          {% for cat in all_cats %}
+          <a class="dropdown-item" href="/blog/#{{ cat | downcase }}">
+            <span class="nav-drop-icon nav-drop-tag">#</span>{{ cat }}
+          </a>
+          {% endfor %}
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>

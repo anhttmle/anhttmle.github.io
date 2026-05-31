@@ -1,0 +1,274 @@
+<div class="conv1d-demo" id="conv1d-demo">
+  <style>
+    .conv1d-demo {
+      margin: 1.25rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      font-size: 0.85rem;
+    }
+
+    .conv1d-demo .conv1d-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.75rem 0 0.35rem;
+    }
+
+    .conv1d-demo .conv1d-title:first-child {
+      margin-top: 0;
+    }
+
+    .conv1d-demo .conv1d-track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .conv1d-demo .conv1d-cell {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .conv1d-demo .conv1d-cell.is-overlap {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .conv1d-demo .conv1d-cell.is-kernel {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .conv1d-demo .conv1d-cell.is-output-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .conv1d-demo .conv1d-cell.is-output-done {
+      opacity: 0.55;
+    }
+
+    .conv1d-demo .conv1d-kernel-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .conv1d-demo .conv1d-arrow {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .conv1d-demo .conv1d-controls {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .conv1d-demo .conv1d-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .conv1d-demo .conv1d-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .conv1d-demo .conv1d-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .conv1d-demo .conv1d-hint {
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .conv1d-demo .conv1d-formula {
+      margin-top: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .conv1d-demo .conv1d-cell.is-kernel {
+        background: #451a03;
+        border-color: #f59e0b;
+        color: #fde68a;
+      }
+
+      .conv1d-demo .conv1d-cell.is-overlap {
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+    }
+  </style>
+
+  <div class="conv1d-title">Input (vector 1D)</div>
+  <div class="conv1d-track" id="conv1d-input" aria-label="Input signal"></div>
+
+  <div class="conv1d-title">Kernel (filter)</div>
+  <div class="conv1d-kernel-wrap">
+    <div class="conv1d-track" id="conv1d-kernel" aria-label="Kernel"></div>
+    <span class="conv1d-arrow" aria-hidden="true">→ trượt theo input</span>
+  </div>
+
+  <div class="conv1d-title">Output (feature map)</div>
+  <div class="conv1d-track" id="conv1d-output" aria-label="Output"></div>
+
+  <div class="conv1d-controls">
+    <button type="button" class="conv1d-btn" id="conv1d-prev" aria-label="Bước trước">
+      ← Trước
+    </button>
+    <button type="button" class="conv1d-btn" id="conv1d-next" aria-label="Bước tiếp">
+      Tiếp →
+    </button>
+    <button type="button" class="conv1d-btn" id="conv1d-play" aria-label="Tự chạy">
+      ▶ Tự chạy
+    </button>
+  </div>
+
+  <div class="conv1d-hint" id="conv1d-hint"></div>
+  <div class="conv1d-formula" id="conv1d-formula"></div>
+
+  <script>
+  (function () {
+    var input = [0, 1, 2, 3, 2, 1, 0];
+    var kernel = [1, -1, 1];
+    var stride = 1;
+    var pos = 0;
+    var timer = null;
+
+    var inEl = document.getElementById('conv1d-input');
+    var kEl = document.getElementById('conv1d-kernel');
+    var outEl = document.getElementById('conv1d-output');
+    var hintEl = document.getElementById('conv1d-hint');
+    var formulaEl = document.getElementById('conv1d-formula');
+    var playBtn = document.getElementById('conv1d-play');
+
+    function dot(start) {
+      var sum = 0;
+      var parts = [];
+      for (var i = 0; i < kernel.length; i++) {
+        var a = input[start + i];
+        var k = kernel[i];
+        sum += a * k;
+        parts.push('(' + a + '×' + k + ')');
+      }
+      return { value: sum, parts: parts };
+    }
+
+    function maxPos() {
+      return Math.floor((input.length - kernel.length) / stride);
+    }
+
+    function render() {
+      var start = pos * stride;
+      var result = dot(start);
+
+      inEl.innerHTML = input.map(function (v, i) {
+        var cls = 'conv1d-cell';
+        if (i >= start && i < start + kernel.length) {
+          cls += ' is-overlap';
+        }
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+
+      kEl.innerHTML = kernel.map(function (v) {
+        return '<div class="conv1d-cell is-kernel">' + v + '</div>';
+      }).join('');
+
+      outEl.innerHTML = '';
+      for (var p = 0; p <= maxPos(); p++) {
+        var val = dot(p * stride).value;
+        var cls = 'conv1d-cell';
+        if (p === pos) {
+          cls += ' is-output-active';
+        } else if (p < pos) {
+          cls += ' is-output-done';
+        }
+        outEl.innerHTML += '<div class="' + cls + '">' + val + '</div>';
+      }
+
+      hintEl.textContent =
+        'Bước ' + (pos + 1) + '/' + (maxPos() + 1) +
+        ' · kernel overlap index ' + start + '–' + (start + kernel.length - 1) +
+        ' · stride = ' + stride;
+
+      formulaEl.textContent =
+        'output[' + pos + '] = ' + result.parts.join(' + ') + ' = ' + result.value;
+    }
+
+    function stopPlay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      playBtn.classList.remove('is-active');
+      playBtn.textContent = '▶ Tự chạy';
+    }
+
+    document.getElementById('conv1d-prev').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.max(0, pos - 1);
+      render();
+    });
+
+    document.getElementById('conv1d-next').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.min(maxPos(), pos + 1);
+      render();
+    });
+
+    playBtn.addEventListener('click', function () {
+      if (timer) {
+        stopPlay();
+        return;
+      }
+      playBtn.classList.add('is-active');
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () {
+        pos = pos >= maxPos() ? 0 : pos + 1;
+        render();
+      }, 900);
+    });
+
+    render();
+  })();
+  </script>
+</div>

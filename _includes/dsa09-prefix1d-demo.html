@@ -1,0 +1,60 @@
+<div class="dsa09-demo" id="dsa09-demo">
+  <style>
+    .dsa09-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa09-demo .dsa09-row { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.4rem 0; align-items: center; }
+    .dsa09-demo .dsa09-label { font-size: 0.72rem; color: var(--text-muted); width: 3.5rem; text-transform: uppercase; font-weight: 600; }
+    .dsa09-demo .dsa09-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-size: 0.82rem; font-weight: 600; }
+    .dsa09-demo .dsa09-cell.is-prefix { background: var(--accent-light); border-color: var(--accent); }
+    .dsa09-demo .dsa09-cell.is-query { background: #fef3c7; border-color: #f59e0b; }
+    .dsa09-demo .dsa09-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa09-demo .dsa09-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa09-demo .dsa09-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa09-demo .dsa09-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+    @media (prefers-color-scheme: dark) { .dsa09-demo .dsa09-cell.is-query { background: #451a03; border-color: #f59e0b; color: #fde68a; } }
+  </style>
+  <div class="dsa09-row"><span class="dsa09-label">Array</span><div id="dsa09-arr" style="display:flex;gap:4px"></div></div>
+  <div class="dsa09-row"><span class="dsa09-label">Prefix</span><div id="dsa09-pre" style="display:flex;gap:4px"></div></div>
+  <div class="dsa09-controls">
+    <button type="button" class="dsa09-btn" id="dsa09-prev">← Trước</button>
+    <button type="button" class="dsa09-btn" id="dsa09-next">Tiếp →</button>
+    <button type="button" class="dsa09-btn" id="dsa09-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa09-hint" id="dsa09-hint"></div>
+  <div class="dsa09-formula" id="dsa09-formula"></div>
+  <script>
+  (function () {
+    var arr = [2, 4, 1, 5, 3];
+    var prefix = [0];
+    for (var i = 0; i < arr.length; i++) prefix.push(prefix[i] + arr[i]);
+    var steps = [
+      { built: 0, l: -1, r: -1, hint: 'prefix[0]=0. prefix[i+1]=prefix[i]+arr[i]' },
+      { built: 3, l: -1, r: -1, hint: 'Build prefix: [0,2,6,7,12,15]' },
+      { built: 6, l: 1, r: 3, hint: 'Query sum(1..3): prefix[4]-prefix[1]=12-2=10', formula: 'prefix[4]-prefix[1]=10' },
+      { built: 6, l: 0, r: 4, hint: 'Query sum(0..4): prefix[5]-prefix[0]=15-0=15', formula: 'prefix[5]-prefix[0]=15' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa09-arr').innerHTML = arr.map(function (v,i) {
+        var cls = 'dsa09-cell' + (s.l >= 0 && i >= s.l && i <= s.r ? ' is-query' : '');
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa09-pre').innerHTML = prefix.map(function (v,i) {
+        var cls = 'dsa09-cell' + (i <= s.built ? ' is-prefix' : '');
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa09-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+      document.getElementById('dsa09-formula').textContent = s.formula || 'prefix[i] = sum(arr[0..i-1])';
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa09-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa09-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa09-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa09-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa09-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1300);
+    };
+    render();
+  })();
+  </script>
+</div>

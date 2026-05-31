@@ -1,0 +1,55 @@
+<div class="dsa19-demo" id="dsa19-demo">
+  <style>
+    .dsa19-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa19-demo .dsa19-tree { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 0.5rem 0; }
+    .dsa19-demo .dsa19-level { display: flex; gap: 16px; }
+    .dsa19-demo .dsa19-node { width: 2.25rem; height: 2.25rem; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: monospace; font-weight: 600; background: var(--card-bg); font-size: 0.82rem; transition: all 0.2s; }
+    .dsa19-demo .dsa19-node.is-new { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .dsa19-demo .dsa19-node.is-remove { opacity: 0.3; text-decoration: line-through; }
+    .dsa19-demo .dsa19-node.is-curr { background: var(--accent); color: #fff; }
+    .dsa19-demo .dsa19-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa19-demo .dsa19-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa19-demo .dsa19-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) { .dsa19-demo .dsa19-node.is-new { background: #451a03; border-color: #f59e0b; color: #fde68a; } }
+  </style>
+  <div class="dsa19-tree" id="dsa19-tree"></div>
+  <div class="dsa19-controls">
+    <button type="button" class="dsa19-btn" id="dsa19-prev">← Trước</button>
+    <button type="button" class="dsa19-btn" id="dsa19-next">Tiếp →</button>
+    <button type="button" class="dsa19-btn" id="dsa19-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa19-hint" id="dsa19-hint"></div>
+  <script>
+  (function () {
+    var steps = [
+      { nodes: [[5], [3, 7], [null, null, null, null]], newVal: 5, remVal: -1, hint: 'BST: left < node < right. Root=5.' },
+      { nodes: [[5], [3, 7], [1, null, null, 9]], newVal: 1, remVal: -1, hint: 'Insert(1): 1<5 → left, 1<3 → left child of 3.' },
+      { nodes: [[5], [3, 7], [1, null, null, 9]], newVal: -1, remVal: 3, hint: 'Remove(3): 2 children → thay bằng inorder successor (7 hoặc 4).' },
+      { nodes: [[5], [1, 7], [null, null, null, 9]], newVal: -1, remVal: -1, hint: 'BST insert/search/delete average O(log n), worst O(n) nếu skewed.' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa19-tree').innerHTML = s.nodes.map(function(lev) {
+        return '<div class="dsa19-level">' + lev.map(function(v) {
+          if (v === null) return '<div class="dsa19-node" style="visibility:hidden">·</div>';
+          var cls = 'dsa19-node';
+          if (v === s.newVal) cls += ' is-new';
+          if (v === s.remVal) cls += ' is-remove';
+          return '<div class="' + cls + '">' + v + '</div>';
+        }).join('') + '</div>';
+      }).join('');
+      document.getElementById('dsa19-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa19-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa19-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa19-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa19-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa19-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1500);
+    };
+    render();
+  })();
+  </script>
+</div>

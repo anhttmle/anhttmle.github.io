@@ -1,0 +1,86 @@
+<div class="dsa03-demo" id="dsa03-demo">
+  <style>
+    .dsa03-demo {
+      margin: 1.25rem 0; padding: 1rem 1.1rem;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); font-size: 0.85rem;
+    }
+    .dsa03-demo .dsa03-title {
+      font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; margin: 0.75rem 0 0.35rem;
+    }
+    .dsa03-demo .dsa03-title:first-child { margin-top: 0; }
+    .dsa03-demo .dsa03-bars { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-top: 8px; }
+    .dsa03-demo .dsa03-bar-wrap { flex: 1; text-align: center; }
+    .dsa03-demo .dsa03-bar {
+      width: 100%; border-radius: 4px 4px 0 0; transition: height 0.4s;
+      background: var(--accent-light); border: 1px solid var(--accent);
+    }
+    .dsa03-demo .dsa03-bar.is-active { background: var(--accent); }
+    .dsa03-demo .dsa03-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; font-family: monospace; }
+    .dsa03-demo .dsa03-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa03-demo .dsa03-btn {
+      padding: 0.35rem 0.8rem; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem;
+    }
+    .dsa03-demo .dsa03-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa03-demo .dsa03-btn.is-active { background: var(--accent); color: #fff; }
+    .dsa03-demo .dsa03-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa03-demo .dsa03-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+  </style>
+
+  <div class="dsa03-title">Growth rate khi n = 64 (relative height)</div>
+  <div class="dsa03-bars" id="dsa03-bars"></div>
+  <div class="dsa03-controls">
+    <button type="button" class="dsa03-btn" id="dsa03-prev">← Trước</button>
+    <button type="button" class="dsa03-btn" id="dsa03-next">Tiếp →</button>
+    <button type="button" class="dsa03-btn" id="dsa03-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa03-hint" id="dsa03-hint"></div>
+  <div class="dsa03-formula" id="dsa03-formula"></div>
+
+  <script>
+  (function () {
+    var n = 64;
+    var complexities = [
+      { name: 'O(1)', fn: function () { return 1; }, hint: 'Constant: không phụ thuộc n' },
+      { name: 'O(log n)', fn: function (x) { return Math.log2(x); }, hint: 'Logarithmic: chia đôi mỗi bước (binary search)' },
+      { name: 'O(n)', fn: function (x) { return x; }, hint: 'Linear: duyệt qua từng phần tử' },
+      { name: 'O(n log n)', fn: function (x) { return x * Math.log2(x); }, hint: 'Linearithmic: merge sort, quick sort average' },
+      { name: 'O(n²)', fn: function (x) { return x * x; }, hint: 'Quadratic: nested loop, bubble sort' }
+    ];
+    var pos = 0, timer = null;
+    var barsEl = document.getElementById('dsa03-bars');
+    var hintEl = document.getElementById('dsa03-hint');
+    var formulaEl = document.getElementById('dsa03-formula');
+    var playBtn = document.getElementById('dsa03-play');
+    var maxVal = complexities[4].fn(n);
+
+    function render() {
+      barsEl.innerHTML = complexities.map(function (c, i) {
+        var val = c.fn(n);
+        var h = Math.max(4, (val / maxVal) * 100);
+        var cls = 'dsa03-bar' + (i === pos ? ' is-active' : '');
+        return '<div class="dsa03-bar-wrap"><div class="' + cls + '" style="height:' + h + 'px"></div>' +
+          '<div class="dsa03-label">' + c.name + '<br>' + (c.name === 'O(1)' ? '1' : Math.round(val)) + '</div></div>';
+      }).join('');
+      var c = complexities[pos];
+      hintEl.textContent = 'Bước ' + (pos + 1) + '/' + complexities.length + ' · ' + c.hint;
+      formulaEl.textContent = 'n=' + n + ' · f(n)=' + (c.name === 'O(1)' ? '1' : Math.round(c.fn(n)));
+    }
+
+    function stopPlay() {
+      if (timer) { clearInterval(timer); timer = null; }
+      playBtn.classList.remove('is-active'); playBtn.textContent = '▶ Tự chạy';
+    }
+    document.getElementById('dsa03-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos - 1); render(); };
+    document.getElementById('dsa03-next').onclick = function () { stopPlay(); pos = Math.min(complexities.length - 1, pos + 1); render(); };
+    playBtn.onclick = function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.classList.add('is-active'); playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= complexities.length - 1 ? 0 : pos + 1; render(); }, 1200);
+    };
+    render();
+  })();
+  </script>
+</div>

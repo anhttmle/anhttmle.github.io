@@ -1,0 +1,53 @@
+<div class="dsa12-demo" id="dsa12-demo">
+  <style>
+    .dsa12-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa12-demo .dsa12-track { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa12-demo .dsa12-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; font-size: 0.82rem; }
+    .dsa12-demo .dsa12-cell.is-pivot { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .dsa12-demo .dsa12-cell.is-left { background: #dbeafe; border-color: #2563eb; }
+    .dsa12-demo .dsa12-cell.is-right { background: #fee2e2; border-color: #dc2626; }
+    .dsa12-demo .dsa12-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa12-demo .dsa12-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa12-demo .dsa12-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) { .dsa12-demo .dsa12-cell.is-pivot { background: #451a03; border-color: #f59e0b; color: #fde68a; } }
+  </style>
+  <div class="dsa12-track" id="dsa12-array"></div>
+  <div class="dsa12-controls">
+    <button type="button" class="dsa12-btn" id="dsa12-prev">← Trước</button>
+    <button type="button" class="dsa12-btn" id="dsa12-next">Tiếp →</button>
+    <button type="button" class="dsa12-btn" id="dsa12-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa12-hint" id="dsa12-hint"></div>
+  <script>
+  (function () {
+    var arr = [3, 6, 8, 10, 1, 2, 1];
+    var steps = [
+      { pivot: 3, left: [1,2,1], right: [6,8,10], hint: 'Chọn pivot=3. Partition: nhỏ hơn trái, lớn hơn phải.' },
+      { pivot: 1, left: [1], right: [2], hint: 'Recursive left [1,2,1]: pivot=1, partition...' },
+      { pivot: 6, left: [], right: [8,10], hint: 'Recursive right [6,8,10]: pivot=6...' },
+      { pivot: 3, left: [1,1,2], right: [6,8,10], hint: 'Kết quả: [1,1,2,3,6,8,10]. Quick Sort average O(n log n).' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa12-array').innerHTML = arr.map(function(v) {
+        var cls = 'dsa12-cell';
+        if (v === s.pivot) cls += ' is-pivot';
+        else if (s.left.indexOf(v) >= 0) cls += ' is-left';
+        else if (s.right.indexOf(v) >= 0) cls += ' is-right';
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa12-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa12-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa12-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa12-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa12-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa12-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

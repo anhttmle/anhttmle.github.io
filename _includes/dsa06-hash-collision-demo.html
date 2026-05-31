@@ -1,0 +1,79 @@
+<div class="dsa06-demo" id="dsa06-demo">
+  <style>
+    .dsa06-demo {
+      margin: 1.25rem 0; padding: 1rem 1.1rem;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); font-size: 0.85rem;
+    }
+    .dsa06-demo .dsa06-title { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin: 0.5rem 0 0.35rem; }
+    .dsa06-demo .dsa06-buckets { display: flex; flex-direction: column; gap: 6px; }
+    .dsa06-demo .dsa06-bucket { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .dsa06-demo .dsa06-bucket-label { width: 2rem; font-family: monospace; font-size: 0.75rem; color: var(--text-muted); }
+    .dsa06-demo .dsa06-cell {
+      padding: 0.3rem 0.5rem; border: 1px solid var(--border); border-radius: 4px;
+      background: var(--card-bg); font-family: monospace; font-size: 0.78rem;
+    }
+    .dsa06-demo .dsa06-cell.is-collision { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .dsa06-demo .dsa06-cell.is-new { background: var(--accent); color: #fff; }
+    .dsa06-demo .dsa06-chain { color: var(--text-muted); }
+    .dsa06-demo .dsa06-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa06-demo .dsa06-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa06-demo .dsa06-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa06-demo .dsa06-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa06-demo .dsa06-cell.is-collision { background: #451a03; border-color: #f59e0b; color: #fde68a; }
+    }
+  </style>
+
+  <div class="dsa06-title">Chaining — collision trong cùng bucket</div>
+  <div class="dsa06-buckets" id="dsa06-buckets"></div>
+  <div class="dsa06-controls">
+    <button type="button" class="dsa06-btn" id="dsa06-prev">← Trước</button>
+    <button type="button" class="dsa06-btn" id="dsa06-next">Tiếp →</button>
+    <button type="button" class="dsa06-btn" id="dsa06-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa06-hint" id="dsa06-hint"></div>
+
+  <script>
+  (function () {
+    var steps = [
+      { buckets: [[], [], [], []], newKey: '', hint: '4 buckets (size=4). hash(key) % 4 → bucket index.' },
+      { buckets: [['cat'], [], [], []], newKey: 'cat', hint: 'hash("cat")=0 → bucket 0. Không collision.' },
+      { buckets: [['cat', 'dog'], [], [], []], newKey: 'dog', hint: 'hash("dog")=0 → collision! Chaining: linked list trong bucket 0.' },
+      { buckets: [['cat', 'dog'], [], ['bat'], []], newKey: 'bat', hint: 'hash("bat")=2 → bucket 2. Lookup: duyệt chain nếu collision — O(k) với k = chain length.' }
+    ];
+    var pos = 0, timer = null;
+    var bucketsEl = document.getElementById('dsa06-buckets');
+    var hintEl = document.getElementById('dsa06-hint');
+    var playBtn = document.getElementById('dsa06-play');
+
+    function render() {
+      var s = steps[pos];
+      bucketsEl.innerHTML = s.buckets.map(function (chain, i) {
+        var cells = chain.map(function (k) {
+          var cls = 'dsa06-cell';
+          if (k === s.newKey) cls += ' is-new';
+          else if (chain.length > 1) cls += ' is-collision';
+          return '<span class="' + cls + '">' + k + '</span>';
+        }).join('<span class="dsa06-chain"> → </span>');
+        return '<div class="dsa06-bucket"><span class="dsa06-bucket-label">[' + i + ']</span>' +
+          (cells || '<span style="color:var(--text-muted)">∅</span>') + '</div>';
+      }).join('');
+      hintEl.textContent = 'Bước ' + (pos + 1) + '/' + steps.length + ' · ' + s.hint;
+    }
+
+    function stopPlay() {
+      if (timer) { clearInterval(timer); timer = null; }
+      playBtn.textContent = '▶ Tự chạy';
+    }
+    document.getElementById('dsa06-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos - 1); render(); };
+    document.getElementById('dsa06-next').onclick = function () { stopPlay(); pos = Math.min(steps.length - 1, pos + 1); render(); };
+    playBtn.onclick = function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length - 1 ? 0 : pos + 1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

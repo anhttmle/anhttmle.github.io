@@ -1,0 +1,59 @@
+<div class="dsa07-demo" id="dsa07-demo">
+  <style>
+    .dsa07-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa07-demo .dsa07-track { display: flex; flex-wrap: wrap; gap: 4px; align-items: flex-end; margin: 0.5rem 0; }
+    .dsa07-demo .dsa07-wrap { text-align: center; }
+    .dsa07-demo .dsa07-ptr { font-size: 0.68rem; font-weight: 600; margin-bottom: 2px; min-height: 1rem; }
+    .dsa07-demo .dsa07-ptr.is-left { color: #2563eb; }
+    .dsa07-demo .dsa07-ptr.is-right { color: #dc2626; }
+    .dsa07-demo .dsa07-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; font-size: 0.82rem; }
+    .dsa07-demo .dsa07-cell.is-range { background: var(--accent-light); border-color: var(--accent); }
+    .dsa07-demo .dsa07-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa07-demo .dsa07-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa07-demo .dsa07-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa07-demo .dsa07-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa07-demo .dsa07-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+  </style>
+  <div class="dsa07-track" id="dsa07-array"></div>
+  <div class="dsa07-controls">
+    <button type="button" class="dsa07-btn" id="dsa07-prev">← Trước</button>
+    <button type="button" class="dsa07-btn" id="dsa07-next">Tiếp →</button>
+    <button type="button" class="dsa07-btn" id="dsa07-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa07-hint" id="dsa07-hint"></div>
+  <div class="dsa07-formula" id="dsa07-formula"></div>
+  <script>
+  (function () {
+    var arr = [1, 2, 3, 4, 5, 6]; var target = 7;
+    var steps = [
+      { l: 0, r: 5, hint: 'left=0, right=5. arr[0]+arr[5]=1+6=7 ✓ Tìm thấy!', sum: 7, action: 'found' },
+      { l: 0, r: 4, hint: 'Giả sử target=9: 1+5=6 < 9 → left++ (cần tổng lớn hơn)', sum: 6, action: 'left++' },
+      { l: 1, r: 4, hint: '2+5=7 < 9 → left++ tiếp', sum: 7, action: 'left++' },
+      { l: 2, r: 4, hint: '3+5=8 < 9 → left++', sum: 8, action: 'left++' },
+      { l: 3, r: 4, hint: '4+5=9 ✓ Tìm thấy cặp (4,5)!', sum: 9, action: 'found' }
+    ];
+    steps.unshift({ l: 0, r: 5, hint: 'Two Sum sorted: left=0, right=n-1. So sánh arr[left]+arr[right] với target.', sum: arr[0]+arr[5], action: 'start' });
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa07-array').innerHTML = arr.map(function (v, i) {
+        var cls = 'dsa07-cell' + (i >= s.l && i <= s.r ? ' is-range' : '');
+        var lp = i === s.l ? '<div class="dsa07-ptr is-left">L</div>' : '<div class="dsa07-ptr"></div>';
+        var rp = i === s.r ? '<div class="dsa07-ptr is-right">R</div>' : '';
+        return '<div class="dsa07-wrap">' + lp + '<div class="' + cls + '">' + v + '</div>' + rp + '</div>';
+      }).join('');
+      document.getElementById('dsa07-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+      document.getElementById('dsa07-formula').textContent = 'arr[' + s.l + ']+arr[' + s.r + '] = ' + s.sum;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa07-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa07-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa07-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa07-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa07-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1200);
+    };
+    render();
+  })();
+  </script>
+</div>

@@ -1,0 +1,55 @@
+<div class="dsa17-demo" id="dsa17-demo">
+  <style>
+    .dsa17-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa17-demo .dsa17-track { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa17-demo .dsa17-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; font-size: 0.82rem; }
+    .dsa17-demo .dsa17-cell.is-lo { border-left: 3px solid #2563eb; background: #dbeafe; }
+    .dsa17-demo .dsa17-cell.is-hi { border-right: 3px solid #dc2626; background: #fee2e2; }
+    .dsa17-demo .dsa17-cell.is-ans { background: var(--accent); color: #fff; }
+    .dsa17-demo .dsa17-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa17-demo .dsa17-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa17-demo .dsa17-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa17-demo .dsa17-cell.is-lo { background: #1e3a5f; color: #93c5fd; }
+      .dsa17-demo .dsa17-cell.is-hi { background: #450a0a; color: #fca5a5; }
+    }
+  </style>
+  <div class="dsa17-track" id="dsa17-array"></div>
+  <div class="dsa17-controls">
+    <button type="button" class="dsa17-btn" id="dsa17-prev">← Trước</button>
+    <button type="button" class="dsa17-btn" id="dsa17-next">Tiếp →</button>
+    <button type="button" class="dsa17-btn" id="dsa17-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa17-hint" id="dsa17-hint"></div>
+  <script>
+  (function () {
+    var arr = [1, 3, 5, 5, 5, 7, 9]; var target = 5;
+    var steps = [
+      { lo: 0, hi: 6, ans: -1, hint: 'Lower bound: tìm index đầu tiên >= target (5)' },
+      { lo: 2, hi: 6, ans: 2, hint: 'arr[mid]=5 >= 5 → ans=2, hi=mid-1. Tìm leftmost.' },
+      { lo: 2, hi: 1, ans: 2, hint: 'Kết quả: lower bound index=2 (first 5). Upper bound=5.' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa17-array').innerHTML = arr.map(function(v,i) {
+        var cls = 'dsa17-cell';
+        if (i === s.ans && s.ans >= 0) cls += ' is-ans';
+        else if (i === s.lo) cls += ' is-lo';
+        else if (i === s.hi) cls += ' is-hi';
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa17-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa17-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa17-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa17-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa17-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa17-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

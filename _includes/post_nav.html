@@ -1,0 +1,96 @@
+{% comment %}
+  Series-aware previous / next navigation.
+
+  If page.series is set, filters site.posts to that series and
+  sorts chronologically to find the correct neighbours.
+  Falls back to Jekyll's built-in page.next / page.previous for
+  posts that are not part of a series.
+
+  Convention used throughout:
+    nav_prev  →  the OLDER post  (further back in time)
+    nav_next  →  the NEWER post  (more recent)
+{% endcomment %}
+
+{% if page.series %}
+
+  {% assign _series_posts = site.posts
+      | where: "series", page.series
+      | sort: "date" %}
+  {% assign _series_total = _series_posts | size %}
+  {% assign nav_prev    = nil %}
+  {% assign nav_next    = nil %}
+  {% assign _found      = false %}
+
+  {% for _p in _series_posts %}
+    {% if _found and nav_next == nil %}
+      {% assign nav_next = _p %}
+    {% endif %}
+    {% if _p.url == page.url %}
+      {% assign _found = true %}
+    {% endif %}
+    {% unless _found %}
+      {% assign nav_prev = _p %}
+    {% endunless %}
+  {% endfor %}
+
+{% else %}
+
+  {% comment %}
+    site.posts is newest-first, so:
+      page.next     = older post
+      page.previous = newer post
+  {% endcomment %}
+  {% assign nav_prev        = page.next %}
+  {% assign nav_next        = page.previous %}
+  {% assign _series_total   = nil %}
+
+{% endif %}
+
+{% if nav_prev or nav_next %}
+<nav class="post-nav" aria-label="Post navigation">
+
+  {% if page.series %}
+  <div class="post-nav-series-label">
+    Series:
+    <a href="/series/#{{ page.series | slugify }}">
+      <strong>{{ page.series }}</strong>
+    </a>
+    {% if page.series_part and _series_total %}
+    &nbsp;&middot;&nbsp;Part {{ page.series_part }} of {{ _series_total }}
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <div class="post-nav-links">
+
+    {% if nav_prev %}
+    <div class="post-nav-item post-nav-prev">
+      <span class="post-nav-dir">&larr; Previous</span>
+      <a class="post-nav-title" href="{{ nav_prev.url }}">
+        {{ nav_prev.title }}
+      </a>
+      {% if nav_prev.series_part %}
+      <span class="post-nav-part">Part {{ nav_prev.series_part }}</span>
+      {% endif %}
+    </div>
+    {% else %}
+    <div></div>
+    {% endif %}
+
+    {% if nav_next %}
+    <div class="post-nav-item post-nav-next">
+      <span class="post-nav-dir">Next &rarr;</span>
+      <a class="post-nav-title" href="{{ nav_next.url }}">
+        {{ nav_next.title }}
+      </a>
+      {% if nav_next.series_part %}
+      <span class="post-nav-part">Part {{ nav_next.series_part }}</span>
+      {% endif %}
+    </div>
+    {% else %}
+    <div></div>
+    {% endif %}
+
+  </div>
+</nav>
+{% endif %}

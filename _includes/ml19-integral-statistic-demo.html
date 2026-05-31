@@ -1,0 +1,457 @@
+<div class="intstat-demo" id="intstat-demo">
+  <style>
+    .intstat-demo {
+      margin: 1.25rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      font-size: 0.85rem;
+    }
+
+    .intstat-demo .intstat-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.75rem 0 0.35rem;
+    }
+
+    .intstat-demo .intstat-title:first-child {
+      margin-top: 0;
+    }
+
+    .intstat-demo svg text {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .intstat-demo .intstat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.8rem;
+      margin-top: 0.35rem;
+    }
+
+    .intstat-demo .intstat-table th {
+      background: var(--card-bg);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .intstat-demo .intstat-table td {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .intstat-demo .intstat-table tr.is-active td {
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    .intstat-demo .intstat-table tr.is-done td {
+      opacity: 0.45;
+    }
+
+    .intstat-demo .intstat-table td.is-product-active {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .intstat-demo .intstat-table td.is-product-done {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .intstat-demo .intstat-sum-row {
+      margin-top: 0.55rem;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .intstat-demo .intstat-sum-label {
+      color: var(--text-muted);
+    }
+
+    .intstat-demo .intstat-sum-val {
+      color: var(--text);
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .intstat-demo .intstat-sum-val.is-final {
+      color: #16a34a;
+    }
+
+    .intstat-demo .intstat-continuous {
+      margin-top: 0.55rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      border: 1px solid #93c5fd;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      display: none;
+    }
+
+    .intstat-demo .intstat-continuous.is-visible {
+      display: block;
+    }
+
+    .intstat-demo .intstat-controls {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .intstat-demo .intstat-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .intstat-demo .intstat-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .intstat-demo .intstat-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .intstat-demo .intstat-hint {
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      min-height: 1.4em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .intstat-demo .intstat-table tr.is-active td {
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+
+      .intstat-demo .intstat-table td.is-product-done {
+        background: #14532d;
+        color: #bbf7d0;
+      }
+
+      .intstat-demo .intstat-continuous {
+        border-color: #1d4ed8;
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+    }
+  </style>
+
+  <!-- Bar chart SVG -->
+  <div class="intstat-title">Phân phối tần suất (100 lần tung xúc sắc)</div>
+  <svg id="intstat-svg" width="100%" viewBox="0 0 420 140"
+       aria-label="Biểu đồ tần suất mặt xúc sắc" role="img"
+       style="display:block; max-width:420px;">
+  </svg>
+
+  <!-- Step-through table -->
+  <div class="intstat-title">Tính ∑ x<sub>k</sub> · p<sub>k</sub> từng bước</div>
+  <table class="intstat-table" aria-label="Bảng tính kỳ vọng">
+    <thead>
+      <tr>
+        <th>Mặt x<sub>k</sub></th>
+        <th>Số lần</th>
+        <th>p<sub>k</sub> = lần / 100</th>
+        <th>x<sub>k</sub> · p<sub>k</sub></th>
+      </tr>
+    </thead>
+    <tbody id="intstat-tbody"></tbody>
+  </table>
+
+  <!-- Running sum -->
+  <div class="intstat-sum-row">
+    <span class="intstat-sum-label">Tổng tích luỹ:</span>
+    <span class="intstat-sum-val" id="intstat-sum">0</span>
+    <span class="intstat-sum-label" id="intstat-sum-suffix"></span>
+  </div>
+
+  <!-- Continuous hint (shown at final step) -->
+  <div class="intstat-continuous" id="intstat-continuous">
+    <strong>Khi x liên tục →</strong> thay ∑ bằng ∫, thay p<sub>k</sub> bằng f(x)·dx:<br>
+    <code>E(x) = ∫ x · f(x) dx</code><br>
+    Đây chính là ý tưởng cốt lõi nối tích phân và tích chập!
+  </div>
+
+  <div class="intstat-controls">
+    <button type="button" class="intstat-btn" id="intstat-prev" aria-label="Bước trước">
+      ← Trước
+    </button>
+    <button type="button" class="intstat-btn" id="intstat-next" aria-label="Bước tiếp">
+      Tiếp →
+    </button>
+    <button type="button" class="intstat-btn" id="intstat-play" aria-label="Tự chạy">
+      ▶ Tự chạy
+    </button>
+  </div>
+
+  <div class="intstat-hint" id="intstat-hint"></div>
+
+  <script>
+  (function () {
+    var faces  = [1, 2, 3, 4, 5, 6];
+    var counts = [20, 22, 15, 16, 12, 15];
+    var total  = 100;
+    var n      = faces.length;
+
+    var probs    = counts.map(function (c) { return c / total; });
+    var products = faces.map(function (x, i) { return x * probs[i]; });
+    var expected = products.reduce(function (s, v) { return s + v; }, 0);
+
+    /* ── Step: -1 = initial, 0‥n-1 = highlighting face i, n = final ── */
+    var step  = -1;
+    var timer = null;
+
+    var svgEl      = document.getElementById('intstat-svg');
+    var tbodyEl    = document.getElementById('intstat-tbody');
+    var sumEl      = document.getElementById('intstat-sum');
+    var suffixEl   = document.getElementById('intstat-sum-suffix');
+    var contEl     = document.getElementById('intstat-continuous');
+    var hintEl     = document.getElementById('intstat-hint');
+    var playBtn    = document.getElementById('intstat-play');
+
+    /* ── Build SVG bar chart ── */
+    var svgW = 420, svgH = 140;
+    var padL = 30, padR = 10, padT = 12, padB = 28;
+    var chartW = svgW - padL - padR;
+    var chartH = svgH - padT - padB;
+    var barW   = Math.floor(chartW / n) - 6;
+    var maxC   = Math.max.apply(null, counts);
+
+    var accentColor     = '#3b82f6';
+    var accentHover     = '#1d4ed8';
+    var mutedColor      = '#94a3b8';
+    var axisFill        = '#64748b';
+    var activeHighlight = '#facc15';
+
+    function barX(i) {
+      return padL + i * (chartW / n) + (chartW / n - barW) / 2;
+    }
+
+    function barY(c) {
+      return padT + chartH - Math.round(chartH * c / (maxC * 1.15));
+    }
+
+    function buildSVG() {
+      var html = '';
+
+      /* Axis lines */
+      html += '<line x1="' + padL + '" y1="' + padT + '"'
+            + ' x2="' + padL + '" y2="' + (padT + chartH) + '"'
+            + ' stroke="' + axisFill + '" stroke-width="1" opacity="0.4"/>';
+      html += '<line x1="' + padL + '" y1="' + (padT + chartH) + '"'
+            + ' x2="' + (padL + chartW) + '" y2="' + (padT + chartH) + '"'
+            + ' stroke="' + axisFill + '" stroke-width="1" opacity="0.4"/>';
+
+      /* Bars */
+      for (var i = 0; i < n; i++) {
+        var x  = barX(i);
+        var y  = barY(counts[i]);
+        var h  = padT + chartH - y;
+        var cx = x + barW / 2;
+
+        html += '<rect id="intstat-bar-' + i + '"'
+              + ' x="' + x + '" y="' + y + '"'
+              + ' width="' + barW + '" height="' + h + '"'
+              + ' rx="2"'
+              + ' fill="' + accentColor + '" opacity="0.5"'
+              + ' style="transition:fill 0.25s,opacity 0.25s"/>';
+
+        /* Count label on top */
+        html += '<text id="intstat-cnt-' + i + '"'
+              + ' x="' + cx + '" y="' + (y - 3) + '"'
+              + ' text-anchor="middle" font-size="10"'
+              + ' fill="' + axisFill + '">'
+              + counts[i] + '</text>';
+
+        /* Face label on bottom */
+        html += '<text x="' + cx + '" y="' + (padT + chartH + 16) + '"'
+              + ' text-anchor="middle" font-size="11" font-weight="600"'
+              + ' fill="' + axisFill + '">' + faces[i] + '</text>';
+      }
+
+      svgEl.innerHTML = html;
+    }
+
+    /* ── Build table rows ── */
+    function buildTable() {
+      var html = '';
+      for (var i = 0; i < n; i++) {
+        html += '<tr id="intstat-row-' + i + '">'
+              + '<td>' + faces[i] + '</td>'
+              + '<td>' + counts[i] + '</td>'
+              + '<td>' + probs[i].toFixed(2) + '</td>'
+              + '<td id="intstat-prod-' + i + '">'
+              + products[i].toFixed(4) + '</td>'
+              + '</tr>';
+      }
+      tbodyEl.innerHTML = html;
+    }
+
+    /* ── Render state ── */
+    function render() {
+      /* Reset all bars & rows */
+      for (var i = 0; i < n; i++) {
+        var bar  = document.getElementById('intstat-bar-' + i);
+        var row  = document.getElementById('intstat-row-' + i);
+        var prod = document.getElementById('intstat-prod-' + i);
+        if (!bar || !row || !prod) { continue; }
+
+        bar.setAttribute('fill', accentColor);
+        bar.setAttribute('opacity', '0.5');
+
+        row.className = '';
+        prod.className = '';
+      }
+
+      var runningSum = 0;
+
+      if (step === -1) {
+        /* Initial: everything neutral */
+        sumEl.textContent = '0';
+        sumEl.className = 'intstat-sum-val';
+        suffixEl.textContent = '';
+        contEl.classList.remove('is-visible');
+        hintEl.textContent = 'Nhấn "Tiếp →" để bắt đầu tính từng x\u2096 · p\u2096.';
+
+      } else if (step >= 0 && step < n) {
+        /* Highlighting step i */
+        for (var j = 0; j <= step; j++) {
+          runningSum += products[j];
+          var barJ  = document.getElementById('intstat-bar-' + j);
+          var rowJ  = document.getElementById('intstat-row-' + j);
+          var prodJ = document.getElementById('intstat-prod-' + j);
+          if (!barJ || !rowJ || !prodJ) { continue; }
+
+          if (j === step) {
+            barJ.setAttribute('fill', activeHighlight);
+            barJ.setAttribute('opacity', '1');
+            rowJ.className = 'is-active';
+            prodJ.className = 'is-product-active';
+          } else {
+            barJ.setAttribute('fill', '#22c55e');
+            barJ.setAttribute('opacity', '0.7');
+            rowJ.className = 'is-done';
+            prodJ.className = 'is-product-done';
+          }
+        }
+
+        sumEl.textContent = runningSum.toFixed(4);
+        sumEl.className = 'intstat-sum-val';
+        suffixEl.textContent =
+          '  =  ' + products.slice(0, step + 1)
+            .map(function (v) { return v.toFixed(4); }).join(' + ');
+        contEl.classList.remove('is-visible');
+
+        hintEl.textContent =
+          'Bước ' + (step + 1) + '/' + n
+          + ' · x\u2096 = ' + faces[step]
+          + ', p\u2096 = ' + probs[step].toFixed(2)
+          + ', x\u2096 · p\u2096 = ' + products[step].toFixed(4);
+
+      } else {
+        /* Final step: all done */
+        for (var k = 0; k < n; k++) {
+          var barK  = document.getElementById('intstat-bar-' + k);
+          var rowK  = document.getElementById('intstat-row-' + k);
+          var prodK = document.getElementById('intstat-prod-' + k);
+          if (!barK || !rowK || !prodK) { continue; }
+
+          barK.setAttribute('fill', '#22c55e');
+          barK.setAttribute('opacity', '0.85');
+          rowK.className = 'is-done';
+          prodK.className = 'is-product-done';
+        }
+
+        sumEl.textContent = expected.toFixed(4) + ' ≈ ' + expected.toFixed(2);
+        sumEl.className = 'intstat-sum-val is-final';
+        suffixEl.textContent = '  ← E(X) xúc sắc';
+        contEl.classList.add('is-visible');
+        hintEl.textContent =
+          'Hoàn thành! E(X) = \u03a3 x\u2096 \u00b7 p\u2096 = '
+          + expected.toFixed(4)
+          + '. Khi x liên tục, tổng hữu hạn trở thành tích phân \u222b x\u00b7f(x)dx.';
+      }
+    }
+
+    function maxStep() { return n; }
+
+    function stopPlay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      playBtn.classList.remove('is-active');
+      playBtn.textContent = '\u25b6 T\u1ef1 ch\u1ea1y';
+    }
+
+    document.getElementById('intstat-prev').addEventListener('click', function () {
+      stopPlay();
+      step = Math.max(-1, step - 1);
+      render();
+    });
+
+    document.getElementById('intstat-next').addEventListener('click', function () {
+      stopPlay();
+      step = Math.min(maxStep(), step + 1);
+      render();
+    });
+
+    playBtn.addEventListener('click', function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.classList.add('is-active');
+      playBtn.textContent = '\u23f8 D\u1eebng';
+      timer = setInterval(function () {
+        if (step >= maxStep()) {
+          stopPlay();
+          return;
+        }
+        step += 1;
+        render();
+      }, 950);
+    });
+
+    buildSVG();
+    buildTable();
+    render();
+  })();
+  </script>
+</div>

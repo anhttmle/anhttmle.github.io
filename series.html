@@ -1,0 +1,120 @@
+---
+layout: default
+title: "Series"
+permalink: /series/
+---
+
+{% assign all_series = "" | split: "" %}
+{% for post in site.posts %}
+  {% if post.series %}
+    {% unless all_series contains post.series %}
+      {% assign all_series = all_series | push: post.series %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+<div class="profile-wrapper">
+  <div class="section-card" style="margin-top: 32px;">
+    <h1 class="section-title">Series</h1>
+
+    {% if all_series.size == 0 %}
+    <p style="color: var(--text-muted); font-style: italic; margin-top: 16px;">
+      No series yet.
+    </p>
+    {% else %}
+
+    {% if all_series.size > 1 %}
+    <div class="topic-filters" role="tablist" aria-label="Browse by series">
+      {% for series_name in all_series %}
+      <button
+        class="topic-btn{% if forloop.first %} active{% endif %}"
+        data-series="{{ series_name | slugify }}"
+        role="tab"
+        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        aria-controls="series-panel-{{ series_name | slugify }}"
+      >{{ series_name }}</button>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for series_name in all_series %}
+      {% assign series_posts = site.posts
+          | where: "series", series_name
+          | sort: "series_part" %}
+    <div
+      class="series-panel"
+      id="series-panel-{{ series_name | slugify }}"
+      data-series="{{ series_name | slugify }}"
+      role="tabpanel"
+      {% unless forloop.first %}hidden{% endunless %}
+    >
+      <div class="series-panel-header">
+        <h2 class="series-panel-title">{{ series_name }}</h2>
+        <span class="series-panel-count">
+          {{ series_posts.size }} part{% if series_posts.size != 1 %}s{% endif %}
+        </span>
+      </div>
+
+      <ol class="series-post-list">
+        {% for post in series_posts %}
+        <li class="series-post-item">
+          {% if post.series_part %}
+          <span class="series-post-part">Part {{ post.series_part }}</span>
+          {% endif %}
+          <a class="series-post-title" href="{{ post.url }}">
+            {{ post.title }}
+          </a>
+          <time
+            class="series-post-date"
+            datetime="{{ post.date | date_to_xmlschema }}"
+          >{{ post.date | date: "%b %Y" }}</time>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endfor %}
+
+    {% endif %}
+  </div>
+</div>
+
+<script>
+(function () {
+  var panels = document.querySelectorAll('.series-panel');
+  var tabBtns = document.querySelectorAll('.topic-filters .topic-btn');
+
+  function switchSeries(slug) {
+    var found = false;
+    panels.forEach(function (panel) {
+      var active = panel.dataset.series === slug;
+      panel.hidden = !active;
+      if (active) found = true;
+    });
+    if (!found && panels.length > 0) {
+      slug = panels[0].dataset.series;
+      panels[0].hidden = false;
+    }
+    tabBtns.forEach(function (btn) {
+      var isActive = btn.dataset.series === slug;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+    history.replaceState(null, '', slug ? '/series/#' + slug : '/series/');
+  }
+
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      switchSeries(btn.dataset.series);
+    });
+  });
+
+  var hash = location.hash.replace('#', '');
+  if (hash) {
+    switchSeries(hash);
+  } else if (panels.length === 1) {
+    switchSeries(panels[0].dataset.series);
+  } else if (tabBtns.length > 0) {
+    switchSeries(tabBtns[0].dataset.series);
+  }
+})();
+</script>

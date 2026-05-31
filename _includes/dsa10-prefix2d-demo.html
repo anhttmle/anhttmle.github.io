@@ -1,0 +1,51 @@
+<div class="dsa10-demo" id="dsa10-demo">
+  <style>
+    .dsa10-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa10-demo .dsa10-grid { display: grid; grid-template-columns: repeat(4, 2.25rem); gap: 4px; margin: 0.5rem 0; }
+    .dsa10-demo .dsa10-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-size: 0.78rem; font-weight: 600; }
+    .dsa10-demo .dsa10-cell.is-region { background: var(--accent-light); border-color: var(--accent); }
+    .dsa10-demo .dsa10-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa10-demo .dsa10-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa10-demo .dsa10-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa10-demo .dsa10-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+  </style>
+  <div class="dsa10-grid" id="dsa10-grid"></div>
+  <div class="dsa10-controls">
+    <button type="button" class="dsa10-btn" id="dsa10-prev">← Trước</button>
+    <button type="button" class="dsa10-btn" id="dsa10-next">Tiếp →</button>
+    <button type="button" class="dsa10-btn" id="dsa10-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa10-hint" id="dsa10-hint"></div>
+  <div class="dsa10-formula" id="dsa10-formula"></div>
+  <script>
+  (function () {
+    var grid = [[1,2,3],[4,5,6],[7,8,9]];
+    var steps = [
+      { r1: 0, c1: 0, r2: 2, c2: 2, hint: '2D Prefix Sum: P[i][j]=tổng submatrix (0,0)→(i,j)', formula: 'Build 2D prefix table' },
+      { r1: 0, c1: 0, r2: 1, c2: 1, hint: 'Query submatrix (0,0)→(1,1): 1+2+4+5=12', formula: 'P[1][1]-P[0][1]-P[1][0]+P[0][0]=12' },
+      { r1: 1, c1: 1, r2: 2, c2: 2, hint: 'Query (1,1)→(2,2): 5+6+8+9=28', formula: 'O(1) range query sau O(mn) preprocess' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      var html = '';
+      for (var r = 0; r < 3; r++) for (var c = 0; c < 3; c++) {
+        var inR = r >= s.r1 && r <= s.r2 && c >= s.c1 && c <= s.c2;
+        html += '<div class="dsa10-cell' + (inR ? ' is-region' : '') + '">' + grid[r][c] + '</div>';
+      }
+      document.getElementById('dsa10-grid').innerHTML = html;
+      document.getElementById('dsa10-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+      document.getElementById('dsa10-formula').textContent = s.formula;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa10-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa10-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa10-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa10-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa10-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

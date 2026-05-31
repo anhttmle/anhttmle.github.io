@@ -1,0 +1,58 @@
+<div class="dsa08-demo" id="dsa08-demo">
+  <style>
+    .dsa08-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa08-demo .dsa08-nodes { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa08-demo .dsa08-node { width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: monospace; font-weight: 600; background: var(--card-bg); position: relative; }
+    .dsa08-demo .dsa08-node.is-slow { border-color: #2563eb; background: #dbeafe; color: #1d4ed8; }
+    .dsa08-demo .dsa08-node.is-fast { border-color: #dc2626; background: #fee2e2; color: #b91c1c; }
+    .dsa08-demo .dsa08-node.is-both { border-color: #9333ea; background: #f3e8ff; }
+    .dsa08-demo .dsa08-arrow { color: var(--text-muted); font-size: 1rem; }
+    .dsa08-demo .dsa08-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa08-demo .dsa08-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa08-demo .dsa08-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa08-demo .dsa08-node.is-slow { background: #1e3a5f; color: #93c5fd; }
+      .dsa08-demo .dsa08-node.is-fast { background: #450a0a; color: #fca5a5; }
+      .dsa08-demo .dsa08-node.is-both { background: #3b0764; color: #e9d5ff; }
+    }
+  </style>
+  <div class="dsa08-nodes" id="dsa08-nodes"></div>
+  <div class="dsa08-controls">
+    <button type="button" class="dsa08-btn" id="dsa08-prev">← Trước</button>
+    <button type="button" class="dsa08-btn" id="dsa08-next">Tiếp →</button>
+    <button type="button" class="dsa08-btn" id="dsa08-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa08-hint" id="dsa08-hint"></div>
+  <script>
+  (function () {
+    var vals = [1, 2, 3, 4, 5];
+    var steps = [
+      { slow: 0, fast: 0, hint: 'slow=0, fast=0. Cả hai bắt đầu từ head.' },
+      { slow: 1, fast: 2, hint: 'slow += 1, fast += 2. Fast đi nhanh gấp đôi.' },
+      { slow: 2, fast: 4, hint: 'slow=2, fast=4. Fast sắp chạm tail.' },
+      { slow: 3, fast: 1, hint: 'Cycle! fast gặp slow → phát hiện vòng lặp (Floyd).' }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa08-nodes').innerHTML = vals.map(function (v, i) {
+        var cls = 'dsa08-node';
+        if (i === s.slow && i === s.fast) cls += ' is-both';
+        else if (i === s.slow) cls += ' is-slow';
+        else if (i === s.fast) cls += ' is-fast';
+        return '<div class="' + cls + '">' + v + '</div>' + (i < vals.length-1 ? '<span class="dsa08-arrow">→</span>' : '<span class="dsa08-arrow">↩</span>');
+      }).join('');
+      document.getElementById('dsa08-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa08-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa08-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa08-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa08-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa08-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1300);
+    };
+    render();
+  })();
+  </script>
+</div>

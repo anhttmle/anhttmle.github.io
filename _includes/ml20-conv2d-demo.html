@@ -1,0 +1,321 @@
+<div class="conv2d-demo" id="conv2d-demo">
+  <style>
+    .conv2d-demo {
+      margin: 1.25rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      font-size: 0.85rem;
+    }
+
+    .conv2d-demo .conv2d-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.75rem 0 0.35rem;
+    }
+
+    .conv2d-demo .conv2d-title:first-child {
+      margin-top: 0;
+    }
+
+    .conv2d-demo .conv2d-grid {
+      display: inline-grid;
+      gap: 4px;
+    }
+
+    .conv2d-demo .conv2d-cell {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .conv2d-demo .conv2d-cell.is-overlap {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .conv2d-demo .conv2d-cell.is-kernel {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .conv2d-demo .conv2d-cell.is-output-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .conv2d-demo .conv2d-cell.is-output-done {
+      opacity: 0.55;
+    }
+
+    .conv2d-demo .conv2d-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .conv2d-demo .conv2d-kernel-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .conv2d-demo .conv2d-arrow {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+      max-width: 9rem;
+    }
+
+    .conv2d-demo .conv2d-controls {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .conv2d-demo .conv2d-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .conv2d-demo .conv2d-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .conv2d-demo .conv2d-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .conv2d-demo .conv2d-hint {
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .conv2d-demo .conv2d-formula {
+      margin-top: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .conv2d-demo .conv2d-cell.is-kernel {
+        background: #451a03;
+        border-color: #f59e0b;
+        color: #fde68a;
+      }
+
+      .conv2d-demo .conv2d-cell.is-overlap {
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+    }
+  </style>
+
+  <div class="conv2d-title">Input (ma trận 2D)</div>
+  <div class="conv2d-grid" id="conv2d-input" aria-label="Input image"></div>
+
+  <div class="conv2d-title">Kernel (filter 2D)</div>
+  <div class="conv2d-kernel-wrap">
+    <div class="conv2d-grid" id="conv2d-kernel" aria-label="Kernel"></div>
+    <span class="conv2d-arrow" aria-hidden="true">→ trượt theo width &amp; height</span>
+  </div>
+
+  <div class="conv2d-title">Output (feature map)</div>
+  <div class="conv2d-grid" id="conv2d-output" aria-label="Output"></div>
+
+  <div class="conv2d-controls">
+    <button type="button" class="conv2d-btn" id="conv2d-prev" aria-label="Bước trước">
+      ← Trước
+    </button>
+    <button type="button" class="conv2d-btn" id="conv2d-next" aria-label="Bước tiếp">
+      Tiếp →
+    </button>
+    <button type="button" class="conv2d-btn" id="conv2d-play" aria-label="Tự chạy">
+      ▶ Tự chạy
+    </button>
+  </div>
+
+  <div class="conv2d-hint" id="conv2d-hint"></div>
+  <div class="conv2d-formula" id="conv2d-formula"></div>
+
+  <script>
+  (function () {
+    var input = [
+      [1, 2, 3, 0],
+      [0, 1, 2, 3],
+      [3, 2, 1, 0],
+      [0, 3, 2, 1]
+    ];
+    var kernel = [
+      [1, -1],
+      [0,  1]
+    ];
+    var stride = 1;
+    var pos = 0;
+    var timer = null;
+
+    var inEl = document.getElementById('conv2d-input');
+    var kEl = document.getElementById('conv2d-kernel');
+    var outEl = document.getElementById('conv2d-output');
+    var hintEl = document.getElementById('conv2d-hint');
+    var formulaEl = document.getElementById('conv2d-formula');
+    var playBtn = document.getElementById('conv2d-play');
+
+    var inRows = input.length;
+    var inCols = input[0].length;
+    var kRows = kernel.length;
+    var kCols = kernel[0].length;
+    var outRows = Math.floor((inRows - kRows) / stride) + 1;
+    var outCols = Math.floor((inCols - kCols) / stride) + 1;
+
+    function posToRC(p) {
+      return {
+        r: Math.floor(p / outCols),
+        c: p % outCols
+      };
+    }
+
+    function convolve(r0, c0) {
+      var sum = 0;
+      var parts = [];
+      for (var kr = 0; kr < kRows; kr++) {
+        for (var kc = 0; kc < kCols; kc++) {
+          var a = input[r0 + kr][c0 + kc];
+          var k = kernel[kr][kc];
+          sum += a * k;
+          parts.push('(' + a + '×' + k + ')');
+        }
+      }
+      return { value: sum, parts: parts };
+    }
+
+    function maxPos() {
+      return outRows * outCols - 1;
+    }
+
+    function renderGrid(el, rows, cols, getCell) {
+      el.style.gridTemplateColumns = 'repeat(' + cols + ', 2.25rem)';
+      var html = '';
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          html += getCell(r, c);
+        }
+      }
+      el.innerHTML = html;
+    }
+
+    function render() {
+      var rc = posToRC(pos);
+      var startR = rc.r * stride;
+      var startC = rc.c * stride;
+      var result = convolve(startR, startC);
+
+      renderGrid(inEl, inRows, inCols, function (r, c) {
+        var cls = 'conv2d-cell';
+        if (
+          r >= startR && r < startR + kRows &&
+          c >= startC && c < startC + kCols
+        ) {
+          cls += ' is-overlap';
+        }
+        return '<div class="' + cls + '">' + input[r][c] + '</div>';
+      });
+
+      renderGrid(kEl, kRows, kCols, function (r, c) {
+        return '<div class="conv2d-cell is-kernel">' + kernel[r][c] + '</div>';
+      });
+
+      renderGrid(outEl, outRows, outCols, function (r, c) {
+        var p = r * outCols + c;
+        var val = convolve(r * stride, c * stride).value;
+        var cls = 'conv2d-cell';
+        if (p === pos) {
+          cls += ' is-output-active';
+        } else if (p < pos) {
+          cls += ' is-output-done';
+        }
+        return '<div class="' + cls + '">' + val + '</div>';
+      });
+
+      hintEl.textContent =
+        'Bước ' + (pos + 1) + '/' + (maxPos() + 1) +
+        ' · kernel tại (row=' + startR + ', col=' + startC + ')' +
+        ' · stride = ' + stride;
+
+      formulaEl.textContent =
+        'output[' + rc.r + '][' + rc.c + '] = ' +
+        result.parts.join(' + ') + ' = ' + result.value;
+    }
+
+    function stopPlay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      playBtn.classList.remove('is-active');
+      playBtn.textContent = '▶ Tự chạy';
+    }
+
+    document.getElementById('conv2d-prev').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.max(0, pos - 1);
+      render();
+    });
+
+    document.getElementById('conv2d-next').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.min(maxPos(), pos + 1);
+      render();
+    });
+
+    playBtn.addEventListener('click', function () {
+      if (timer) {
+        stopPlay();
+        return;
+      }
+      playBtn.classList.add('is-active');
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () {
+        pos = pos >= maxPos() ? 0 : pos + 1;
+        render();
+      }, 900);
+    });
+
+    render();
+  })();
+  </script>
+</div>

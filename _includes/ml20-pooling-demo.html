@@ -1,0 +1,405 @@
+<div class="pool-demo" id="pool-demo">
+  <style>
+    .pool-demo {
+      margin: 1.25rem 0;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      font-size: 0.85rem;
+    }
+
+    .pool-demo .pool-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0.75rem 0 0.35rem;
+    }
+
+    .pool-demo .pool-title:first-child {
+      margin-top: 0;
+    }
+
+    .pool-demo .pool-grid {
+      display: inline-grid;
+      gap: 4px;
+    }
+
+    .pool-demo .pool-cell {
+      width: 2.25rem;
+      height: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+    }
+
+    .pool-demo .pool-cell.is-window {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .pool-demo .pool-cell.is-window-dim {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      opacity: 0.45;
+    }
+
+    .pool-demo .pool-cell.is-max {
+      background: #dcfce7;
+      border-color: #16a34a;
+      color: #166534;
+      opacity: 1;
+      box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.25);
+    }
+
+    .pool-demo .pool-cell.is-output-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .pool-demo .pool-cell.is-output-done {
+      opacity: 0.55;
+    }
+
+    .pool-demo .pool-kernel-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pool-demo .pool-window-label {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.4;
+      max-width: 11rem;
+    }
+
+    .pool-demo .pool-controls {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .pool-demo .pool-btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .pool-demo .pool-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pool-demo .pool-btn.is-active {
+      background: var(--accent);
+      border-color: var(--accent-dark);
+      color: #fff;
+    }
+
+    .pool-demo .pool-hint {
+      margin-top: 0.6rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .pool-demo .pool-formula {
+      margin-top: 0.35rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.78rem;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    .pool-demo .pool-legend {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pool-demo .pool-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .pool-demo .pool-legend-swatch {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+    }
+
+    .pool-demo .pool-legend-swatch.is-window {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .pool-demo .pool-legend-swatch.is-max {
+      background: #dcfce7;
+      border-color: #16a34a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .pool-demo .pool-cell.is-window,
+      .pool-demo .pool-cell.is-window-dim {
+        background: #1e3a5f;
+        color: #93c5fd;
+      }
+
+      .pool-demo .pool-cell.is-max {
+        background: #14532d;
+        border-color: #22c55e;
+        color: #bbf7d0;
+      }
+    }
+  </style>
+
+  <div class="pool-title">Input (sau convolution)</div>
+  <div class="pool-grid" id="pool-input" aria-label="Input feature map"></div>
+
+  <div class="pool-title">Window (Max Pooling 2×2)</div>
+  <div class="pool-kernel-wrap">
+    <div class="pool-grid" id="pool-window" aria-label="Pooling window"></div>
+    <span class="pool-window-label" aria-hidden="true">
+      → trượt trên input, lấy giá trị lớn nhất
+    </span>
+  </div>
+
+  <div class="pool-title">Output (downsampled)</div>
+  <div class="pool-grid" id="pool-output" aria-label="Pooled output"></div>
+
+  <div class="pool-legend">
+    <span class="pool-legend-item">
+      <span class="pool-legend-swatch is-window"></span>
+      vùng window
+    </span>
+    <span class="pool-legend-item">
+      <span class="pool-legend-swatch is-max"></span>
+      giá trị max
+    </span>
+  </div>
+
+  <div class="pool-controls">
+    <button type="button" class="pool-btn" id="pool-prev" aria-label="Bước trước">
+      ← Trước
+    </button>
+    <button type="button" class="pool-btn" id="pool-next" aria-label="Bước tiếp">
+      Tiếp →
+    </button>
+    <button type="button" class="pool-btn" id="pool-play" aria-label="Tự chạy">
+      ▶ Tự chạy
+    </button>
+  </div>
+
+  <div class="pool-hint" id="pool-hint"></div>
+  <div class="pool-formula" id="pool-formula"></div>
+
+  <script>
+  (function () {
+    var input = [
+      [1, 3, 2, 4, 0, 1],
+      [5, 2, 1, 3, 2, 0],
+      [0, 4, 3, 1, 5, 2],
+      [2, 1, 5, 4, 1, 3],
+      [3, 0, 2, 6, 2, 1],
+      [1, 2, 4, 3, 0, 2]
+    ];
+    var winRows = 2;
+    var winCols = 2;
+    var stride = 2;
+    var pos = 0;
+    var timer = null;
+
+    var inEl = document.getElementById('pool-input');
+    var winEl = document.getElementById('pool-window');
+    var outEl = document.getElementById('pool-output');
+    var hintEl = document.getElementById('pool-hint');
+    var formulaEl = document.getElementById('pool-formula');
+    var playBtn = document.getElementById('pool-play');
+
+    var inRows = input.length;
+    var inCols = input[0].length;
+    var outRows = Math.floor((inRows - winRows) / stride) + 1;
+    var outCols = Math.floor((inCols - winCols) / stride) + 1;
+
+    function posToRC(p) {
+      return {
+        r: Math.floor(p / outCols),
+        c: p % outCols
+      };
+    }
+
+    function windowValues(startR, startC) {
+      var vals = [];
+      for (var wr = 0; wr < winRows; wr++) {
+        for (var wc = 0; wc < winCols; wc++) {
+          vals.push({
+            r: startR + wr,
+            c: startC + wc,
+            v: input[startR + wr][startC + wc]
+          });
+        }
+      }
+      return vals;
+    }
+
+    function maxPool(startR, startC) {
+      var vals = windowValues(startR, startC);
+      var maxVal = vals[0].v;
+      var maxCells = [vals[0]];
+
+      for (var i = 1; i < vals.length; i++) {
+        if (vals[i].v > maxVal) {
+          maxVal = vals[i].v;
+          maxCells = [vals[i]];
+        } else if (vals[i].v === maxVal) {
+          maxCells.push(vals[i]);
+        }
+      }
+
+      return {
+        value: maxVal,
+        cells: maxCells,
+        values: vals.map(function (item) { return item.v; })
+      };
+    }
+
+    function isMaxCell(r, c, maxCells) {
+      for (var i = 0; i < maxCells.length; i++) {
+        if (maxCells[i].r === r && maxCells[i].c === c) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function maxPos() {
+      return outRows * outCols - 1;
+    }
+
+    function renderGrid(el, rows, cols, getCell) {
+      el.style.gridTemplateColumns = 'repeat(' + cols + ', 2.25rem)';
+      var html = '';
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          html += getCell(r, c);
+        }
+      }
+      el.innerHTML = html;
+    }
+
+    function render() {
+      var rc = posToRC(pos);
+      var startR = rc.r * stride;
+      var startC = rc.c * stride;
+      var result = maxPool(startR, startC);
+
+      renderGrid(inEl, inRows, inCols, function (r, c) {
+        var inWindow =
+          r >= startR && r < startR + winRows &&
+          c >= startC && c < startC + winCols;
+        var cls = 'pool-cell';
+        if (inWindow) {
+          cls += isMaxCell(r, c, result.cells) ? ' is-max' : ' is-window-dim';
+        }
+        return '<div class="' + cls + '">' + input[r][c] + '</div>';
+      });
+
+      renderGrid(winEl, winRows, winCols, function (wr, wc) {
+        var r = startR + wr;
+        var c = startC + wc;
+        var v = input[r][c];
+        var cls = 'pool-cell is-window';
+        if (isMaxCell(r, c, result.cells)) {
+          cls = 'pool-cell is-max';
+        }
+        return '<div class="' + cls + '">' + v + '</div>';
+      });
+
+      renderGrid(outEl, outRows, outCols, function (r, c) {
+        var p = r * outCols + c;
+        var val = maxPool(r * stride, c * stride).value;
+        var cls = 'pool-cell';
+        if (p === pos) {
+          cls += ' is-output-active';
+        } else if (p < pos) {
+          cls += ' is-output-done';
+        }
+        return '<div class="' + cls + '">' + val + '</div>';
+      });
+
+      hintEl.textContent =
+        'Bước ' + (pos + 1) + '/' + (maxPos() + 1) +
+        ' · window tại (row=' + startR + ', col=' + startC + ')' +
+        ' · stride = ' + stride +
+        ' · ' + inRows + '×' + inCols + ' → ' + outRows + '×' + outCols;
+
+      formulaEl.textContent =
+        'output[' + rc.r + '][' + rc.c + '] = max(' +
+        result.values.join(', ') + ') = ' + result.value;
+    }
+
+    function stopPlay() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+      playBtn.classList.remove('is-active');
+      playBtn.textContent = '▶ Tự chạy';
+    }
+
+    document.getElementById('pool-prev').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.max(0, pos - 1);
+      render();
+    });
+
+    document.getElementById('pool-next').addEventListener('click', function () {
+      stopPlay();
+      pos = Math.min(maxPos(), pos + 1);
+      render();
+    });
+
+    playBtn.addEventListener('click', function () {
+      if (timer) {
+        stopPlay();
+        return;
+      }
+      playBtn.classList.add('is-active');
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () {
+        pos = pos >= maxPos() ? 0 : pos + 1;
+        render();
+      }, 900);
+    });
+
+    render();
+  })();
+  </script>
+</div>

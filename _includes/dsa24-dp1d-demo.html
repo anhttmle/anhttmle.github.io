@@ -1,0 +1,60 @@
+<div class="dsa24-demo" id="dsa24-demo">
+  <style>
+    .dsa24-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa24-demo .dsa24-track { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; align-items: center; }
+    .dsa24-demo .dsa24-label { font-size: 0.72rem; color: var(--text-muted); width: 3rem; font-weight: 600; }
+    .dsa24-demo .dsa24-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; font-size: 0.82rem; }
+    .dsa24-demo .dsa24-cell.is-filled { background: var(--accent-light); border-color: var(--accent); }
+    .dsa24-demo .dsa24-cell.is-curr { background: var(--accent); color: #fff; }
+    .dsa24-demo .dsa24-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa24-demo .dsa24-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa24-demo .dsa24-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa24-demo .dsa24-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+  </style>
+  <div class="dsa24-track"><span class="dsa24-label">n</span><div id="dsa24-n" style="display:flex;gap:4px"></div></div>
+  <div class="dsa24-track"><span class="dsa24-label">DP</span><div id="dsa24-dp" style="display:flex;gap:4px"></div></div>
+  <div class="dsa24-controls">
+    <button type="button" class="dsa24-btn" id="dsa24-prev">← Trước</button>
+    <button type="button" class="dsa24-btn" id="dsa24-next">Tiếp →</button>
+    <button type="button" class="dsa24-btn" id="dsa24-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa24-hint" id="dsa24-hint"></div>
+  <div class="dsa24-formula" id="dsa24-formula"></div>
+  <script>
+  (function () {
+    var n = 5;
+    var steps = [
+      { filled: 1, curr: 0, hint: 'Climbing Stairs: dp[0]=1, dp[1]=1 (base cases).', formula: 'dp[i] = dp[i-1] + dp[i-2]' },
+      { filled: 2, curr: 1, hint: 'dp[1]=1. Có 1 cách leo 1 bậc.', formula: 'dp[1] = 1' },
+      { filled: 3, curr: 2, hint: 'dp[2]=dp[1]+dp[0]=2. Có 2 cách leo 2 bậc.', formula: 'dp[2] = 1+1 = 2' },
+      { filled: 4, curr: 3, hint: 'dp[3]=2+1=3. Overlapping subproblems → DP tránh tính lại.', formula: 'dp[3] = 2+1 = 3' },
+      { filled: 5, curr: 4, hint: 'dp[4]=3+2=5. O(n) time, O(1) space với 2 biến.', formula: 'dp[4] = 3+2 = 5' }
+    ];
+    var dp = [1, 1, 2, 3, 5];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa24-n').innerHTML = Array.from({length:n}, function(_,i) {
+        return '<div class="dsa24-cell">' + (i+1) + '</div>';
+      }).join('');
+      document.getElementById('dsa24-dp').innerHTML = dp.map(function(v,i) {
+        var cls = 'dsa24-cell';
+        if (i < s.filled) cls += ' is-filled';
+        if (i === s.curr) cls += ' is-curr';
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa24-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+      document.getElementById('dsa24-formula').textContent = s.formula;
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa24-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa24-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa24-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa24-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa24-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1300);
+    };
+    render();
+  })();
+  </script>
+</div>

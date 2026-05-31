@@ -1,0 +1,55 @@
+<div class="dsa16-demo" id="dsa16-demo">
+  <style>
+    .dsa16-demo { margin: 1.25rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); font-size: 0.85rem; }
+    .dsa16-demo .dsa16-track { display: flex; gap: 4px; flex-wrap: wrap; margin: 0.5rem 0; }
+    .dsa16-demo .dsa16-cell { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg); font-family: monospace; font-weight: 600; font-size: 0.82rem; }
+    .dsa16-demo .dsa16-cell.is-active { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+    .dsa16-demo .dsa16-cell.is-discarded { opacity: 0.3; text-decoration: line-through; }
+    .dsa16-demo .dsa16-cell.is-range { background: var(--accent-light); border-color: var(--accent); }
+    .dsa16-demo .dsa16-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa16-demo .dsa16-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa16-demo .dsa16-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    .dsa16-demo .dsa16-formula { margin-top: 0.35rem; font-family: monospace; font-size: 0.78rem; }
+  </style>
+  <div class="dsa16-track" id="dsa16-array"></div>
+  <div class="dsa16-controls">
+    <button type="button" class="dsa16-btn" id="dsa16-prev">← Trước</button>
+    <button type="button" class="dsa16-btn" id="dsa16-next">Tiếp →</button>
+    <button type="button" class="dsa16-btn" id="dsa16-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa16-hint" id="dsa16-hint"></div>
+  <div class="dsa16-formula" id="dsa16-formula"></div>
+  <script>
+  (function () {
+    var arr = [-1, 0, 3, 5, 9, 12]; var target = 9;
+    var steps = [
+      { lo: 0, hi: 5, mid: 2, hint: 'lo=0, hi=5, mid=2. arr[2]=3 < 9 → lo=mid+1', found: -1 },
+      { lo: 3, hi: 5, mid: 4, hint: 'lo=3, hi=5, mid=4. arr[4]=9 == 9 ✓ Found!', found: 4 },
+      { lo: 0, hi: 5, mid: 2, hint: 'Mỗi bước loại bỏ nửa search space → O(log n)', found: -1 }
+    ];
+    var pos = 0, timer = null;
+    function render() {
+      var s = steps[pos];
+      document.getElementById('dsa16-array').innerHTML = arr.map(function(v,i) {
+        var cls = 'dsa16-cell';
+        if (i === s.found) cls += ' is-active';
+        else if (i === s.mid && pos < 2) cls += ' is-active';
+        else if (i < s.lo || i > s.hi) cls += ' is-discarded';
+        else cls += ' is-range';
+        return '<div class="' + cls + '">' + v + '</div>';
+      }).join('');
+      document.getElementById('dsa16-hint').textContent = 'Bước ' + (pos+1) + '/' + steps.length + ' · ' + s.hint;
+      document.getElementById('dsa16-formula').textContent = 'target=' + target + ', search [lo..hi]=[' + s.lo + '..' + s.hi + ']';
+    }
+    function stopPlay() { if (timer) { clearInterval(timer); timer = null; } document.getElementById('dsa16-play').textContent = '▶ Tự chạy'; }
+    document.getElementById('dsa16-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos-1); render(); };
+    document.getElementById('dsa16-next').onclick = function () { stopPlay(); pos = Math.min(steps.length-1, pos+1); render(); };
+    document.getElementById('dsa16-play').onclick = function () {
+      if (timer) { stopPlay(); return; }
+      document.getElementById('dsa16-play').textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps.length-1 ? 0 : pos+1; render(); }, 1400);
+    };
+    render();
+  })();
+  </script>
+</div>

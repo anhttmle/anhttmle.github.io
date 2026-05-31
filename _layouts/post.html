@@ -1,0 +1,48 @@
+---
+layout: default
+---
+<div class="profile-wrapper">
+  <article class="post-article">
+
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </time>
+        {% if page.categories.size > 0 %}
+        <span class="post-meta-cats">
+          {% for cat in page.categories %}
+          <a class="skill-pill" href="/blog/#{{ cat | downcase }}">
+            {{ cat }}
+          </a>
+          {% endfor %}
+        </span>
+        {% endif %}
+        {% if page.series %}
+        <a
+          class="post-series-badge"
+          href="/series/#{{ page.series | slugify }}"
+        >
+          Series: {{ page.series }}
+          {% if page.series_part %}&nbsp;&middot;&nbsp;Part {{ page.series_part }}{% endif %}
+        </a>
+        {% endif %}
+      </div>
+
+      <h1 class="post-title">{{ page.title }}</h1>
+
+      {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+      {% endif %}
+    </header>
+
+    <hr class="hr" style="margin-top: 20px;">
+
+    <div class="post-body">
+      {{ content }}
+    </div>
+
+    {% include post_nav.html %}
+
+  </article>
+</div>

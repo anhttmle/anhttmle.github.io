@@ -1,0 +1,116 @@
+<div class="dsa04-demo" id="dsa04-demo">
+  <style>
+    .dsa04-demo {
+      margin: 1.25rem 0; padding: 1rem 1.1rem;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--bg); font-size: 0.85rem;
+    }
+    .dsa04-demo .dsa04-tabs { display: flex; gap: 0.45rem; margin-bottom: 0.75rem; }
+    .dsa04-demo .dsa04-tab {
+      padding: 0.35rem 0.8rem; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem;
+    }
+    .dsa04-demo .dsa04-tab.is-active { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+    .dsa04-demo .dsa04-title { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; margin: 0.5rem 0 0.35rem; }
+    .dsa04-demo .dsa04-stack { display: flex; flex-direction: column-reverse; align-items: center; gap: 4px; min-height: 140px; }
+    .dsa04-demo .dsa04-queue { display: flex; gap: 4px; align-items: center; min-height: 60px; flex-wrap: wrap; }
+    .dsa04-demo .dsa04-cell {
+      width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 4px; background: var(--card-bg);
+      font-family: monospace; font-weight: 600; font-size: 0.82rem;
+    }
+    .dsa04-demo .dsa04-cell.is-top { background: var(--accent); color: #fff; border-color: var(--accent-dark); }
+    .dsa04-demo .dsa04-cell.is-front { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+    .dsa04-demo .dsa04-arrow { color: var(--text-muted); font-size: 0.75rem; }
+    .dsa04-demo .dsa04-controls { margin-top: 0.85rem; display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .dsa04-demo .dsa04-btn { padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--card-bg); cursor: pointer; font-size: 0.82rem; }
+    .dsa04-demo .dsa04-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .dsa04-demo .dsa04-hint { margin-top: 0.6rem; color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; }
+    @media (prefers-color-scheme: dark) {
+      .dsa04-demo .dsa04-cell.is-front { background: #451a03; border-color: #f59e0b; color: #fde68a; }
+    }
+  </style>
+
+  <div class="dsa04-tabs">
+    <button type="button" class="dsa04-tab is-active" data-mode="stack">Stack (LIFO)</button>
+    <button type="button" class="dsa04-tab" data-mode="queue">Queue (FIFO)</button>
+  </div>
+  <div id="dsa04-stack-view">
+    <div class="dsa04-title">Stack — push/pop từ top</div>
+    <div class="dsa04-stack" id="dsa04-stack"></div>
+  </div>
+  <div id="dsa04-queue-view" hidden>
+    <div class="dsa04-title">Queue — enqueue rear, dequeue front</div>
+    <div class="dsa04-queue" id="dsa04-queue"></div>
+  </div>
+  <div class="dsa04-controls">
+    <button type="button" class="dsa04-btn" id="dsa04-prev">← Trước</button>
+    <button type="button" class="dsa04-btn" id="dsa04-next">Tiếp →</button>
+    <button type="button" class="dsa04-btn" id="dsa04-play">▶ Tự chạy</button>
+  </div>
+  <div class="dsa04-hint" id="dsa04-hint"></div>
+
+  <script>
+  (function () {
+    var stackSteps = [
+      { data: [], action: 'Khởi tạo stack rỗng' },
+      { data: [5], action: 'push(5): thêm vào top' },
+      { data: [5, 3], action: 'push(3): LIFO — phần tử mới ở trên cùng' },
+      { data: [5], action: 'pop(): lấy 3 ra (top trước)' }
+    ];
+    var queueSteps = [
+      { data: [], action: 'Khởi tạo queue rỗng' },
+      { data: [5], action: 'enqueue(5): thêm vào rear' },
+      { data: [5, 3], action: 'enqueue(3): 3 ở cuối hàng' },
+      { data: [3], action: 'dequeue(): lấy 5 ra (front trước — FIFO)' }
+    ];
+    var mode = 'stack', pos = 0, timer = null;
+    var hintEl = document.getElementById('dsa04-hint');
+    var playBtn = document.getElementById('dsa04-play');
+
+    function steps() { return mode === 'stack' ? stackSteps : queueSteps; }
+
+    function render() {
+      var s = steps()[pos];
+      if (mode === 'stack') {
+        document.getElementById('dsa04-stack').innerHTML = s.data.length === 0
+          ? '<span class="dsa04-arrow">(empty)</span>'
+          : s.data.map(function (v, i) {
+            return '<div class="dsa04-cell' + (i === s.data.length - 1 ? ' is-top' : '') + '">' + v + '</div>';
+          }).join('');
+      } else {
+        document.getElementById('dsa04-queue').innerHTML = s.data.length === 0
+          ? '<span class="dsa04-arrow">(empty)</span>'
+          : s.data.map(function (v, i) {
+            return '<div class="dsa04-cell' + (i === 0 ? ' is-front' : '') + '">' + v + '</div>' +
+              (i < s.data.length - 1 ? '<span class="dsa04-arrow">→</span>' : '');
+          }).join('');
+      }
+      hintEl.textContent = 'Bước ' + (pos + 1) + '/' + steps().length + ' · ' + s.action;
+    }
+
+    function stopPlay() {
+      if (timer) { clearInterval(timer); timer = null; }
+      playBtn.textContent = '▶ Tự chạy';
+    }
+
+    document.querySelectorAll('.dsa04-tab').forEach(function (btn) {
+      btn.onclick = function () {
+        mode = btn.dataset.mode;
+        document.querySelectorAll('.dsa04-tab').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+        document.getElementById('dsa04-stack-view').hidden = mode !== 'stack';
+        document.getElementById('dsa04-queue-view').hidden = mode !== 'queue';
+        pos = 0; stopPlay(); render();
+      };
+    });
+    document.getElementById('dsa04-prev').onclick = function () { stopPlay(); pos = Math.max(0, pos - 1); render(); };
+    document.getElementById('dsa04-next').onclick = function () { stopPlay(); pos = Math.min(steps().length - 1, pos + 1); render(); };
+    playBtn.onclick = function () {
+      if (timer) { stopPlay(); return; }
+      playBtn.textContent = '⏸ Dừng';
+      timer = setInterval(function () { pos = pos >= steps().length - 1 ? 0 : pos + 1; render(); }, 1200);
+    };
+    render();
+  })();
+  </script>
+</div>
