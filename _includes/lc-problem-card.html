@@ -1,0 +1,79 @@
+<div class="lc-card">
+  <style>
+    .lc-card {
+      margin: 1rem 0;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm);
+      background: var(--card-bg);
+      font-size: 0.88rem;
+    }
+    .lc-card .lc-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .lc-card .lc-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .lc-card .lc-title {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+    .lc-card .lc-desc {
+      color: var(--text);
+      line-height: 1.55;
+      margin: 0.35rem 0;
+    }
+    .lc-card .lc-pattern {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      margin: 0.35rem 0;
+      padding: 0.4rem 0.55rem;
+      background: var(--bg);
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .lc-card .lc-pattern strong {
+      color: var(--accent-dark);
+    }
+    .lc-card .lc-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lc-card .lc-link:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+  </style>
+
+  <div class="lc-card-header">
+    <span class="lc-badge">#{{ include.id }}</span>
+    <span class="lc-title">{{ include.title }}</span>
+  </div>
+  <p class="lc-desc">{{ include.desc }}</p>
+  <p class="lc-pattern"><strong>Pattern:</strong> {{ include.pattern }}</p>
+  {% if include.link %}
+  <a class="lc-link" href="{{ include.link | relative_url }}">Xem lời giải chi tiết →</a>
+  {% endif %}
+</div>
