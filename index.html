@@ -20,89 +20,59 @@ title: "Home"
 
 {% if site.posts.size > 0 %}
 
-{% assign all_cats = "" | split: "" %}
+{% assign all_series = "" | split: "" %}
 {% for post in site.posts %}
-  {% for cat in post.categories %}
-    {% unless all_cats contains cat %}
-      {% assign all_cats = all_cats | push: cat %}
+  {% if post.series %}
+    {% unless all_series contains post.series %}
+      {% assign all_series = all_series | push: post.series %}
     {% endunless %}
-  {% endfor %}
+  {% endif %}
 {% endfor %}
+{% assign all_series = all_series | sort %}
 
 <div class="section-card topics-card">
   <h2 class="section-title">Writing by Topic</h2>
 
-  {% if all_cats.size > 1 %}
-  <div class="topic-filters" role="tablist" aria-label="Browse by topic">
-    {% for cat in all_cats %}
-    <button
-      class="topic-btn{% if forloop.first %} active{% endif %}"
-      data-topic="{{ cat | downcase }}"
-      role="tab"
-      aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-      aria-controls="topic-panel-{{ cat | downcase }}"
-    >{{ cat }}</button>
-    {% endfor %}
+  <div class="topic-panel-header">
+    <span class="topic-panel-count">
+      {{ all_series.size }} series
+    </span>
+    <a
+      class="topic-panel-browse"
+      href="/series/"
+    >Browse all &rarr;</a>
   </div>
-  {% endif %}
 
-  {% for cat in all_cats %}
-    {% assign cat_posts = "" | split: "" %}
-    {% for post in site.posts %}
-      {% if post.categories contains cat %}
-        {% assign cat_posts = cat_posts | push: post %}
-      {% endif %}
+  {% if all_series.size > 0 %}
+  <ul class="home-series-list">
+    {% for series_name in all_series %}
+      {% assign s_posts = site.posts
+          | where: "series", series_name
+          | sort: "series_part" %}
+    <li class="home-series-item">
+      <a
+        class="home-series-link"
+        href="/series/#{{ series_name | slugify }}"
+      >
+        <span class="home-series-name">{{ series_name }}</span>
+        <span class="home-series-meta">
+          {{ s_posts.size }} part{% if s_posts.size != 1 %}s{% endif %}
+          &middot;
+          {{ s_posts.first.date | date: "%b %Y" }}
+          &ndash; {{ s_posts.last.date | date: "%b %Y" }}
+        </span>
+        <span class="home-series-preview">
+          Part 1: {{ s_posts.first.title }}
+        </span>
+      </a>
+    </li>
     {% endfor %}
-
-    {% if cat_posts.size > 0 %}
-    <div
-      class="topic-panel"
-      id="topic-panel-{{ cat | downcase }}"
-      data-topic="{{ cat | downcase }}"
-      role="tabpanel"
-      {% unless forloop.first %}hidden{% endunless %}
-    >
-      <div class="topic-panel-header">
-        <div class="topic-panel-meta">
-          <span class="topic-panel-name">{{ cat }}</span>
-          <span class="topic-panel-count">
-            {{ cat_posts.size }} post{% if cat_posts.size != 1 %}s{% endif %}
-          </span>
-        </div>
-        <a
-          class="topic-panel-browse"
-          href="/blog/#{{ cat | downcase }}"
-        >Browse all &rarr;</a>
-      </div>
-
-      <ul class="topic-post-list">
-        {% for post in cat_posts %}
-        <li
-          class="topic-post-item{% if forloop.index > 6 %} topic-post-item--collapsed{% endif %}"
-          data-index="{{ forloop.index }}"
-        >
-          <time
-            class="topic-post-date"
-            datetime="{{ post.date | date_to_xmlschema }}"
-          >{{ post.date | date: "%b %Y" }}</time>
-          <a class="topic-post-title" href="{{ post.url }}">
-            {{ post.title }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-
-      {% assign hidden_count = cat_posts.size | minus: 6 %}
-      {% if hidden_count > 0 %}
-      <button
-        type="button"
-        class="topic-show-more"
-        aria-expanded="false"
-      >Show {{ hidden_count }} more</button>
-      {% endif %}
-    </div>
-    {% endif %}
-  {% endfor %}
+  </ul>
+  {% else %}
+  <p style="color:var(--text-muted);font-style:italic;margin:0;">
+    No series yet.
+  </p>
+  {% endif %}
 
 </div>
 
@@ -115,62 +85,3 @@ title: "Home"
 {% endif %}
 
 </div>
-
-<script>
-(function () {
-  var VISIBLE = 6;
-  var panels = document.querySelectorAll('.topic-panel');
-  var tabBtns = document.querySelectorAll('.topics-card .topic-btn');
-
-  function applyCollapse(panel, expanded) {
-    panel.querySelectorAll('.topic-post-item').forEach(function (item) {
-      var idx = parseInt(item.dataset.index, 10);
-      var hide = !expanded && idx > VISIBLE;
-      item.classList.toggle('topic-post-item--collapsed', hide);
-    });
-    var btn = panel.querySelector('.topic-show-more');
-    if (btn) {
-      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-      var hidden = panel.querySelectorAll('.topic-post-item--collapsed').length;
-      if (expanded) {
-        btn.textContent = 'Show less';
-      } else {
-        btn.textContent = 'Show ' + hidden + ' more';
-      }
-    }
-  }
-
-  function switchTopic(topic) {
-    panels.forEach(function (panel) {
-      var active = panel.dataset.topic === topic;
-      panel.hidden = !active;
-    });
-    tabBtns.forEach(function (btn) {
-      var isActive = btn.dataset.topic === topic;
-      btn.classList.toggle('active', isActive);
-      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
-  }
-
-  tabBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      switchTopic(btn.dataset.topic);
-    });
-  });
-
-  panels.forEach(function (panel) {
-    var showMore = panel.querySelector('.topic-show-more');
-
-    if (showMore) {
-      showMore.addEventListener('click', function () {
-        var expanded = showMore.getAttribute('aria-expanded') === 'true';
-        applyCollapse(panel, !expanded);
-      });
-    }
-  });
-
-  if (tabBtns.length > 0) {
-    switchTopic(tabBtns[0].dataset.topic);
-  }
-})();
-</script>
