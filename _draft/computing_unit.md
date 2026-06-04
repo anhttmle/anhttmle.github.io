@@ -1,5 +1,5 @@
 ![CPU, GPU, TPU diagram](/assets/content_images/computing_unit-01.png)
-Ref: https://www.youtube.com/watch?v=MUWAbpg1xLo
+Reference: https://www.youtube.com/watch?v=MUWAbpg1xLo
 
 # CPU
 CPU (Central Processing Unit): CPU xử lý các tác vụ tính toán đa mục đích. 
