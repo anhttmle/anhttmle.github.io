@@ -1,3 +1,5 @@
+Reference: https://blog.bytebytego.com/p/how-cursor-shipped-its-coding-agent
+
 # 1. Coding agent vs Agentic coding model
 
 <img width="1456" height="915" alt="image" src="https://github.com/user-attachments/assets/c54a6f28-7efc-4877-bdeb-9aac2aa8824c" />
