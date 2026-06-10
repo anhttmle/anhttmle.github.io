@@ -38,5 +38,4 @@ Sử dụng các đòn bẩy (levers) để giảm chi phí và thời gian, đ�
 - **Multipliers**
   - Tăng doanh thu (**Revenue**): Thay vì chỉ bán sản phẩm theo cách truyền thống "một đổi một", doanh nghiệp cần tìm cách để khách hàng chi tiêu nhiều hơn thông qua việc cập nhật, nâng cấp và bán thêm dịch vụ (**3Up strategy**) dựa trên nền tảng khách hàng sẵn có
   - Mở rộng phạm vi tiếp cận (**Reach**): Doanh nghiệp cần tìm cách đưa sản phẩm đến với nhiều người hơn thông qua việc xây dựng chiến lược go-to-market hiệu quả
-  - Tăng độ bao phủ (**Coverage**): Khuyến khích khách hàng sử dụng sản phẩm thường xuyên hơn (ví dụ: uống cà phê nhiều lần trong ngày) hoặc tạo điều kiện để khách hàng lan tỏa sản phẩm một cách tự nhiên (virally) đến bạn bè và mạng lưới xung quanh họ
-  - 
+  - Tăng độ bao phủ (**Coverage**): Khuyến khích khách hàng sử dụng sản phẩm thường xuyên hơn (ví dụ: uống cà phê nhiều lần trong ngày) hoặc tạo điều kiện để khách hàng lan tỏa sản phẩm một cách tự nhiên (virally) đến bạn bè và mạng lưới xung quanh họ.
