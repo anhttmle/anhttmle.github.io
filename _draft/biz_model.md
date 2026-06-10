@@ -19,7 +19,10 @@ Doanh nghiệp cần xác định rõ cách thức tạo ra và cung cấp giá 
 Xác định "năng lực tạo ra giá trị đặc biệt" (_Capability of really Exceptional Value_) mà khách hàng công nhận ở bạn. Đừng cố gắng kiếm tiền từ mọi thứ, hãy tập trung vào cốt lõi mà khách hàng thực sự cần
 
 ### Chiến lược 'Three-Up' (Cập nhật, Nâng cấp, Bán thêm): 
-Để duy trì khách hàng lâu dài và tăng giá trị vòng đời (LTV - Life time value), hãy áp dụng việc **cập nhật sản phẩm**, **nâng cấp tính năng** và **bán thêm dịch vụ** dựa trên nền tảng khách hàng hiện có
+Để duy trì khách hàng lâu dài và tăng giá trị vòng đời (LTV - Life time value), hãy áp dụng việc **cập nhật sản phẩm**, **nâng cấp tính năng** và **bán thêm dịch vụ** dựa trên nền tảng khách hàng hiện có. Bí quyết nằm ở việc giữ nguyên nhóm khách hàng mục tiêu. Khi bạn hiểu rõ khách hàng, việc liên tục áp dụng "Three-Up" giúp xây dựng một "con hào" (moat) bảo vệ doanh nghiệp, khiến sản phẩm trở nên vô cùng giá trị, tăng khả năng cạnh tranh và tính bền vững cho doanh nghiệp trong dài hạn.
+- **Cập nhật** (Update): Việc liên tục làm mới sản phẩm hoặc dữ liệu là yếu tố sinh tử. Ví dụ, nếu dữ liệu cung cấp cho khách hàng bị lỗi thời, họ sẽ ngừng sử dụng dịch vụ. Cập nhật giúp đảm bảo sản phẩm luôn giữ được giá trị cốt lõi và khách hàng vẫn tiếp tục tin dùng.
+- **Nâng cấp** (Upgrade): Đây là việc cung cấp thêm các tính năng hoặc cải tiến cao cấp hơn so với phiên bản hiện tại. Ví dụ, nếu khách hàng đang sử dụng công cụ quản lý cơ bản, doanh nghiệp có thể cung cấp thêm các tính năng phân tích (analytics) hoặc đề xuất thông minh (recommendations) mà khách hàng sẵn sàng trả thêm phí vì thấy được giá trị tăng thêm.
+- **Bán thêm** (Upsell): Thay vì chỉ dừng lại ở một tính năng nhỏ, doanh nghiệp mở rộng danh mục cung cấp cho cùng một nhóm khách hàng. Khi khách hàng đã tin tưởng và sử dụng sản phẩm "cốt lõi", việc bán thêm các dịch vụ bổ trợ hoặc các gói nâng cao giúp doanh nghiệp tối đa hóa doanh thu từ mỗi khách hàng hiện có mà không cần tìm kiếm khách hàng mới ngay lập tức
 
 ### Tối ưu hóa hiệu quả hoạt động: 
 Sử dụng các đòn bẩy (levers) để giảm chi phí và thời gian, đồng thời tạo ra các yếu tố nhân bản (multipliers) để tăng doanh thu và phạm vi tiếp cận
