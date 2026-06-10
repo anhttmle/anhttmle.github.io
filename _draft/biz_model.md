@@ -18,7 +18,7 @@ Doanh nghiệp cần xác định rõ cách thức tạo ra và cung cấp giá 
 ### Tập trung vào 'Core' (Cốt lõi): 
 Xác định "năng lực tạo ra giá trị đặc biệt" (_Capability of really Exceptional Value_) mà khách hàng công nhận ở bạn. Đừng cố gắng kiếm tiền từ mọi thứ, hãy tập trung vào cốt lõi mà khách hàng thực sự cần
 
-### Chiến lược 'Three-Up' (Cập nhật, Nâng cấp, Bán thêm): 
+### Chiến lược '3Up' (Cập nhật, Nâng cấp, Bán thêm): 
 Để duy trì khách hàng lâu dài và tăng giá trị vòng đời (LTV - Life time value), hãy áp dụng việc **cập nhật sản phẩm**, **nâng cấp tính năng** và **bán thêm dịch vụ** dựa trên nền tảng khách hàng hiện có. Bí quyết nằm ở việc giữ nguyên nhóm khách hàng mục tiêu. Khi bạn hiểu rõ khách hàng, việc liên tục áp dụng "Three-Up" giúp xây dựng một "con hào" (moat) bảo vệ doanh nghiệp, khiến sản phẩm trở nên vô cùng giá trị, tăng khả năng cạnh tranh và tính bền vững cho doanh nghiệp trong dài hạn.
 - **Cập nhật** (Update): Việc liên tục làm mới sản phẩm hoặc dữ liệu là yếu tố sinh tử. Ví dụ, nếu dữ liệu cung cấp cho khách hàng bị lỗi thời, họ sẽ ngừng sử dụng dịch vụ. Cập nhật giúp đảm bảo sản phẩm luôn giữ được giá trị cốt lõi và khách hàng vẫn tiếp tục tin dùng.
 - **Nâng cấp** (Upgrade): Đây là việc cung cấp thêm các tính năng hoặc cải tiến cao cấp hơn so với phiên bản hiện tại. Ví dụ, nếu khách hàng đang sử dụng công cụ quản lý cơ bản, doanh nghiệp có thể cung cấp thêm các tính năng phân tích (analytics) hoặc đề xuất thông minh (recommendations) mà khách hàng sẵn sàng trả thêm phí vì thấy được giá trị tăng thêm.
@@ -32,7 +32,7 @@ Sử dụng các đòn bẩy (levers) để giảm chi phí và thời gian, đ�
   - Cấu trúc lại sản phẩm: Thay vì làm mọi thứ theo cách thủ công (như viết tay dữ liệu), doanh nghiệp có thể sử dụng các nền tảng hoặc công nghệ để tự động hóa, giúp khách hàng nhận được giá trị tức thời mà không tốn công sức.
   - Tính không gây gián đoạn (Non-disruptive): Các đòn bẩy hiệu quả nhất là những cách giúp khách hàng đạt được mục tiêu nhanh hơn mà không buộc họ phải thay đổi toàn bộ quy trình làm việc hiện tại hoặc hệ sinh thái của họ.
 - **Multipliers**
-  - Tăng doanh thu (**Revenue**): Thay vì chỉ bán sản phẩm theo cách truyền thống "một đổi một", doanh nghiệp cần tìm cách để khách hàng chi tiêu nhiều hơn thông qua việc cập nhật, nâng cấp và bán thêm dịch vụ (**Three-up strategy**) dựa trên nền tảng khách hàng sẵn có
+  - Tăng doanh thu (**Revenue**): Thay vì chỉ bán sản phẩm theo cách truyền thống "một đổi một", doanh nghiệp cần tìm cách để khách hàng chi tiêu nhiều hơn thông qua việc cập nhật, nâng cấp và bán thêm dịch vụ (**3Up strategy**) dựa trên nền tảng khách hàng sẵn có
   - Mở rộng phạm vi tiếp cận (**Reach**): Doanh nghiệp cần tìm cách đưa sản phẩm đến với nhiều người hơn thông qua việc xây dựng chiến lược go-to-market hiệu quả
   - Tăng độ bao phủ (**Coverage**): Khuyến khích khách hàng sử dụng sản phẩm thường xuyên hơn (ví dụ: uống cà phê nhiều lần trong ngày) hoặc tạo điều kiện để khách hàng lan tỏa sản phẩm một cách tự nhiên (virally) đến bạn bè và mạng lưới xung quanh họ
   - 
