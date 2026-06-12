@@ -34,3 +34,26 @@
   implement_edit --> implement
 
 ```
+
+# Frameworks:
+- OpenSpec - LIGHTWEIGHT
+- Speckit (Github) - HEAVY
+- Kiro - HEAVY
+
+# Sample Structure
+## Why
+
+## What
+
+## Constraint
+### Must
+### Must not
+### Out of scope
+
+## Current state
+
+## Task
+### What
+### Files
+### Tests
+### Verify
