@@ -1,6 +1,6 @@
 ```mermaid
   flowchart LR
-  prompt_spec(("Prompt Specs"))
+  prompt_spec(("Build Specs"))
   req["Requirements"]
 
   prompt_spec --> req
@@ -22,8 +22,8 @@
   
   
 
-  spec_prompt_edit --> req
-  task_edit --> task
+  spec_prompt_edit --> prompt_spec
+  task_edit --> design
   implement_edit --> implement
 
 ```
