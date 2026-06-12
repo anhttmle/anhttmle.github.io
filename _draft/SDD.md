@@ -1,3 +1,10 @@
+# Software Development Life Cycle
+
+1. Specify
+2. Plan
+3. Task
+4. Implement
+
 ```mermaid
   flowchart LR
   prompt_spec(("Build Specs"))
