@@ -45,4 +45,20 @@ Using RAG for enhancing context
 - UX design for system inherently unpredictable
 - Think about the others end not just the code in the middle
 
-# 
+
+# 7 kỹ năng cần thiết để trở thành kỹ sư AI Agent:
+
+### System Design: 
+Hiểu cách các thành phần như LLM, công cụ, cơ sở dữ liệu và các tác nhân con (sub-agents) phối hợp nhịp nhàng với nhau.
+### Tool and Contract Design: 
+Đảm bảo các công cụ có cấu trúc dữ liệu chặt chẽ để AI không phải "tự suy diễn" các yêu cầu đầu vào.
+### Retrieval Engineering: 
+Tối ưu hóa RAG (Retrieval Augmented Generation) thông qua việc phân đoạn tài liệu, mô hình nhúng và xếp hạng lại (reranking) để đảm bảo ngữ cảnh chính xác.
+### Reliability Engineering: 
+Xây dựng cơ chế xử lý lỗi như thử lại (retry), đặt thời gian chờ (timeout) và các mạch ngắt (circuit breakers) để hệ thống không bị treo khi gặp sự cố.
+### Security and Safety: 
+Thiết lập các ranh giới quyền hạn, kiểm tra đầu vào và bộ lọc đầu ra để tránh các cuộc tấn công như tiêm lệnh (prompt injection).
+### Evaluation and Observability: 
+Sử dụng tính năng theo dõi (tracing) và các quy trình kiểm thử tự động để đo lường hiệu suất thay vì chỉ dựa vào cảm tính.
+### Product Thinking: 
+Thiết kế trải nghiệm người dùng (UX) để xử lý các tình huống AI không chắc chắn, tạo sự tin tưởng và hỗ trợ người dùng một cách hiệu quả.
