@@ -237,13 +237,13 @@ projects:
     time: "Apr 2025 - Present"
     logo: "assets/profile/anhtt.jpg"
     description:
-      - ""
+      - "Consult and design solutions for adopting AI in legacy project migrations such as COBOL/RPG."
   - employer: "Freelancer"
     name: "Booking Assistant"
     time: "June 2023 - Mar 2024"
     logo: "assets/profile/anhtt.jpg"
     description:
-      - ""
+      - "Designed a chatbot for booking assistance. That help users with reservations, booking-related questions, and support workflows"
   - employer: "Viettel Cyber Security"
     name: "Internal LLM applications"
     time: "Apr 2023 - Sep 2023"
