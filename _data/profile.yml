@@ -33,14 +33,6 @@ experiences:
           <br>- Technical & Quality requirement defining
           <br>- Guiding & Training members"
           children:
-
-  - employer: "Freelancer"
-    time: "Jun 2023 - Present"
-    logo: "assets/profile/anhtt.jpg"
-    employment_type: "Part-time"
-    location: "Any"
-    location_type: "Remote"
-
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Sep 2023"
     logo: "/assets/profile/vcs.png"
@@ -76,6 +68,34 @@ experiences:
         description:
           text: "Design & Develop AI Cyber Security products that optimal and scalable."
           children:
+  - employer: "Freelancer"
+    time: "Jun 2023 - Present"
+    logo: "assets/profile/anhtt.jpg"
+    skills:
+      - System Design
+      - Solution Design
+      - ML/DL
+      - Tensorflow
+      - Keras
+      - Pytorch
+      - Numpy
+      - Pandas
+      - Matplotlib
+      - SQL
+      - NoSQL
+      - Python
+      - Docker
+      - K8s
+      - Kubeflow
+      - Microservice
+    roles: 
+      - name: "Solution Architecture"
+        employment_type: "Part-time"
+        location: "Any"
+        location_type: "Remote"
+        descriotion:
+          text: ""
+          children: ""
   - employer: "Myself"
     time: "Apr 2018 - Dec 2025"
     logo: "/assets/profile/anhtt.jpg"
