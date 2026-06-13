@@ -90,10 +90,11 @@ experiences:
       - Microservice
     roles: 
       - name: "Solution Architecture"
+        time: "Jun 2023 - Present"
         employment_type: "Part-time"
         location: "Any"
         location_type: "Remote"
-        descriotion:
+        description:
           text: ""
           children: ""
   - employer: "Myself"
