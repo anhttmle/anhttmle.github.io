@@ -26,12 +26,12 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Responsible for: 
-          <br>- Overseeing the overall architecture of AI projects within the company
-          <br>- Leading the efforts in AI pipeline development and optimization
-          <br>- Standardizing working flow of AI Engineers
-          <br>- Technical & Quality requirement defining
-          <br>- Guiding & Training members"
+          text: "Responsible for:
+          <br>- Overseeing the overall architecture of AI projects across the company
+          <br>- Leading AI pipeline development and optimization efforts
+          <br>- Standardizing AI Engineers' workflows
+          <br>- Defining technical and quality requirements
+          <br>- Guiding and training team members
           children:
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Sep 2023"
@@ -58,7 +58,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Leading R&D team on research & develop AI technology for optimizing cost and making competitive features."
+          text: "Lead an R&D team researching and developing AI technology to optimize costs and build competitive features."
           children:
       - name: "Technical Leader"
         time: "Aug 2020 - Dec 2021"
@@ -66,7 +66,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Design & Develop AI Cyber Security products that optimal and scalable."
+          text: "Design and develop AI-powered cybersecurity products that are optimized for performance and built for scalability."
           children:
   - employer: "Freelancer"
     time: "Jun 2023 - Present"
@@ -95,7 +95,7 @@ experiences:
         location: "Any"
         location_type: "Remote"
         description:
-          text: ""
+          text: "Advise on AI adoption and design products for optimal performance and scalability."
           children: ""
   - employer: "Myself"
     time: "Apr 2018 - Dec 2025"
@@ -107,7 +107,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Supporting and mentoring other machine learners. Help them know what to study and support them how to learn a specific ML/DL technique such as studying courses, understanding published papers, training/evaluating/predicting several DL models."
+          text: "Support and mentor machine learning practitioners by guiding their learning journey—recommending what to study and helping them master specific ML/DL techniques through courses, research papers, and hands-on training, evaluation, and prediction with deep learning models."
           children:
   - employer: "Robochat Viet Nam"
     time: "Aug 2018 - Jul 2020"
@@ -129,7 +129,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Taking care all about problems on developing AI module (from data acquisition to training/evaluating to serving model)"
+          text: "Handle all challenges in AI module development—from data acquisition through training and evaluation to model serving."
           children:
   - employer: "Septeni Co.,Ltd."
     time: "Dec 2015 - Apr 2018"
@@ -155,7 +155,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Teaching/Mentoring a Machine Learning Class (~10 student)"
+          text: "Teach and mentor a Machine Learning class of approximately 10 students."
           children:
       - name: "Software Engineer"
         time: "Dec 2015 - Apr 2018"
@@ -163,7 +163,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Developing Mobile Game on Cocos2dx Engine."
+          text: "Developed mobile games using the Cocos2d-x engine."
           children:
 
   - employer: "Nal Vietnam Jsc"
@@ -179,7 +179,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Developing iOS Application."
+          text: "Developed iOS applications."
           children:
   - employer: "Goline Corporation"
     time: "Apr 2013 - Apr 2014"
@@ -194,7 +194,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Developing Java Application."
+          text: "Developed Java applications."
           children:
   - employer: "EPS Jsc"
     time: "Dec 2010 - Jul 2012"
@@ -210,7 +210,7 @@ experiences:
         location: "Viet Nam"
         location_type: "Onsite"
         description:
-          text: "Researching and developing products with an IBM technology - Xpages which is a web framework base on JSF (Java Server Faces)"
+          text: "Research and develop products using IBM XPages, a web framework based on JSF (JavaServer Faces)."
           children:
 projects:
   - employer: "Cinnamon AI"
@@ -227,10 +227,10 @@ projects:
     time: "Oct 2023 - Present"
     logo: "/assets/profile/cinnamon.jpg"
     description:
-      - "Optimize pipeline & model on serving"
-      - "Apply LLM on key-value matching phase"
-      - "Experiment self-hosted LLM"
-      - "Distributed LLM model serving"
+      - "Optimized pipeline and model performance for serving"
+      - "Applied LLMs to the key-value matching phase"
+      - "Experimented with self-hosted LLMs"
+      - "Implemented distributed LLM model serving"
       - "..."
   - employer: "Freelancer"
     name: "Restructure AI"
