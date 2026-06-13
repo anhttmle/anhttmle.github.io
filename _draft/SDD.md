@@ -41,25 +41,32 @@
 - Kiro - HEAVY
 
 # Sample Structure
-## 1. Why
+```markdown
 
-## 2. What
+# Feature Name
 
-## 3. Constraint
-### i. Must
-### ii. Must not
-### iii. Out of scope
+## Why
+[Problem being solved]
 
-## 4. Current state
+## What
+[Concrete deliverable]
 
-## 5. Tasks
-### i. Task 01
+## Constraints
+### Must
+- 
+### Must Not
+- 
+### Out of Scope
+- 
 
-- What
-- Files
-- Tests
-- Verify
+## Current State
+- Relevant files:
+- Existing patterns:
 
+## Tasks
+### T1: [Title]
+**What:** 
+**Files:** 
+**Verify:** 
 
-### ii. Task 02
-### iii. Task 01
+```
