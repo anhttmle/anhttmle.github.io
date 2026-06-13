@@ -70,11 +70,11 @@ experiences:
           text: "Design & Develop AI Cyber Security products that optimal and scalable."
           children:
   - employer: "Myself"
-    time: "April 2018 - Present"
+    time: "Apr 2018 - Dec 2025"
     logo: "/assets/profile/anhtt.jpg"
     roles:
       - name: "ML/DL Mentor"
-        time: "April 2018 - Present"
+        time: "Apr 2018 - Dec 2025"
         employment_type: "Part-time"
         location: "Viet Nam"
         location_type: "Onsite"
@@ -196,7 +196,7 @@ projects:
       - "Integration Design"
   - employer: "Cinnamon AI"
     name: "Flax Scanner Hub"
-    time: "Oct 2023 - Feb 2025"
+    time: "Oct 2023 - Present"
     logo: "/assets/profile/cinnamon.jpg"
     description:
       - "Optimize pipeline & model on serving"
