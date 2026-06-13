@@ -17,11 +17,9 @@
         </div>
       </div>
       {% if project.description %}
-      <ul class="project-desc">
-        {% for row in project.description %}
-        <li>{{ row }}</li>
-        {% endfor %}
-      </ul>
+      <div class="project-desc">
+        {{ project.description | markdownify }}
+      </div>
       {% endif %}
     </div>
     {% endfor %}

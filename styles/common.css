@@ -363,10 +363,37 @@ img { display: block; }
   color: var(--text-muted);
   line-height: 1.55;
   margin: 0;
-  padding: 0 0 0 14px;
 }
 
-.project-desc li { margin: 1px 0; }
+.project-desc > :first-child { margin-top: 0; }
+
+.project-desc > :last-child { margin-bottom: 0; }
+
+.project-desc p {
+  margin: 0 0 6px;
+}
+
+.project-desc ul,
+.project-desc ol {
+  margin: 4px 0 0;
+  padding-left: 1.15em;
+}
+
+.project-desc li {
+  margin: 2px 0;
+}
+
+.project-desc ul ul,
+.project-desc ol ol,
+.project-desc ul ol,
+.project-desc ol ul {
+  margin-top: 2px;
+  padding-left: 1.1em;
+}
+
+.project-desc li > p {
+  margin: 0;
+}
 
 /* ---- Publications ---------------------------------------- */
 .pub-item { padding: 14px 0; }

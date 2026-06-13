@@ -217,253 +217,263 @@ projects:
     name: "SuperRAG"
     time: "Nov 2024 - Present"
     logo: "/assets/profile/cinnamon.jpg"
-    description:
-      - "System Design"
-      - "RAG flow Design"
-      - "Agentic flow Design"
-      - "Integration Design"
+    description: |
+      - System Design
+      - RAG flow Design
+      - Agentic flow Design
+      - Integration Design
   - employer: "Cinnamon AI"
     name: "Flax Scanner Hub"
     time: "Oct 2023 - Present"
     logo: "/assets/profile/cinnamon.jpg"
-    description:
-      - "Optimized pipeline and model performance for serving"
-      - "Applied LLMs to the key-value matching phase"
-      - "Experimented with self-hosted LLMs"
-      - "Implemented distributed LLM model serving"
-      - "..."
+    description: |
+      - Optimized pipeline and model performance for serving
+      - Applied LLMs to the key-value matching phase
+      - Experimented with self-hosted LLMs
+      - Implemented distributed LLM model serving
+      - ...
   - employer: "Freelancer"
     name: "Restructure AI"
     time: "Apr 2025 - Present"
     logo: "assets/profile/anhtt.jpg"
-    description:
-      - "Consult and design solutions for adopting AI in legacy project migrations such as COBOL/RPG."
+    description: |
+      Consult and design solutions for adopting AI in legacy project migrations such as COBOL/RPG.
   - employer: "Freelancer"
     name: "Booking Assistant"
     time: "June 2023 - Mar 2024"
     logo: "assets/profile/anhtt.jpg"
-    description:
-      - "Designed a chatbot for booking assistance. That help users with reservations, booking-related questions, and support workflows"
+    description: |
+      Designed a chatbot for booking assistance. That help users with reservations, booking-related questions, and support workflows
   - employer: "Viettel Cyber Security"
     name: "Internal LLM applications"
     time: "Apr 2023 - Sep 2023"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "Apply LLM on VCS issues such as"
-      - "- Private document search"
-      - "- Enhanced Data lookup UX"
-      - "- Knowledge generative"
-      - "..."
+    description: |
+      Apply LLM on VCS issues such as:
+      - Private document search
+      - Enhanced Data lookup UX
+      - Knowledge generative
+      - ...
   # - employer: "Viettel Cyber Security"
   #   name: "Auto Pentest"
   #   time: "Feb 2023 - Sep 2023"
   #   logo: "/assets/profile/vcs.png"
-  #   description:
-  #     - "- Find out costly phase of Penetration Test for web/mobile applications and networks."
-  #     - "- Apply weak supervision & RL for automating the costly phase, such as endpoint detection, specific attack type and building knowledge base as well."
+  #   description: |
+  #     - Find out costly phase of Penetration Test for web/mobile applications and networks.
+  #     - Apply weak supervision & RL for automating the costly phase, such as endpoint detection, specific attack type and building knowledge base as well.
   - employer: "Viettel Cyber Security"
     name: "Encrypted Traffic Anomaly Detection"
     time: "Oct 2022 - Sep 2023"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "- Monitoring encrypted traffic"
-      - "- Training model periodically that try to reconstruct connection behavior"
-      - "- Capturing abnormal behavior by evaluating the reconstruction loss"
+    description: |
+      - Monitoring encrypted traffic
+      - Training model periodically that try to reconstruct connection behavior
+      - Capturing abnormal behavior by evaluating the reconstruction loss
   - employer: "Viettel Cyber Security"
     name: "Keystroke Dynamic Authentication"
     time: "Jan 2022 - Mar 2023"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "Authenticating system users by their typing behavior on entering user name & password"
-      - "Continuous authenticating system users by their typing behavior on working session"
+    description: |
+      - Authenticating system users by their typing behavior on entering user name & password
+      - Continuous authenticating system users by their typing behavior on working session
   - employer: "Viettel Cyber Security"
     name: "Trusted Identity Detection"
     time: "Nov 2021 - Jul 2022"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "Detect the most frequent pattern on User behavior"
+    description: |
+      Detect the most frequent pattern on User behavior
   - employer: "Viettel Cyber Security"
     name: "IML - Interactive Machine Learning system"
     time: "Apr 2021 - Mar 2022"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "- Design/Develop AI models"
-      - "- Design/Develop Batch/Stream Process for Training/Serving/Monitoring models and data"
+    description: |
+      - Design/Develop AI models
+      - Design/Develop Batch/Stream Process for Training/Serving/Monitoring models and data
   - employer: "Viettel Cyber Security"
     name: "Internal MLOps Process"
     time: "Jun 2021 - Aug 2021"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "- Design & Develop process from Data Processing to Training/Evaluating/Serving and Monitoring"
+    description: |
+      - Design & Develop process from Data Processing to Training/Evaluating/Serving and Monitoring
   - employer: "Viettel Cyber Security"
     name: "F2DR - Financial Fraud Detection & Response"
     time: "Aug 2020 - Apr 2021"
     logo: "/assets/profile/vcs.png"
-    description:
-      - "- Define requirements"
-      - "- Design system"
-      - "- Developing features"
+    description: |
+      - Define requirements
+      - Design system
+      - Developing features
   - employer: "Myself"
     name: "N-linked glycosylation on ion channel with simple Transfer Learning and Multi Input Branches"
     time: "Mar 2020 - Jul 2020"
     logo: "/assets/profile/anhtt.jpg"
-    description:
-      - "Glycosylation is a dynamic enzymatic process where glycans are attached selectively to proteins or lipoproteins. Such process in ion channel proteins has been also shown to play a fundamental role in modulating ion channel function. This study approached a computational method to predict N-linked glycosylation sites, which is the most abundant glycosylation type, in ion channel proteins."
+    description: |
+      Glycosylation is a dynamic enzymatic process where glycans are attached selectively to proteins or lipoproteins. Such process in ion channel proteins has been also shown to play a fundamental role in modulating ion channel function. This study approached a computational method to predict N-linked glycosylation sites, which is the most abundant glycosylation type, in ion channel proteins.
   - employer: "Robochat Viet Nam"
     name: "Robochat Platform (10bot Platform)"
     time: "Aug 2018 - Jun 2020"
     logo: "/assets/profile/robochat.jpg"
-    description:
-      - "- Phase 1: Rely on"
-      - " + User data (Collecting for future model as well)"
-      - " + Data augmentation (Tf-idf replacement, Synonym replacement)"
-      - " + Pretrained tf-idf Vectorizer (on serveral facebook fanpage)"
-      - " + Extra data (which not belong to any Intent - sacrifice uncommon domain)"
-      - "- Phase 2: Rely on"
-      - " + BERT pretrained (use embedding from [CLS] token of few last layer)"
-      - " + Data augmentation: (Similar to phase 1 + Back translation)"
-      - " + Solving simultaneously inference from users (Training on Google Cloud and predicting on our server, batching query, ...)"
-      - "- Phase 3:"
-      - " + Semi-supervise Learning wise, experiment with UDA (Unsupervise Data Augmentation)"
-      - " + Unlabeled Data crawling (Facebook Fanpage log chat from users)"
+    description: |
+      - Phase 1: Rely on
+        - User data (Collecting for future model as well)
+        - Data augmentation (Tf-idf replacement, Synonym replacement)
+        - Pretrained tf-idf Vectorizer (on serveral facebook fanpage)
+        - Extra data (which not belong to any Intent - sacrifice uncommon domain)
+      - Phase 2: Rely on
+        - BERT pretrained (use embedding from [CLS] token of few last layer)
+        - Data augmentation: (Similar to phase 1 + Back translation)
+        - Solving simultaneously inference from users (Training on Google Cloud and predicting on our server, batching query, ...)
+      - Phase 3:
+        - Semi-supervise Learning wise, experiment with UDA (Unsupervise Data Augmentation)
+        - Unlabeled Data crawling (Facebook Fanpage log chat from users)
   - employer: "Myself"
     name: "Face Recognition"
     time: "Jan 2019 - Jun 2019"
     logo: "/assets/profile/anhtt.jpg"
-    description:
-      - "- Facial Detection with MTCNN"
-      - "- Facial Verification with FaceNet Triple Loss"
-      - "- Clustering Anchor Image by K-Mean"
-      - "- Distance computation by vectorization implementation"
+    description: |
+      - Facial Detection with MTCNN
+      - Facial Verification with FaceNet Triple Loss
+      - Clustering Anchor Image by K-Mean
+      - Distance computation by vectorization implementation
   - employer: "Septeni Co.,Ltd"
     name: "Machine Learning Class"
     time: "Dec 2016 - Mar 2018"
     logo: "/assets/profile/septech.png"
-    description:
-      - "I myself tried to build a team which is familiar with Machine Learning technique, especially with Deep Learning."
-      - "Class size: 5 - 10"
-      - "Topics:"
-      - " - Maths (Derivative, Integral, Probability distribution, Convolution,...)"
-      - " - Linear Regression"
-      - " - Logistic Regression"
-      - " - Artificial Neural Network"
-      - " - CNN"
-      - " - RNN (RNN, LSTM, GRU, Bi-directional RNN)"
-      - " - Autoencoder"
-      - " - Word embedded (Word2Vec, Glove)"
-      - " - Regularization L2"
-      - " - Drop-out"
-      - " - Feature normalization"
-      - " - Batch normalization"
-      - " - Gradient Descent (batch, mini-batch, stochastict, Momentum, RMProp, Adam)"
-      - " - Back propagation"
-      - " - Hyperparameter Tuning (Grid Search, Random Search)"
-      - " - Tensorflow, Keras, Numpy, Octave.."
-      - " - ..."
+    description: |
+      I myself tried to build a team which is familiar with Machine Learning technique, especially with Deep Learning.
+
+      Class size: 5 - 10
+
+      Topics:
+      - Maths (Derivative, Integral, Probability distribution, Convolution,...)
+      - Linear Regression
+      - Logistic Regression
+      - Artificial Neural Network
+      - CNN
+      - RNN (RNN, LSTM, GRU, Bi-directional RNN)
+      - Autoencoder
+      - Word embedded (Word2Vec, Glove)
+      - Regularization L2
+      - Drop-out
+      - Feature normalization
+      - Batch normalization
+      - Gradient Descent (batch, mini-batch, stochastict, Momentum, RMProp, Adam)
+      - Back propagation
+      - Hyperparameter Tuning (Grid Search, Random Search)
+      - Tensorflow, Keras, Numpy, Octave..
+      - ...
   - employer: "Septeni Co.,Ltd"
     name: "Brain Training Puzzle Game - STON - Unblock Puzzle"
     time: "Sep 2016 - Oct 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "Unblock Puzzle is a mobile game which is developed with Cocos2d-x. "
+    description: |
+      Unblock Puzzle is a mobile game which is developed with Cocos2d-x.
   - employer: "Septeni Co.,Ltd"
     name: "Gesture Recognition"
     time: "Mar 2016 - Sep 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "\"Gesture Recognition\" is a model which can matching between character and user gesture."
-      - "The way the model work is \"Listen to user gesture, such as drawing a number. Automatically take all the points on the gesture, divide them to a grid and treat as image\". The model was developed through Logistic Regression to Softmax Regression and Convolutional Neural Network at the end. Application of this is a mobile game which is ask user to do a calculation and enter result by a gesture."
+    description: |
+      "Gesture Recognition" is a model which can matching between character and user gesture.
+
+      The way the model work is "Listen to user gesture, such as drawing a number. Automatically take all the points on the gesture, divide them to a grid and treat as image". The model was developed through Logistic Regression to Softmax Regression and Convolutional Neural Network at the end. Application of this is a mobile game which is ask user to do a calculation and enter result by a gesture.
   - employer: "Septeni Co.,Ltd"
     name: "Honey Blocks - Hexa Puzzle"
     time: "Jul 2016 - Aug 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "\"Hexa Puzzle\" is a mobile game which is developed with Cocos2d-x."
+    description: |
+      "Hexa Puzzle" is a mobile game which is developed with Cocos2d-x.
   - employer: "Septeni Co.,Ltd"
     name: "Vietnamese Gender Prediction by Name"
     time: "Jul 2016 - Aug 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "Phase 1: Using 3 separate dictionary which is for First Name, Middle Name and Last Name. So a name will be represented by one vector with fixed size which is total size of the 3 dictionary. The using model could be any type of classification model (Decision Tree, Logistic Regression, SVM, ANN, ...)"
-      - "Phase 2: Using 1 unique dictionary and each word in a name is represented as a vector. The using model could be RNN, LSTM or GRU"
+    description: |
+      Phase 1: Using 3 separate dictionary which is for First Name, Middle Name and Last Name. So a name will be represented by one vector with fixed size which is total size of the 3 dictionary. The using model could be any type of classification model (Decision Tree, Logistic Regression, SVM, ANN, ...)
+
+      Phase 2: Using 1 unique dictionary and each word in a name is represented as a vector. The using model could be RNN, LSTM or GRU
   - employer: "Septeni Co.,Ltd"
     name: "Soccer Puzzle for Brain Training - SoccerStrike"
     time: "Mar 2016 - Jul 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "\"Soccer Strike\" is a mobile game which is developed with Cocos2d-x. Beside, AI in this game is trained by many human's match."
+    description: |
+      "Soccer Strike" is a mobile game which is developed with Cocos2d-x. Beside, AI in this game is trained by many human's match.
   - employer: "Septeni Co.,Ltd"
     name: "Rocket"
     time: "Jan 2016 - Feb 2016"
     logo: "/assets/profile/septech.png"
-    description:
-      - "\"Rocket\" is a mobile game which is developed with Cocos2d-x."
-      - "Client: SEPTENI CROSSGATE CO.LTD"
+    description: |
+      "Rocket" is a mobile game which is developed with Cocos2d-x.
+
+      Client: SEPTENI CROSSGATE CO.LTD
   - employer: "Nal Vietnam Jsc"
     name: "Car Matching iOS Application"
     time: "Sep 2015 - Nov 2015"
     logo: "/assets/profile/nal.png"
-    description:
-      - "iOS Application which help users find and buy old cars"
-      - "Client: Tokyo Storm Co.,Ltd"
+    description: |
+      iOS Application which help users find and buy old cars
+
+      Client: Tokyo Storm Co.,Ltd
   - employer: "Nal Vietnam Jsc"
     name: "Anshin Beacon iOS Application"
     time: "Jul 2015 - Aug 2015"
     logo: "/assets/profile/nal.png"
-    description:
-      - "iOS Application which help doctors and nurses find and locate patient using iBeacon & BLE (Bluetooth Low Enegy)"
-      - "Client: Japanese Asylum"
+    description: |
+      iOS Application which help doctors and nurses find and locate patient using iBeacon & BLE (Bluetooth Low Enegy)
+
+      Client: Japanese Asylum
   - employer: "Nal Vietnam Jsc"
     name: "Gyoroman iOS Application"
     time: "May 2015 - Jun 2015"
     logo: "/assets/profile/nal.png"
-    description:
-      - "iPad Application which help engineers find and report failures of apartments."
-      - "Client: Gyoroman Co.,Ltd"
+    description: |
+      iPad Application which help engineers find and report failures of apartments.
+
+      Client: Gyoroman Co.,Ltd
   - employer: "Nal Vietnam Jsc"
     name: "Bang-guru iOS Application"
     time: "Jan 2015 - May 2015"
     logo: "/assets/profile/nal.png"
-    description:
-      - "iOS Application which help users find and locate restaurants in Thailand"
-      - "Client: Systena (THAILAND) Co.,Ltd"
+    description: |
+      iOS Application which help users find and locate restaurants in Thailand
+
+      Client: Systena (THAILAND) Co.,Ltd
   - employer: "Nal Vietnam Jsc"
     name: "Bang-guru Android Application"
     time: "Jul 2014 - Jan 2015"
     logo: "/assets/profile/nal.png"
-    description:
-      - "iOS Application which help users find and locate restaurants in Thailand"
-      - "Client: Systena (THAILAND) Co.,Ltd"
+    description: |
+      iOS Application which help users find and locate restaurants in Thailand
+
+      Client: Systena (THAILAND) Co.,Ltd
   - employer: "Goline Corporation"
     name: "JZeus Android Application"
     time: "Dec 2013 - Apr 2014"
     logo: "/assets/profile/goline.png"
-    description:
-      - "Android Application which help users access info and interact stocks, transactions"
+    description: |
+      Android Application which help users access info and interact stocks, transactions
   - employer: "Goline Corporation"
     name: "VGAIA Back Office"
     time: "Apr 2013 - Nov 2013"
     logo: "/assets/profile/goline.png"
-    description:
-      - "Java Application which allow users interact and manage stocks, transactions"
+    description: |
+      Java Application which allow users interact and manage stocks, transactions
   - employer: "EPS Joint-stock company"
     name: "Archi Land Transactions Management System"
     time: "May 2012 - Jul 2012"
     logo: "/assets/profile/eps.png"
-    description:
-      - "Web System which manage transactions for Archi Land Việt Nam"
+    description: |
+      Web System which manage transactions for Archi Land Việt Nam
   - employer: "EPS Joint-stock company"
     name: "iCenter"
     time: "Dec 2011 - May 2012"
     logo: "/assets/profile/eps.png"
-    description:
-      - "Web System which manage internal Information of EPS Joint-stock company"
+    description: |
+      Web System which manage internal Information of EPS Joint-stock company
   - employer: "EPS Joint-stock company"
     name: "Information Management System"
     time: "May 2011 - Nov 2011"
     logo: "/assets/profile/eps.png"
-    description:
-      - "Web System which manage internal information of \"Viet Nam General Confederation Of Labour\""
+    description: |
+      Web System which manage internal information of "Viet Nam General Confederation Of Labour"
 education:
   - org: "Hanoi University of Education"
     time: "2008 - 2012"
