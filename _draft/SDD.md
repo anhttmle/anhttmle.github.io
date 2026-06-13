@@ -41,19 +41,25 @@
 - Kiro - HEAVY
 
 # Sample Structure
-## Why
+## 1. Why
 
-## What
+## 2. What
 
-## Constraint
-### Must
-### Must not
-### Out of scope
+## 3. Constraint
+### i. Must
+### ii. Must not
+### iii. Out of scope
 
-## Current state
+## 4. Current state
 
-## Task
-### What
-### Files
-### Tests
-### Verify
+## 5. Tasks
+### i. Task 01
+
+- What
+- Files
+- Tests
+- Verify
+
+
+### ii. Task 02
+### iii. Task 01
