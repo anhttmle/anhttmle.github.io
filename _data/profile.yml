@@ -34,6 +34,13 @@ experiences:
           <br>- Guiding & Training members"
           children:
 
+  - employer: "Freelancer"
+    time: "Jun 2023 - Present"
+    logo: "assets/profile/anhtt.jpg"
+    employment_type: "Part-time"
+    location: "Any"
+    location_type: "Remote"
+
   - employer: "Viettel Cyber Security"
     time: "Aug 2020 - Sep 2023"
     logo: "/assets/profile/vcs.png"
@@ -204,6 +211,18 @@ projects:
       - "Experiment self-hosted LLM"
       - "Distributed LLM model serving"
       - "..."
+  - employer: "Freelancer"
+    name: "Restructure AI"
+    time: "Apr 2025 - Present"
+    logo: "assets/profile/anhtt.jpg"
+    description:
+      - ""
+  - employer: "Freelancer"
+    name: "Booking Assistant"
+    time: "June 2023 - Mar 2024"
+    logo: "assets/profile/anhtt.jpg"
+    description:
+      - ""
   - employer: "Viettel Cyber Security"
     name: "Internal LLM applications"
     time: "Apr 2023 - Sep 2023"
