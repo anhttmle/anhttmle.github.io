@@ -20,6 +20,7 @@
 ## Giải thích concepts:
 > RL is particularly powerful in two settings:
 > (1) when no examples of desired behavior exist—for instance because the goal is to surpass human performance—and
+> 
 > (2) when the problem involves an enormous search space with delayed outcomes, making hand-designed solutions infeasible.
 > 
 
