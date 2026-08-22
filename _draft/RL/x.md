@@ -15,7 +15,7 @@ $$
 \max_\pi \; \mathbb{E}_\pi\left[\sum_{t=0}^{H-1}\gamma^t r_t\right]
 $$
 
-Trong đó policy \(\pi\) quyết định hành động ở mỗi trạng thái; \(\gamma\) điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Trong đó policy $\pi$ quyết định hành động ở mỗi trạng thái; $\gamma$ điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
 
 Ví dụ, trong bot đặt lịch nha khoa, tối ưu không nên là “bot trả lời trôi chảy” mà có thể là xác suất lịch hẹn hợp lệ, tỷ lệ khách đến khám, hoặc giá trị dài hạn của khách hàng.
 
@@ -45,7 +45,7 @@ Ví dụ recommender: luôn đề xuất item có CTR cao nhất là exploitatio
 
 Không gian trạng thái thực tế thường khổng lồ hoặc liên tục, nên không thể tạo lookup table kiểu “mỗi state một action”. Agent phải học từ số trải nghiệm hữu hạn và hành động tốt cả ở những state chưa từng gặp. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
 
-Deep neural network thường đóng vai trò function approximator cho policy \(\pi_\theta(a\mid s)\), value \(V_\phi(s)\), hoặc \(Q_\phi(s,a)\). Đây là lý do Deep RL mạnh: mạng neural có thể khai thác các pattern chung giữa các state tương tự, thay vì ghi nhớ từng trường hợp riêng lẻ. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Deep neural network thường đóng vai trò function approximator cho policy $\pi_\theta(a\mid s)$, value $V_\phi(s)$, hoặc $Q_\phi(s,a)$. Đây là lý do Deep RL mạnh: mạng neural có thể khai thác các pattern chung giữa các state tương tự, thay vì ghi nhớ từng trường hợp riêng lẻ. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
 
 Ví dụ với voice bot, agent không thể chỉ học chính xác từng câu khách từng nói. Nó cần khái quát từ các cách diễn đạt khác nhau như “đặt lịch”, “muốn khám răng”, hoặc “cho tôi hẹn bác sĩ” về cùng một intent và chọn action hội thoại phù hợp.
 
@@ -71,7 +71,7 @@ Hai điểm này nói về **khi nào Reinforcement Learning (RL) có lợi th�
 
 ### 1. Không có ví dụ hành vi đúng
 
-Supervised learning cần dữ liệu dạng \( (x, y) \): đầu vào và nhãn/đáp án đúng. Nhưng nhiều bài toán không có sẵn nhãn “hành động tốt nhất”, đặc biệt nếu mục tiêu là làm tốt hơn con người. 
+Supervised learning cần dữ liệu dạng $ (x, y) $: đầu vào và nhãn/đáp án đúng. Nhưng nhiều bài toán không có sẵn nhãn “hành động tốt nhất”, đặc biệt nếu mục tiêu là làm tốt hơn con người. 
 
 Ví dụ là **AlphaGo Zero**: không cần dữ liệu các ván cờ chuyên nghiệp để học nước đi đúng. Agent tự chơi với chính nó, nhận thưởng khi thắng và phạt khi thua, rồi dần tìm ra chiến lược hiệu quả hơn. Trong tình huống này, con người chỉ cần mô tả luật chơi và tiêu chí thắng; không cần chỉ cho hệ thống mọi nước đi tốt tại từng bàn cờ.
 
@@ -89,11 +89,11 @@ Ví dụ trong robotics: bạn có thể không có hàng triệu demo về “c
 
 ### 2. Không gian tìm kiếm khổng lồ, reward đến muộn
 
-Nhiều bài toán không phải là chọn một hành động độc lập, mà là chọn **một chuỗi hành động**. Nếu mỗi bước có \(A\) lựa chọn và episode dài \(H\) bước, số chuỗi hành động có thể tăng theo \(A^H\). Việc liệt kê mọi khả năng nhanh chóng bất khả thi.
+Nhiều bài toán không phải là chọn một hành động độc lập, mà là chọn **một chuỗi hành động**. Nếu mỗi bước có $A$ lựa chọn và episode dài $H$ bước, số chuỗi hành động có thể tăng theo $A^H$. Việc liệt kê mọi khả năng nhanh chóng bất khả thi.
 
-Ví dụ: với 10 hành động mỗi bước và horizon 100, số chuỗi là \(10^{100}\). Vì vậy, một hệ rule-based hoặc brute-force search không thể viết/duyệt hết các phương án.
+Ví dụ: với 10 hành động mỗi bước và horizon 100, số chuỗi là $10^{100}$. Vì vậy, một hệ rule-based hoặc brute-force search không thể viết/duyệt hết các phương án.
 
-RL dùng policy, value function, và đôi khi model để khái quát hóa: thay vì nhớ từng chuỗi hành động, agent học ước lượng “trạng thái này hứa hẹn thế nào về reward tương lai” và chọn hành động cải thiện giá trị đó. Lecture mô tả value là tổng reward tương lai có chiết khấu: \(V^\pi(s) = \mathbb{E}_\pi[\sum_{k\ge0}\gamma^k r_{t+k}\mid s_t=s]\).
+RL dùng policy, value function, và đôi khi model để khái quát hóa: thay vì nhớ từng chuỗi hành động, agent học ước lượng “trạng thái này hứa hẹn thế nào về reward tương lai” và chọn hành động cải thiện giá trị đó. Lecture mô tả value là tổng reward tương lai có chiết khấu: $V^\pi(s) = \mathbb{E}_\pi[\sum_{k\ge0}\gamma^k r_{t+k}\mid s_t=s]$.
 
 #### “Delayed outcomes” nghĩa là gì?
 
