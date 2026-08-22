@@ -25,8 +25,8 @@ Một hành động hiện tại có thể tạo hiệu ứng chỉ xuất hiệ
 
 Có hai bài toán con:
 
-- **Planning:** dự đoán các hậu quả về sau trước khi chọn hành động hiện tại.
-- **Temporal credit assignment:** khi reward tốt/xấu xuất hiện ở cuối episode, xác định những hành động trước đó nào đáng được “ghi công” hoặc “chịu trách nhiệm”.
+- **Planning:** Các quyết định phải tính đến không chỉ lợi ích trước mắt mà còn cả những hệ quả lâu dài.
+- **Temporal credit assignment:** Khi học hỏi từ kinh nghiệm, thật khó để xác định quyết định nào trong quá khứ đã gây ra thành công hay thất bại sau đó..
 
 Ví dụ Montezuma’s Revenge: nhặt chìa khóa có thể không thưởng ngay, nhưng là điều kiện để mở cửa và nhận reward lớn sau nhiều bước. Nếu agent chỉ nhìn reward tức thời, nó sẽ không học được hành vi này.
 
