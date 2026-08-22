@@ -63,7 +63,7 @@ Ví dụ game:
 - Đi vòng qua các phòng: vẫn không có reward.
 - Mở cửa bằng chìa khóa ở rất lâu sau: nhận reward lớn.
 
-Nếu agent chỉ tối ưu reward tức thời, nó sẽ bỏ qua chìa khóa. RL cần giải bài toán **temporal credit assignment**: khi reward cuối cùng xuất hiện, hành động nào trong lịch sử dài đã thực sự góp phần tạo nên thành công đó? [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Nếu agent chỉ tối ưu reward tức thời, nó sẽ bỏ qua chìa khóa. RL cần giải bài toán **temporal credit assignment**: khi reward cuối cùng xuất hiện, hành động nào trong lịch sử dài đã thực sự góp phần tạo nên thành công đó?
 
 ### Ví dụ gần với hệ AI sản phẩm
 
