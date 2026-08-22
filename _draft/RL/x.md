@@ -4,6 +4,9 @@
 > Reinforcement Learning.
 > A computational framework in which an agent learns to make sequential decisions by interacting with an environment, receiving reward signals, and adjusting its behavior to maximize cumulative reward over time.
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/4ce5ebc5-5f06-4a7a-a291-7071377baceb" />
+
+
 ## The Four Pillars of Reinforcement Learning
 
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/76ae5764-2881-45a4-be39-386dac7a29b5" />
