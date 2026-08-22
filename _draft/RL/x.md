@@ -11,9 +11,9 @@ Bốn “trụ cột” là bốn khó khăn nền tảng mà hầu như mọi b
 
 RL cần một **objective rõ ràng**, thường là tối đa hóa tổng reward tích lũy chứ không chỉ reward ở bước hiện tại:
 
-\[
+$$
 \max_\pi \; \mathbb{E}_\pi\left[\sum_{t=0}^{H-1}\gamma^t r_t\right]
-\]
+$$
 
 Trong đó policy \(\pi\) quyết định hành động ở mỗi trạng thái; \(\gamma\) điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
 
@@ -111,9 +111,9 @@ Nếu agent chỉ tối ưu reward tức thời, nó sẽ bỏ qua chìa khóa. 
 
 Trong một voice bot cho phòng khám, reward không nên chỉ là “một lượt hội thoại có phản hồi”, vì điều đó dễ khiến bot trả lời dài hoặc câu giờ. Mục tiêu thực tế thường là chuỗi kết quả:
 
-\[
+$$
 \text{Hiểu nhu cầu} \rightarrow \text{sàng lọc đúng} \rightarrow \text{đặt lịch hợp lệ} \rightarrow \text{khách đến khám}
-\]
+$$
 
 Reward mạnh nhất như “khách đến khám” có thể chỉ biết sau vài ngày. Do đó, RL có tiềm năng tối ưu policy hội thoại dài hạn, nhưng chỉ khả thi khi có logging tốt, attribution đủ tin cậy, ràng buộc an toàn rõ ràng, và thường nên huấn luyện/offline evaluate trước thay vì khám phá trực tiếp trên khách hàng. Đây chính là dạng bài toán có search space lớn và outcome bị trễ.
 
