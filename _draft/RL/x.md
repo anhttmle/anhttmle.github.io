@@ -1,11 +1,11 @@
 # [Lecture 01: Introduction to Reinforcement Learning](https://maninae.github.io/cs234/lectures/lecture01.html)
 
-## Definition
+## Definitionf
 > Reinforcement Learning.
 > A computational framework in which an agent learns to make sequential decisions by interacting with an environment, receiving reward signals, and adjusting its behavior to maximize cumulative reward over time.
 
 ## 4 Pillars of Reinforcement Learning
-Bốn “trụ cột” là bốn khó khăn nền tảng mà hầu như mọi bài toán RL đều phải giải: **tối ưu mục tiêu, hệ quả dài hạn, khám phá, và khái quát hóa**. Chúng liên kết với nhau: agent vừa phải tìm policy tốt, vừa học từ dữ liệu do chính hành động của nó tạo ra. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Bốn “trụ cột” là bốn khó khăn nền tảng mà hầu như mọi bài toán RL đều phải giải: **tối ưu mục tiêu, hệ quả dài hạn, khám phá, và khái quát hóa**. Chúng liên kết với nhau: agent vừa phải tìm policy tốt, vừa học từ dữ liệu do chính hành động của nó tạo ra.
 
 ### 1. Optimization
 
@@ -15,37 +15,37 @@ $$
 \max_\pi \; \mathbb{E}_\pi\left[\sum_{t=0}^{H-1}\gamma^t r_t\right]
 $$
 
-Trong đó policy $\pi$ quyết định hành động ở mỗi trạng thái; $\gamma$ điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Trong đó policy $\pi$ quyết định hành động ở mỗi trạng thái; $\gamma$ điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định.
 
 Ví dụ, trong bot đặt lịch nha khoa, tối ưu không nên là “bot trả lời trôi chảy” mà có thể là xác suất lịch hẹn hợp lệ, tỷ lệ khách đến khám, hoặc giá trị dài hạn của khách hàng.
 
 ### 2. Delayed consequences
 
-Một hành động hiện tại có thể tạo hiệu ứng chỉ xuất hiện rất lâu sau đó. Vì vậy agent phải lập kế hoạch theo hệ quả dài hạn, không được tham lam chọn hành động có reward tức thời cao nhất. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Một hành động hiện tại có thể tạo hiệu ứng chỉ xuất hiện rất lâu sau đó. Vì vậy agent phải lập kế hoạch theo hệ quả dài hạn, không được tham lam chọn hành động có reward tức thời cao nhất.
 
 Có hai bài toán con:
 
 - **Planning:** dự đoán các hậu quả về sau trước khi chọn hành động hiện tại.
-- **Temporal credit assignment:** khi reward tốt/xấu xuất hiện ở cuối episode, xác định những hành động trước đó nào đáng được “ghi công” hoặc “chịu trách nhiệm”. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+- **Temporal credit assignment:** khi reward tốt/xấu xuất hiện ở cuối episode, xác định những hành động trước đó nào đáng được “ghi công” hoặc “chịu trách nhiệm”.
 
-Ví dụ Montezuma’s Revenge: nhặt chìa khóa có thể không thưởng ngay, nhưng là điều kiện để mở cửa và nhận reward lớn sau nhiều bước. Nếu agent chỉ nhìn reward tức thời, nó sẽ không học được hành vi này. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Ví dụ Montezuma’s Revenge: nhặt chìa khóa có thể không thưởng ngay, nhưng là điều kiện để mở cửa và nhận reward lớn sau nhiều bước. Nếu agent chỉ nhìn reward tức thời, nó sẽ không học được hành vi này.
 
 ### 3. Exploration
 
-Agent chỉ quan sát outcome của hành động **đã chọn**, không biết trực tiếp “nếu làm cách khác thì sao”. Do đó, agent phải chủ động thử nghiệm để thu thập thông tin về môi trường. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Agent chỉ quan sát outcome của hành động **đã chọn**, không biết trực tiếp “nếu làm cách khác thì sao”. Do đó, agent phải chủ động thử nghiệm để thu thập thông tin về môi trường.
 
 Đây là trade-off kinh điển:
 
 - **Exploration:** thử hành động mới/chưa chắc chắn để khám phá cơ hội tốt hơn.
-- **Exploitation:** chọn hành động đang được tin là tốt nhất để thu reward ngay. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+- **Exploitation:** chọn hành động đang được tin là tốt nhất để thu reward ngay.
 
 Ví dụ recommender: luôn đề xuất item có CTR cao nhất là exploitation; thỉnh thoảng thử item mới để học CTR thực tế là exploration. Nếu chỉ exploitation quá sớm, hệ thống có thể kẹt ở lựa chọn “khá tốt” mà bỏ lỡ item tốt hơn.
 
 ### 4. Generalization
 
-Không gian trạng thái thực tế thường khổng lồ hoặc liên tục, nên không thể tạo lookup table kiểu “mỗi state một action”. Agent phải học từ số trải nghiệm hữu hạn và hành động tốt cả ở những state chưa từng gặp. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Không gian trạng thái thực tế thường khổng lồ hoặc liên tục, nên không thể tạo lookup table kiểu “mỗi state một action”. Agent phải học từ số trải nghiệm hữu hạn và hành động tốt cả ở những state chưa từng gặp.
 
-Deep neural network thường đóng vai trò function approximator cho policy $\pi_\theta(a\mid s)$, value $V_\phi(s)$, hoặc $Q_\phi(s,a)$. Đây là lý do Deep RL mạnh: mạng neural có thể khai thác các pattern chung giữa các state tương tự, thay vì ghi nhớ từng trường hợp riêng lẻ. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Deep neural network thường đóng vai trò function approximator cho policy $\pi_\theta(a\mid s)$, value $V_\phi(s)$, hoặc $Q_\phi(s,a)$. Đây là lý do Deep RL mạnh: mạng neural có thể khai thác các pattern chung giữa các state tương tự, thay vì ghi nhớ từng trường hợp riêng lẻ.
 
 Ví dụ với voice bot, agent không thể chỉ học chính xác từng câu khách từng nói. Nó cần khái quát từ các cách diễn đạt khác nhau như “đặt lịch”, “muốn khám răng”, hoặc “cho tôi hẹn bác sĩ” về cùng một intent và chọn action hội thoại phù hợp.
 
@@ -58,7 +58,7 @@ Ví dụ với voice bot, agent không thể chỉ học chính xác từng câu
 | Exploration | Có nên thử một lựa chọn chưa biết không? | Kẹt ở local optimum hoặc tốn quá nhiều trial |
 | Generalization | Làm sao xử lý state mới chưa từng thấy? | Cần dữ liệu khổng lồ, overfit vào trajectory đã thấy |
 
-Bài giảng nhấn mạnh rằng RL không chỉ là “nhận reward rồi update model”: độ khó thực sự nằm ở việc thiết kế objective đúng, truyền reward qua thời gian, cân bằng khám phá-khai thác, và khái quát hóa từ trải nghiệm hạn chế. [maninae.github](https://maninae.github.io/cs234/lectures/lecture01.html)
+Bài giảng nhấn mạnh rằng RL không chỉ là “nhận reward rồi update model”: độ khó thực sự nằm ở việc thiết kế objective đúng, truyền reward qua thời gian, cân bằng khám phá-khai thác, và khái quát hóa từ trải nghiệm hạn chế.
 
 
 ## Giải thích concepts:
