@@ -15,6 +15,8 @@
 ## MDP components:
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/fffcdbf4-c462-482e-87f5-bb638d11bc5d" />
 
+## Types of RL Agents
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/050eb489-b057-4685-8e83-09b3bc1783f5" />
 
 
 ## Giải thích concepts:
