@@ -4,61 +4,49 @@
 > Reinforcement Learning.
 > A computational framework in which an agent learns to make sequential decisions by interacting with an environment, receiving reward signals, and adjusting its behavior to maximize cumulative reward over time.
 
-## 4 Pillars of Reinforcement Learning
-Bốn “trụ cột” là bốn khó khăn nền tảng mà hầu như mọi bài toán RL đều phải giải: **tối ưu mục tiêu, hệ quả dài hạn, khám phá, và khái quát hóa**. Chúng liên kết với nhau: agent vừa phải tìm policy tốt, vừa học từ dữ liệu do chính hành động của nó tạo ra.
+## Bốn trụ cột của Reinforcement Learning
 
-### 1. Optimization
+Điều gì làm RL khác với các nhánh machine learning khác? Có **bốn thách thức nền tảng** xuất hiện trong hầu như mọi bài toán RL: **tối ưu hóa, hệ quả bị trì hoãn, khám phá, và khái quát hóa**.
 
-RL cần một **objective rõ ràng**, thường là tối đa hóa tổng reward tích lũy chứ không chỉ reward ở bước hiện tại:
+### 1. Tối ưu hóa
 
-$$
-\max_\pi \; \mathbb{E}_\pi\left[\sum_{t=0}^{H-1}\gamma^t r_t\right]
-$$
+Mục tiêu của RL là tìm ra cách ra quyết định tối ưu, hoặc gần tối ưu. Để làm được điều đó, bài toán phải có một **hàm mục tiêu rõ ràng**.
 
-Trong đó policy $\pi$ quyết định hành động ở mỗi trạng thái; $\gamma$ điều chỉnh mức độ coi trọng reward tương lai. Khác với supervised learning tối ưu loss trên nhãn cố định, RL tối ưu chất lượng của toàn bộ chuỗi quyết định.
+Một ví dụ đơn giản là tìm tuyến đường ngắn nhất giữa hai thành phố trên mạng lưới giao thông. Trong RL, mục tiêu thường là **tối đa hóa tổng phần thưởng tích lũy** theo thời gian, thay vì chỉ tối đa hóa reward ở bước hiện tại.
 
-Ví dụ, trong bot đặt lịch nha khoa, tối ưu không nên là “bot trả lời trôi chảy” mà có thể là xác suất lịch hẹn hợp lệ, tỷ lệ khách đến khám, hoặc giá trị dài hạn của khách hàng.
+Giả thuyết “**Reward is Enough**” của Silver, Singh, Precup và Sutton cho rằng việc tối đa hóa reward có thể là một mục tiêu đủ tổng quát để tạo ra phần lớn, thậm chí toàn bộ, các năng lực được nghiên cứu trong trí tuệ tự nhiên và nhân tạo.
 
-### 2. Delayed consequences
+### 2. Hệ quả bị trì hoãn
 
-Một hành động hiện tại có thể tạo hiệu ứng chỉ xuất hiện rất lâu sau đó. Vì vậy agent phải lập kế hoạch theo hệ quả dài hạn, không được tham lam chọn hành động có reward tức thời cao nhất.
+Một hành động thực hiện ở hiện tại có thể tạo ảnh hưởng rất xa trong tương lai. Ví dụ: tiết kiệm cho hưu trí, hoặc nhặt một chiếc chìa khóa sớm trong game *Montezuma’s Revenge* để mở một cánh cửa ở rất lâu sau đó.
 
-Có hai bài toán con:
+Điều này tạo ra hai thách thức liên quan chặt chẽ:
 
-- **Planning:** Các quyết định phải tính đến không chỉ lợi ích trước mắt mà còn cả những hệ quả lâu dài.
-- **Temporal credit assignment:** Khi học hỏi từ kinh nghiệm, thật khó để xác định quyết định nào trong quá khứ đã gây ra thành công hay thất bại sau đó..
+- **Lập kế hoạch (planning):** Quyết định không chỉ dựa vào lợi ích tức thời mà phải xét đến hệ quả dài hạn.
+- **Gán công lao theo thời gian (temporal credit assignment):** Khi cuối cùng thành công hoặc thất bại xảy ra, rất khó xác định chính xác các quyết định trong quá khứ nào đã gây ra kết quả đó.
 
-Ví dụ Montezuma’s Revenge: nhặt chìa khóa có thể không thưởng ngay, nhưng là điều kiện để mở cửa và nhận reward lớn sau nhiều bước. Nếu agent chỉ nhìn reward tức thời, nó sẽ không học được hành vi này.
+Ví dụ trong sản phẩm: một recommender có thể nhận reward lớn khi user mua hàng sau 10 lần tương tác. RL phải học xem hành động nào trong toàn bộ chuỗi—thứ tự gợi ý, thời điểm gửi thông báo, giá khuyến mãi—thực sự đóng góp cho conversion.
 
-### 3. Exploration
+### 3. Khám phá
 
-Agent chỉ quan sát outcome của hành động **đã chọn**, không biết trực tiếp “nếu làm cách khác thì sao”. Do đó, agent phải chủ động thử nghiệm để thu thập thông tin về môi trường.
+Agent RL học về thế giới thông qua việc ra quyết định, tương tự một nhà khoa học thực hiện thí nghiệm. Khi học đi xe đạp, bạn cần thử nhiều lần—và có thể ngã—mới biết cách giữ thăng bằng.
 
-Đây là trade-off kinh điển:
+Điểm khó là agent chỉ quan sát reward của **hành động nó thực sự đã chọn**, chứ không biết reward của các hành động thay thế mà nó không thử. Nếu chọn học Stanford thay vì MIT, bạn chỉ trải nghiệm quỹ đạo ở Stanford; không thể trực tiếp quan sát điều gì sẽ xảy ra nếu đã chọn MIT.
 
-- **Exploration:** thử hành động mới/chưa chắc chắn để khám phá cơ hội tốt hơn.
-- **Exploitation:** chọn hành động đang được tin là tốt nhất để thu reward ngay.
+Vì vậy, RL luôn có trade-off cơ bản:
 
-Ví dụ recommender: luôn đề xuất item có CTR cao nhất là exploitation; thỉnh thoảng thử item mới để học CTR thực tế là exploration. Nếu chỉ exploitation quá sớm, hệ thống có thể kẹt ở lựa chọn “khá tốt” mà bỏ lỡ item tốt hơn.
+- **Exploration:** Thử hành động mới để thu thập thông tin và có thể phát hiện phương án tốt hơn.
+- **Exploitation:** Chọn hành động đang được biết là cho reward cao để tối đa hóa kết quả hiện tại.
 
-### 4. Generalization
+Ví dụ trong contextual bandit cho quảng cáo: luôn hiển thị quảng cáo có CTR cao nhất là exploitation; thi thoảng hiển thị một creative mới để đo hiệu quả của nó là exploration.
 
-Không gian trạng thái thực tế thường khổng lồ hoặc liên tục, nên không thể tạo lookup table kiểu “mỗi state một action”. Agent phải học từ số trải nghiệm hữu hạn và hành động tốt cả ở những state chưa từng gặp.
+### 4. Khái quát hóa
 
-Deep neural network thường đóng vai trò function approximator cho policy $\pi_\theta(a\mid s)$, value $V_\phi(s)$, hoặc $Q_\phi(s,a)$. Đây là lý do Deep RL mạnh: mạng neural có thể khai thác các pattern chung giữa các state tương tự, thay vì ghi nhớ từng trường hợp riêng lẻ.
+Policy là một ánh xạ từ kinh nghiệm quá khứ sang hành động. Về lý thuyết, ta có thể lập một lookup table ghi sẵn hành động cho mọi tình huống có thể xảy ra. Tuy nhiên, trong thực tế state space quá lớn nên cách này không khả thi.
 
-Ví dụ với voice bot, agent không thể chỉ học chính xác từng câu khách từng nói. Nó cần khái quát từ các cách diễn đạt khác nhau như “đặt lịch”, “muốn khám răng”, hoặc “cho tôi hẹn bác sĩ” về cùng một intent và chọn action hội thoại phù hợp.
+Agent phải học từ dữ liệu và kinh nghiệm hữu hạn, rồi hành động hợp lý ở những state mới chưa từng thấy. Đây chính là năng lực **generalization**.
 
-## Mối liên hệ
-
-| Trụ cột | Câu hỏi chính | Nếu xử lý kém |
-|---|---|---|
-| Optimization | Ta thực sự muốn tối đa hóa điều gì? | Agent tối ưu sai metric/reward hacking |
-| Delayed consequences | Hành động hôm nay tác động reward mai sau thế nào? | Chính sách ngắn hạn, không biết credit assignment |
-| Exploration | Có nên thử một lựa chọn chưa biết không? | Kẹt ở local optimum hoặc tốn quá nhiều trial |
-| Generalization | Làm sao xử lý state mới chưa từng thấy? | Cần dữ liệu khổng lồ, overfit vào trajectory đã thấy |
-
-Bài giảng nhấn mạnh rằng RL không chỉ là “nhận reward rồi update model”: độ khó thực sự nằm ở việc thiết kế objective đúng, truyền reward qua thời gian, cân bằng khám phá-khai thác, và khái quát hóa từ trải nghiệm hạn chế.
+Deep learning đặc biệt phù hợp ở đây: neural network có thể biến observation phức tạp—ảnh, âm thanh, text, history hành vi, graph state—thành representation và xấp xỉ policy/value function trên state space rất lớn. Đây là một lý do quan trọng khiến kết hợp RL với deep neural networks, tức **deep RL**, đạt nhiều kết quả đáng chú ý.
 
 
 ## Giải thích concepts:
