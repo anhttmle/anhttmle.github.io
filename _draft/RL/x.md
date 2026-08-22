@@ -1,52 +1,17 @@
 # [Lecture 01: Introduction to Reinforcement Learning](https://maninae.github.io/cs234/lectures/lecture01.html)
 
-## Definitionf
+## Definition
 > Reinforcement Learning.
 > A computational framework in which an agent learns to make sequential decisions by interacting with an environment, receiving reward signals, and adjusting its behavior to maximize cumulative reward over time.
 
-## Bốn trụ cột của Reinforcement Learning
+## The Four Pillars of Reinforcement Learning
 
-Điều gì làm RL khác với các nhánh machine learning khác? Có **bốn thách thức nền tảng** xuất hiện trong hầu như mọi bài toán RL: **tối ưu hóa, hệ quả bị trì hoãn, khám phá, và khái quát hóa**.
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/76ae5764-2881-45a4-be39-386dac7a29b5" />
 
-### 1. Tối ưu hóa
 
-Mục tiêu của RL là tìm ra cách ra quyết định tối ưu, hoặc gần tối ưu. Để làm được điều đó, bài toán phải có một **hàm mục tiêu rõ ràng**.
+## MDP components:
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/fffcdbf4-c462-482e-87f5-bb638d11bc5d" />
 
-Một ví dụ đơn giản là tìm tuyến đường ngắn nhất giữa hai thành phố trên mạng lưới giao thông. Trong RL, mục tiêu thường là **tối đa hóa tổng phần thưởng tích lũy** theo thời gian, thay vì chỉ tối đa hóa reward ở bước hiện tại.
-
-Giả thuyết “**Reward is Enough**” của Silver, Singh, Precup và Sutton cho rằng việc tối đa hóa reward có thể là một mục tiêu đủ tổng quát để tạo ra phần lớn, thậm chí toàn bộ, các năng lực được nghiên cứu trong trí tuệ tự nhiên và nhân tạo.
-
-### 2. Hệ quả bị trì hoãn
-
-Một hành động thực hiện ở hiện tại có thể tạo ảnh hưởng rất xa trong tương lai. Ví dụ: tiết kiệm cho hưu trí, hoặc nhặt một chiếc chìa khóa sớm trong game *Montezuma’s Revenge* để mở một cánh cửa ở rất lâu sau đó.
-
-Điều này tạo ra hai thách thức liên quan chặt chẽ:
-
-- **Lập kế hoạch (planning):** Quyết định không chỉ dựa vào lợi ích tức thời mà phải xét đến hệ quả dài hạn.
-- **Gán công lao theo thời gian (temporal credit assignment):** Khi cuối cùng thành công hoặc thất bại xảy ra, rất khó xác định chính xác các quyết định trong quá khứ nào đã gây ra kết quả đó.
-
-Ví dụ trong sản phẩm: một recommender có thể nhận reward lớn khi user mua hàng sau 10 lần tương tác. RL phải học xem hành động nào trong toàn bộ chuỗi—thứ tự gợi ý, thời điểm gửi thông báo, giá khuyến mãi—thực sự đóng góp cho conversion.
-
-### 3. Khám phá
-
-Agent RL học về thế giới thông qua việc ra quyết định, tương tự một nhà khoa học thực hiện thí nghiệm. Khi học đi xe đạp, bạn cần thử nhiều lần—và có thể ngã—mới biết cách giữ thăng bằng.
-
-Điểm khó là agent chỉ quan sát reward của **hành động nó thực sự đã chọn**, chứ không biết reward của các hành động thay thế mà nó không thử. Nếu chọn học Stanford thay vì MIT, bạn chỉ trải nghiệm quỹ đạo ở Stanford; không thể trực tiếp quan sát điều gì sẽ xảy ra nếu đã chọn MIT.
-
-Vì vậy, RL luôn có trade-off cơ bản:
-
-- **Exploration:** Thử hành động mới để thu thập thông tin và có thể phát hiện phương án tốt hơn.
-- **Exploitation:** Chọn hành động đang được biết là cho reward cao để tối đa hóa kết quả hiện tại.
-
-Ví dụ trong contextual bandit cho quảng cáo: luôn hiển thị quảng cáo có CTR cao nhất là exploitation; thi thoảng hiển thị một creative mới để đo hiệu quả của nó là exploration.
-
-### 4. Khái quát hóa
-
-Policy là một ánh xạ từ kinh nghiệm quá khứ sang hành động. Về lý thuyết, ta có thể lập một lookup table ghi sẵn hành động cho mọi tình huống có thể xảy ra. Tuy nhiên, trong thực tế state space quá lớn nên cách này không khả thi.
-
-Agent phải học từ dữ liệu và kinh nghiệm hữu hạn, rồi hành động hợp lý ở những state mới chưa từng thấy. Đây chính là năng lực **generalization**.
-
-Deep learning đặc biệt phù hợp ở đây: neural network có thể biến observation phức tạp—ảnh, âm thanh, text, history hành vi, graph state—thành representation và xấp xỉ policy/value function trên state space rất lớn. Đây là một lý do quan trọng khiến kết hợp RL với deep neural networks, tức **deep RL**, đạt nhiều kết quả đáng chú ý.
 
 
 ## Giải thích concepts:
