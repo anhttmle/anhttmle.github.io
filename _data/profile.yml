@@ -1,4 +1,4 @@
-avatar: "/assets/profile/anhtt.jpg"
+eavatar: "/assets/profile/anhtt.jpg"
 name: "Thế-Anh Trần"
 email: "anhttmle@gmail.com"
 description: "I like diving into nature of intelligence!!!"
@@ -18,7 +18,7 @@ experiences:
         time: "July 2026 - Present"
         employment_type: "Part-time"
         location: "Viet Nam"
-        location_type: "Onsite"
+        location_type: "Remote"
         description:
           text: "Focus on next AI generation like World Model, Reasoning, Planning,..."
           children:
