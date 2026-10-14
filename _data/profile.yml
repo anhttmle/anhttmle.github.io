@@ -6,6 +6,13 @@ experiences:
   - employer: "Myself"
     time: "July 2026 - Present"
     logo: "/assets/profile/anhtt.jpg"
+    skills:
+      - Deep Learning
+      - World Model
+      - JEPA
+      - Reinforcement Learning
+      - Pytorch
+      - MLOps
     roles:
       - name: "AI Researcher"
         time: "July 2026 - Present"
