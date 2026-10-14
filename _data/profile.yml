@@ -226,7 +226,7 @@ experiences:
           children:
 projects:
   - employer: "Myself"
-    name: "Knowledge Graph reasoning"
+    name: "Knowledge Graph reasoning for Drug Repurposing"
     time: "July 2026 - Present"
     logo: "/assets/profile/anhtt.jpg"
     description: |
@@ -234,7 +234,7 @@ projects:
       - Reasoning by exploring Knowledge Graph paths with Reinforcement Learning & Verified Models
       - Replacing Contrastive Learning with SigReg
   - employer: "Myself"
-    name: "Omni Platform"
+    name: "Omni Platform for SME"
     time: "July 2026 - Present"
     logo: "/assets/profile/anhtt.jpg"
     description: |
