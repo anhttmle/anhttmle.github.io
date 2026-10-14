@@ -3,6 +3,18 @@ name: "Thế-Anh Trần"
 email: "anhttmle@gmail.com"
 description: "I like diving into nature of intelligence!!!"
 experiences:
+  - employer: "Myself"
+    time: "July 2026 - Present"
+    logo: "/assets/profile/anhtt.jpg"
+    roles:
+      - name: "AI Researcher"
+        time: "July 2026 - Present"
+        employment_type: "Full-time"
+        location: "Viet Nam"
+        location_type: "Onsite"
+        description:
+          text: "Focus on next AI generation like World Model, Reasoning, Planning,..."
+          children:
   - employer: "Cinnamon AI"
     time: "Oct 2023 - July 2026"
     logo: "/assets/profile/cinnamon.jpg"
@@ -69,7 +81,7 @@ experiences:
           text: "Design and develop AI-powered cybersecurity products that are optimized for performance and built for scalability."
           children:
   - employer: "Freelancer"
-    time: "Jun 2023 - Present"
+    time: "Jun 2023 - Aug 2026"
     logo: "assets/profile/anhtt.jpg"
     skills:
       - System Design
