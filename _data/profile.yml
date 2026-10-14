@@ -225,6 +225,31 @@ experiences:
           text: "Research and develop products using IBM XPages, a web framework based on JSF (JavaServer Faces)."
           children:
 projects:
+  - employer: "Myself"
+    name: "Knowledge Graph reasoning"
+    time: "July 2026 - Present"
+    logo: "/assets/profile/anhtt.jpg"
+    description: |
+      - Learning representation of node/edge/subgraph of Knowledge Graph
+      - Reasoning by exploring Knowledge Graph paths with Reinforcement Learning & Verified Models
+      - Replacing Contrastive Learning with SigReg
+  - employer: "Myself"
+    name: "Omni Platform"
+    time: "July 2026 - Present"
+    logo: "/assets/profile/anhtt.jpg"
+    description: |
+      - Centralize AI solutions in single platform to provide flexible & ready-to-go bundle for SME
+      - Cost optimization for serving self-hosted models
+  - employer: "Cinnamon AI"
+    name: "Flax Scanner Hub"
+    time: "Oct 2023 - Present"
+    logo: "/assets/profile/cinnamon.jpg"
+    description: |
+      - Optimized pipeline and model performance for serving
+      - Applied LLMs to the key-value matching phase
+      - Experimented with self-hosted LLMs
+      - Implemented distributed LLM model serving
+      - ...
   - employer: "Cinnamon AI"
     name: "SuperRAG"
     time: "Nov 2024 - Present"
