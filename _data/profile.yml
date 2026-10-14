@@ -238,8 +238,9 @@ projects:
     time: "July 2026 - Present"
     logo: "/assets/profile/anhtt.jpg"
     description: |
-      - Centralize AI solutions in single platform to provide flexible & ready-to-go bundle for SME
-      - Cost optimization for serving self-hosted models
+      - Centralize AI solutions in single platform to provide flexible & ready-to-go bundle for SME.
+      - Cost optimization for serving self-hosted models.
+      - Pricing & licensing definition for pay-as-you-go vs on-premise clients.
   - employer: "Cinnamon AI"
     name: "Flax Scanner Hub"
     time: "Oct 2023 - Present"
